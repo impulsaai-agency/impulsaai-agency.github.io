@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Veterinaria Alma · Madrid</title>
+<meta name="description" content="Clínica veterinaria de referencia en el barrio de Salamanca, Madrid. Atención experta y cercana para tu mascota. Urgencias 24h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green: #0d4d4d;
+  --green-mid: #1a6b5a;
+  --green-light: #e8f4f0;
+  --amber: #e8a844;
+  --amber-dark: #c48b2a;
+  --cream: #fafaf8;
+  --cream-dark: #f0ede6;
+  --text: #1a1a18;
+  --text-mid: #4a4a42;
+  --text-muted: #8a8a7a;
+  --white: #ffffff;
+  --shadow-sm: 0 2px 12px rgba(13,77,77,0.08);
+  --shadow-md: 0 8px 32px rgba(13,77,77,0.12);
+  --shadow-lg: 0 20px 60px rgba(13,77,77,0.16);
+  --radius: 16px;
+  --radius-lg: 24px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+
+/* ─── NAVBAR ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(250,250,248,0.95);
+  backdrop-filter: blur(20px);
+  padding: 14px 0;
+  box-shadow: 0 1px 0 rgba(13,77,77,0.08);
+}
+nav:not(.scrolled) .nav-logo-text { color: var(--white); }
+nav:not(.scrolled) .nav-logo-text span { color: var(--amber); }
+nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.85); }
+nav:not(.scrolled) .nav-links a:hover { color: var(--white); }
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 40px; height: 40px;
+  background: var(--green);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.nav-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green);
+}
+.nav-logo-text span {
+  color: var(--amber);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green); }
+.nav-cta {
+  background: var(--green);
+  color: var(--white) !important;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+}
+.nav-cta:hover {
+  background: var(--amber) !important;
+  color: var(--white) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232,168,68,0.4);
+}
+.nav-urgencias {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,168,68,0.12);
+  border: 1px solid rgba(232,168,68,0.3);
+  color: var(--amber-dark) !important;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 13px !important;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--green);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+  background-size: 40px 40px;
+}
+.hero-orb1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(26,107,90,0.6) 0%, transparent 70%);
+  top: -200px; right: -100px;
+  border-radius: 50%;
+}
+.hero-orb2 {
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(232,168,68,0.15) 0%, transparent 70%);
+  bottom: -100px; left: 100px;
+  border-radius: 50%;
+}
+.hero-leaf {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 45%;
+  background: linear-gradient(135deg, rgba(26,107,90,0.3) 0%, rgba(232,168,68,0.1) 100%);
+  clip-path: ellipse(100% 80% at 100% 50%);
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 32px 80px;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,168,68,0.15);
+  border: 1px solid rgba(232,168,68,0.3);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--amber);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  max-width: 480px;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--amber);
+  color: var(--white);
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(232,168,68,0.4);
+}
+.btn-primary:hover {
+  background: #f0b842;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232,168,68,0.5);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--white);
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-lbl {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 400;
+}
+.hero-visual {
+  position: relative;
+}
+.hero-card-main {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  margin-bottom: 20px;
+}
+.hero-card-icon {
+  width: 60px; height: 60px;
+  background: var(--amber);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.hero-card-main h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.hero-card-main p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+.hero-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.hero-card-sm {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.3s;
+}
+.hero-card-sm:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+.hero-card-sm-icon { font-size: 24px; }
+.hero-card-sm-text { font-size: 14px; color: rgba(255,255,255,0.75); font-weight: 500; }
+.hero-urgencias-bar {
+  margin-top: 20px;
+  background: rgba(232,168,68,0.15);
+  border: 1px solid rgba(232,168,68,0.25);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-urgencias-bar span { font-size: 14px; color: var(--amber); font-weight: 600; }
+.hero-urgencias-bar small { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+/* ─── SECTIONS ─── */
+section { padding: 100px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--amber);
+  border-radius: 1px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.section-title em { font-style: italic; color: var(--green); }
+.section-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+/* ─── SERVICIOS ─── */
+.servicios { background: var(--white); }
+.servicios-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.servicios-header .section-label { justify-content: center; }
+.servicios-header .section-sub { margin: 0 auto; }
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.servicio-card {
+  background: var(--cream);
+  border: 1px solid rgba(13,77,77,0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.servicio-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--amber));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+.servicio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(13,77,77,0.12);
+}
+.servicio-card:hover::before { transform: scaleX(1); }
+.servicio-icon {
+  width: 60px; height: 60px;
+  background: var(--green-light);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+}
+.servicio-card:hover .servicio-icon {
+  background: var(--green);
+}
+.servicio-nombre {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.servicio-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.servicio-precio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(13,77,77,0.06);
+  border: 1px solid rgba(13,77,77,0.12);
+  color: var(--green);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.servicio-urgencias {
+  background: linear-gradient(135deg, var(--green), var(--green-mid));
+  color: var(--white);
+  grid-column: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 48px;
+}
+.servicio-urgencias .servicio-icon { background: rgba(255,255,255,0.15); }
+.servicio-urgencias .servicio-nombre { color: var(--white); }
+.servicio-urgencias .servicio-desc { color: rgba(255,255,255,0.7); }
+.servicio-urgencias .servicio-precio {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--white);
+  font-size: 16px;
+  padding: 12px 28px;
+}
+.urgencias-left { display: flex; align-items: center; gap: 24px; }
+
+/* ─── SOBRE NOSOTROS ─── */
+.sobre { background: var(--cream); }
+.sobre-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.sobre-visual {
+  position: relative;
+}
+.sobre-img-main {
+  width: 100%;
+  height: 460px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 50%, rgba(232,168,68,0.3) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.sobre-img-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(232,168,68,0.2) 0%, transparent 60%);
+}
+.sobre-badge-float {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--amber);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.sobre-badge-float .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+}
+.sobre-badge-float .lbl {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.sobre-content .section-sub { margin-bottom: 40px; }
+.sobre-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.sobre-stat {
+  background: var(--white);
+  border: 1px solid rgba(13,77,77,0.08);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+.sobre-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.sobre-stat-lbl { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.sobre-valores {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sobre-valor {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid rgba(13,77,77,0.06);
+}
+.sobre-valor-icon {
+  width: 40px; height: 40px;
+  background: var(--green-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.sobre-valor-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.sobre-valor-desc { font-size: 13px; color: var(--text-muted); }
+
+/* ─── EQUIPO ─── */
+.equipo { background: var(--green); }
+.equipo-header { text-align: center; margin-bottom: 64px; }
+.equipo-header .section-label { justify-content: center; color: rgba(255,255,255,0.5); }
+.equipo-header .section-title { color: var(--white); }
+.equipo-header .section-title em { color: var(--amber); }
+.equipo-header .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto; }
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.equipo-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.4s;
+}
+.equipo-card:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.equipo-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  position: relative;
+}
+.equipo-avatar::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  opacity: 0.5;
+}
+.equipo-nombre {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.equipo-cargo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.equipo-bio {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+
+/* ─── TESTIMONIOS ─── */
+.testimonios { background: var(--cream-dark); }
+.testimonios-header { text-align: center; margin-bottom: 64px; }
+.testimonios-header .section-label { justify-content: center; }
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.testimonio-card {
+  background: var(--white);
+  border: 1px solid rgba(13,77,77,0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+.testimonio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.testimonio-stars {
+  font-size: 18px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+.testimonio-texto {
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+.testimonio-autor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.testimonio-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.testimonio-nombre { font-size: 15px; font-weight: 700; color: var(--text); }
+.testimonio-mascota { font-size: 13px; color: var(--text-muted); }
+.testimonio-quote {
+  position: absolute;
+  top: 24px; right: 28px;
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--green-light);
+  font-weight: 700;
+}
+
+/* ─── CONTACTO ─── */
+.contacto { background: var(--white); }
+.contacto-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contacto-info { padding-top: 8px; }
+.contacto-info .section-sub { margin-bottom: 40px; }
+.contacto-items { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+.contacto-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 1px solid rgba(13,77,77,0.07);
+}
+.contacto-item-icon {
+  width: 44px; height: 44px;
+  background: var(--green-light);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.contacto-item-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.contacto-item-value { font-size: 15px; font-weight: 600; color: var(--text); }
+.contacto-redes { display: flex; gap: 12px; }
+.red-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cream);
+  border: 1px solid rgba(13,77,77,0.12);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.red-btn:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+.contacto-form {
+  background: var(--cream);
+  border: 1px solid rgba(13,77,77,0.08);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+.contacto-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.contacto-form p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 8px; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid rgba(13,77,77,0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(13,77,77,0.08);
+}
+.form-group textarea { height: 100px; resize: none; }
+.form-submit {
+  width: 100%;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 100px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+.form-submit:hover {
+  background: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232,168,68,0.4);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--text);
+  color: rgba(255,255,255,0.6);
+  padding: 60px 0 32px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 48px;
+}
+.footer-brand .nav-logo-text { color: var(--white); font-size: 22px; }
+.footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 16px; max-width: 300px; }
+.footer-col h4 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-col ul a:hover { color: var(--amber); }
+.footer-bottom {
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.footer-bottom a { color: var(--amber); text-decoration: none; }
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+.stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+.stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .servicios-grid { grid-template-columns: 1fr 1fr; }
+  .servicio-urgencias { grid-column: span 2; }
+  .sobre-inner { grid-template-columns: 1fr; }
+  .sobre-visual { display: none; }
+  .equipo-grid { grid-template-columns: 1fr; }
+  .testimonios-grid { grid-template-columns: 1fr; }
+  .contacto-inner { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 60px; min-height: auto; }
+  .hero-content { padding: 0; }
+  .hero-badge { font-size: 11px; }
+}
+@media (max-width: 600px) {
+  section { padding: 56px 0; }
+  .section-inner { padding: 0 20px; }
+  .servicios-grid { grid-template-columns: 1fr; }
+  .servicio-urgencias { grid-column: span 1; }
+  .sobre-stats { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(32px, 9vw, 52px); }
+  .hero-sub { font-size: 14px; }
+  .hero-btns { flex-direction: column; gap: 12px; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+  .sobre-stats .stat-num { font-size: 36px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .chat-window { width: calc(100vw - 24px); right: 12px; }
+  .chat-fab { right: 16px; bottom: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🐾</div>
+      <div class="nav-logo-text">Alma<span>Vet</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="tel:912345678" class="nav-urgencias">🚨 Urgencias 24h</a></li>
+      <li><a href="#contacto" class="nav-cta">Pedir cita</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-leaf"></div>
+  <div class="hero-inner">
+    <div class="hero-content-left">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Barrio de Salamanca · Madrid</div>
+      <h1>Tu mascota merece<br>la <em>mejor atención.</em></h1>
+      <p class="hero-sub">Medicina veterinaria de referencia en el corazón de Madrid. Equipo especializado, tecnología avanzada y el trato cercano que tu compañero merece.</p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">🐾 Pedir cita online</a>
+        <a href="#servicios" class="btn-secondary">Ver servicios →</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">+15</div>
+          <div class="hero-stat-lbl">Años de experiencia</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">+2.400</div>
+          <div class="hero-stat-lbl">Pacientes atendidos</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">4.9★</div>
+          <div class="hero-stat-lbl">Valoración Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="hero-card-icon">🏥</div>
+        <h3>Clínica de referencia</h3>
+        <p>Instalaciones de última generación en pleno barrio de Salamanca, con toda la tecnología necesaria para el diagnóstico y tratamiento de tu mascota.</p>
+      </div>
+      <div class="hero-cards-row">
+        <div class="hero-card-sm">
+          <div class="hero-card-sm-icon">🔬</div>
+          <div class="hero-card-sm-text">Diagnóstico avanzado</div>
+        </div>
+        <div class="hero-card-sm">
+          <div class="hero-card-sm-icon">💉</div>
+          <div class="hero-card-sm-text">Vacunaciones</div>
+        </div>
+        <div class="hero-card-sm">
+          <div class="hero-card-sm-icon">✂️</div>
+          <div class="hero-card-sm-text">Cirugía especializada</div>
+        </div>
+        <div class="hero-card-sm">
+          <div class="hero-card-sm-icon">🦜</div>
+          <div class="hero-card-sm-text">Animales exóticos</div>
+        </div>
+      </div>
+      <div class="hero-urgencias-bar">
+        <span>🚨 Urgencias 24 horas</span>
+        <small>91 234 56 78 — Siempre disponibles</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="servicios-header reveal">
+      <div class="section-label">Nuestros servicios</div>
+      <h2 class="section-title">Todo lo que tu <em>compañero</em> necesita</h2>
+      <p class="section-sub">Ofrecemos una atención veterinaria integral, desde revisiones rutinarias hasta cirugías especializadas, siempre con el máximo cuidado.</p>
+    </div>
+    <div class="servicios-grid stagger">
+      <div class="servicio-card">
+        <div class="servicio-icon">🩺</div>
+        <div class="servicio-nombre">Consulta General</div>
+        <div class="servicio-desc">Revisión completa del estado de salud de tu mascota. Diagnóstico, seguimiento y orientación personalizada.</div>
+        <div class="servicio-precio">Desde 45€</div>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">💉</div>
+        <div class="servicio-nombre">Vacunaciones</div>
+        <div class="servicio-desc">Protocolo de vacunación adaptado a cada especie y estilo de vida. Incluye cartilla sanitaria actualizada.</div>
+        <div class="servicio-precio">Desde 30€</div>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🔪</div>
+        <div class="servicio-nombre">Cirugía</div>
+        <div class="servicio-desc">Quirófano equipado con tecnología de vanguardia. Cirugías de tejidos blandos, ortopédicas y laparoscópicas.</div>
+        <div class="servicio-precio">Desde 200€</div>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">✂️</div>
+        <div class="servicio-nombre">Peluquería Canina</div>
+        <div class="servicio-desc">Baño, corte y arreglo profesional adaptado a cada raza. Usamos productos hipoalergénicos de alta calidad.</div>
+        <div class="servicio-precio">Desde 35€</div>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🦷</div>
+        <div class="servicio-nombre">Odontología Veterinaria</div>
+        <div class="servicio-desc">Limpieza dental profesional, extracciones y tratamientos periodontales bajo anestesia controlada.</div>
+        <div class="servicio-precio">Desde 80€</div>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-icon">🔬</div>
+        <div class="servicio-nombre">Diagnóstico por Imagen</div>
+        <div class="servicio-desc">Radiografía digital, ecografía y análisis clínicos con resultados en el mismo día para un diagnóstico preciso.</div>
+        <div class="servicio-precio">Desde 60€</div>
+      </div>
+      <div class="servicio-card servicio-urgencias">
+        <div class="urgencias-left">
+          <div class="servicio-icon">🚨</div>
+          <div>
+            <div class="servicio-nombre">Urgencias 24 Horas</div>
+            <div class="servicio-desc">Porque los imprevistos no entienden de horarios. Estamos disponibles las 24 horas, los 365 días del año.</div>
+          </div>
+        </div>
+        <a href="tel:912345678" class="servicio-precio">📞 91 234 56 78</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section class="sobre" id="nosotros">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-visual reveal-left">
+        <div class="sobre-img-main">🐾</div>
+        <div class="sobre-badge-float">
+          <span class="num">+15</span>
+          <span class="lbl">años cuidando<br>mascotas</span>
+        </div>
+      </div>
+      <div class="sobre-content reveal-right">
+        <div class="section-label">Sobre nosotros</div>
+        <h2 class="section-title">Expertos que <em>aman</em> a los animales</h2>
+        <p class="section-sub">Fundada en 2009, la Clínica Veterinaria Alma nació con una misión clara: ofrecer la mejor medicina veterinaria con el trato más humano posible. Ubicados en el barrio de Salamanca, hemos acompañado a miles de familias madrileñas en el cuidado de sus mascotas.</p>
+        <div class="sobre-stats">
+          <div class="sobre-stat">
+            <div class="sobre-stat-num counter" data-target="2400">0</div>
+            <div class="sobre-stat-lbl">Pacientes atendidos</div>
+          </div>
+          <div class="sobre-stat">
+            <div class="sobre-stat-num counter" data-target="15">0</div>
+            <div class="sobre-stat-lbl">Años de experiencia</div>
+          </div>
+          <div class="sobre-stat">
+            <div class="sobre-stat-num counter" data-target="98">0</div>
+            <div class="sobre-stat-lbl">% satisfacción</div>
+          </div>
+        </div>
+        <div class="sobre-valores">
+          <div class="sobre-valor">
+            <div class="sobre-valor-icon">❤️</div>
+            <div>
+              <div class="sobre-valor-title">Trato cercano y personalizado</div>
+              <div class="sobre-valor-desc">Cada mascota y cada familia es única. Nos tomamos el tiempo que necesita.</div>
+            </div>
+          </div>
+          <div class="sobre-valor">
+            <div class="sobre-valor-icon">🔬</div>
+            <div>
+              <div class="sobre-valor-title">Tecnología de vanguardia</div>
+              <div class="sobre-valor-desc">Equipamiento de última generación para diagnósticos precisos y tratamientos eficaces.</div>
+            </div>
+          </div>
+          <div class="sobre-valor">
+            <div class="sobre-valor-icon">🎓</div>
+            <div>
+              <div class="sobre-valor-title">Formación continua</div>
+              <div class="sobre-valor-desc">Nuestro equipo se actualiza constantemente con las últimas investigaciones veterinarias.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="equipo" id="equipo">
+  <div class="container">
+    <div class="equipo-header reveal">
+      <div class="section-label">Nuestro equipo</div>
+      <h2 class="section-title">Los mejores <em>profesionales</em> para tu mascota</h2>
+      <p class="section-sub">Un equipo apasionado, cualificado y con años de experiencia especializada en diferentes áreas de la medicina veterinaria.</p>
+    </div>
+    <div class="equipo-grid stagger">
+      <div class="equipo-card">
+        <div class="equipo-avatar" style="background: linear-gradient(135deg, #1a6b5a, #0d4d4d);">👩‍⚕️</div>
+        <div class="equipo-nombre">Dra. Laura Martínez</div>
+        <div class="equipo-cargo">Directora Médica</div>
+        <div class="equipo-bio">Licenciada en Veterinaria por la Universidad Complutense de Madrid con más de 15 años de experiencia. Especialista en medicina interna y diagnóstico por imagen.</div>
+      </div>
+      <div class="equipo-card">
+        <div class="equipo-avatar" style="background: linear-gradient(135deg, #c48b2a, #e8a844);">👨‍⚕️</div>
+        <div class="equipo-nombre">Dr. Alejandro Ruiz</div>
+        <div class="equipo-cargo">Cirujano Veterinario</div>
+        <div class="equipo-bio">Especialista en cirugía de tejidos blandos y ortopedia. Máster en Cirugía Veterinaria Mínimamente Invasiva. Referente en laparoscopia animal en Madrid.</div>
+      </div>
+      <div class="equipo-card">
+        <div class="equipo-avatar" style="background: linear-gradient(135deg, #2d7a6b, #1a6b5a);">👩‍⚕️</div>
+        <div class="equipo-nombre">Dra. Sara López</div>
+        <div class="equipo-cargo">Animales Exóticos</div>
+        <div class="equipo-bio">Especialista en reptiles, aves, conejos y pequeños mamíferos. Formación en la Universidad de Murcia y estancias en clínicas especializadas de Europa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios" id="testimonios">
+  <div class="container">
+    <div class="testimonios-header reveal">
+      <div class="section-label">Testimonios</div>
+      <h2 class="section-title">Lo que dicen nuestros <em>clientes</em></h2>
+    </div>
+    <div class="testimonios-grid stagger">
+      <div class="testimonio-card">
+        <div class="testimonio-quote">"</div>
+        <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testimonio-texto">Llevamos a Nala con la Dra. Martínez desde que era cachorra. El trato es excepcional — siempre explican todo con detalle y nunca te sientes con prisas. Sin duda la mejor clínica del barrio.</div>
+        <div class="testimonio-autor">
+          <div class="testimonio-avatar" style="background: var(--green);">M</div>
+          <div>
+            <div class="testimonio-nombre">María González</div>
+            <div class="testimonio-mascota">🐕 Nala, Golden Retriever</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <div class="testimonio-quote">"</div>
+        <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testimonio-texto">Mi gato Simba necesitó una operación de urgencias a las 2 de la madrugada. El Dr. Ruiz estuvo increíble. La atención fue rapidísima y profesional. No cambiaría esta clínica por nada.</div>
+        <div class="testimonio-autor">
+          <div class="testimonio-avatar" style="background: var(--amber-dark);">C</div>
+          <div>
+            <div class="testimonio-nombre">Carlos Herrero</div>
+            <div class="testimonio-mascota">🐱 Simba, Europeo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <div class="testimonio-quote">"</div>
+        <div class="testimonio-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testimonio-texto">Tengo una tortuga y una cotorra — casi ningún veterinario los atiende. La Dra. López es una especialista brillante. Por fin encontré un sitio donde mis animales están en buenas manos.</div>
+        <div class="testimonio-autor">
+          <div class="testimonio-avatar" style="background: var(--green-mid);">A</div>
+          <div>
+            <div class="testimonio-nombre">Ana Delgado</div>
+            <div class="testimonio-mascota">🐢🦜 Turbo y Paco</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto-inner">
+      <div class="contacto-info reveal-left">
+        <div class="section-label">Contacto</div>
+        <h2 class="section-title">Pide cita para tu <em>mascota</em></h2>
+        <p class="section-sub">Estamos en el corazón del barrio de Salamanca. Ven a conocernos o pide tu cita online en menos de 2 minutos.</p>
+        <div class="contacto-items">
+          <div class="contacto-item">
+            <div class="contacto-item-icon">📍</div>
+            <div>
+              <div class="contacto-item-label">Dirección</div>
+              <div class="contacto-item-value">Calle de Velázquez, 47<br>Barrio de Salamanca, Madrid</div>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-item-icon">📞</div>
+            <div>
+              <div class="contacto-item-label">Teléfono</div>
+              <div class="contacto-item-value">91 234 56 78</div>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-item-icon">✉️</div>
+            <div>
+              <div class="contacto-item-label">Email</div>
+              <div class="contacto-item-value">info@clinicaveterinariaaalma.es</div>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-item-icon">🕐</div>
+            <div>
+              <div class="contacto-item-label">Horario</div>
+              <div class="contacto-item-value">Lun–Vie: 9:00–20:00<br>Sábados: 9:00–14:00 · Urgencias 24h</div>
+            </div>
+          </div>
+        </div>
+        <div class="contacto-redes">
+          <a href="#" class="red-btn">📸 Instagram</a>
+          <a href="#" class="red-btn">👥 Facebook</a>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="contacto-form">
+          <h3>Solicitar cita</h3>
+          <p>Te llamamos en menos de 24 horas para confirmar.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tu nombre</label>
+              <input type="text" placeholder="María García">
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="612 345 678">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tipo de mascota</label>
+            <select>
+              <option>Perro</option>
+              <option>Gato</option>
+              <option>Ave</option>
+              <option>Reptil</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Motivo de la consulta</label>
+            <textarea placeholder="Describe brevemente el motivo de tu visita..."></textarea>
+          </div>
+          <button class="form-submit">🐾 Pedir cita ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0">
+          <div class="nav-logo-icon" style="background:rgba(255,255,255,0.1)">🐾</div>
+          <div class="nav-logo-text">Alma<span style="color:var(--amber)">Vet</span></div>
+        </div>
+        <p>Clínica veterinaria de referencia en Madrid desde 2009. Porque tu mascota forma parte de tu familia, y merece la mejor atención.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Consulta General</a></li>
+          <li><a href="#">Vacunaciones</a></li>
+          <li><a href="#">Cirugía</a></li>
+          <li><a href="#">Urgencias 24h</a></li>
+          <li><a href="#">Peluquería Canina</a></li>
+          <li><a href="#">Animales Exóticos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Clínica</h4>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Nuestro equipo</a></li>
+          <li><a href="#">Pedir cita</a></li>
+          <li><a href="#">Urgencias</a></li>
+          <li><a href="#">Aviso legal</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Clínica Veterinaria Alma · Todos los derechos reservados</span>
+      <span>Web diseñada por <a href="#">ImpulsaAI</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT MODAL -->
+<div id="vetChatModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);align-items:flex-end;justify-content:flex-end;padding:24px;">
+  <div style="width:360px;max-height:580px;background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.25);">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#0d4d4d,#1a6b5a);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:38px;height:38px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🐾</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:14px;">Clínica Veterinaria Alma</div>
+          <div style="color:rgba(255,255,255,0.7);font-size:11px;">● En línea ahora</div>
+        </div>
+      </div>
+      <button onclick="cerrarVetChat()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-size:20px;cursor:pointer;padding:4px;">✕</button>
+    </div>
+    <!-- Mensajes -->
+    <div id="vetChatMsgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#f8faf8;"></div>
+    <!-- Opciones -->
+    <div id="vetChatOpts" style="padding:12px 16px;background:#fff;border-top:1px solid #eee;display:flex;flex-wrap:wrap;gap:8px;"></div>
+    <!-- Restart -->
+    <div id="vetChatRestart" style="display:none;padding:8px 16px 12px;background:#fff;text-align:center;">
+      <button onclick="reiniciarVetChat()" style="background:none;border:1px solid #0d4d4d;color:#0d4d4d;border-radius:100px;padding:6px 16px;font-size:12px;cursor:pointer;font-weight:600;">↺ Ver la demo de nuevo</button>
+    </div>
+  </div>
+</div>
+
+<!-- FAB CHATBOT -->
+<button onclick="abrirVetChat()" id="vetFab" title="Pedir cita" style="position:fixed;bottom:28px;right:28px;z-index:998;width:58px;height:58px;background:linear-gradient(135deg,#e8a844,#d4922a);border:none;border-radius:50%;cursor:pointer;box-shadow:0 4px 20px rgba(232,168,68,0.55);display:flex;align-items:center;justify-content:center;font-size:26px;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🐾</button>
+
+<script>
+// ── VET CHATBOT ──
+const VET_FLUJOS = {
+  inicio: {
+    bot: '¡Hola! 👋 Soy el asistente de Clínica Veterinaria Alma. ¿En qué puedo ayudarte?',
+    opts: [{ txt: '🐾 Pedir cita', sig: 'cita_animal' }, { txt: '❓ Tengo una duda', sig: 'duda_inicio' }]
+  },
+  cita_animal: {
+    bot: '¿Qué tipo de mascota tienes?',
+    opts: [{ txt: '🐶 Perro', sig: 'cita_servicio' }, { txt: '🐱 Gato', sig: 'cita_servicio' }, { txt: '🐾 Otro animal', sig: 'cita_servicio' }]
+  },
+  cita_servicio: {
+    bot: '¿Qué necesitas?',
+    opts: [{ txt: '🩺 Consulta general (45€)', sig: 'cita_dia' }, { txt: '💉 Vacunación (30€)', sig: 'cita_dia' }, { txt: '✂️ Peluquería (desde 35€)', sig: 'cita_dia' }, { txt: '🚨 Urgencia 24h', sig: 'cita_urgencia' }]
+  },
+  cita_urgencia: {
+    bot: '🚨 Para urgencias llámanos directamente al **91 234 56 78** — estamos disponibles las 24 horas, los 7 días de la semana.',
+    opts: [{ txt: '⬅️ Volver al inicio', sig: 'inicio' }]
+  },
+  cita_dia: {
+    bot: '¿Qué día prefieres?',
+    opts: [{ txt: 'Hoy', sig: 'cita_hora' }, { txt: 'Mañana', sig: 'cita_hora' }, { txt: 'Esta semana', sig: 'cita_hora' }]
+  },
+  cita_hora: {
+    bot: '¿A qué hora te viene mejor?',
+    opts: [{ txt: '9:00', sig: 'cita_datos' }, { txt: '10:30', sig: 'cita_datos' }, { txt: '12:00', sig: 'cita_datos' }, { txt: '17:00', sig: 'cita_datos' }, { txt: '18:30', sig: 'cita_datos' }]
+  },
+  cita_datos: {
+    bot: 'Perfecto. ¿Tu nombre y el nombre de tu mascota?',
+    opts: [],
+    input: true,
+    sig: 'cita_confirm'
+  },
+  cita_confirm: {
+    bot: '✅ ¡Cita reservada! Te esperamos en Calle de Velázquez, 47. Recibirás confirmación por SMS. ¡Hasta pronto! 🐾',
+    opts: [{ txt: '⬅️ Volver al inicio', sig: 'inicio' }],
+    final: true
+  },
+  duda_inicio: {
+    bot: '¿Sobre qué tienes la duda?',
+    opts: [{ txt: '⏰ Horario', sig: 'duda_horario' }, { txt: '💊 Servicios y precios', sig: 'duda_servicios' }, { txt: '📍 Cómo llegar', sig: 'duda_llegar' }, { txt: '🐦 Animales exóticos', sig: 'duda_exoticos' }]
+  },
+  duda_horario: {
+    bot: '🕘 Nuestro horario es:\n\n**Lunes a Viernes:** 9:00 – 20:00\n**Sábados:** 9:00 – 14:00\n**Urgencias:** 24 horas, todos los días.',
+    opts: [{ txt: '⬅️ Volver', sig: 'duda_inicio' }]
+  },
+  duda_servicios: {
+    bot: '🩺 Nuestros servicios:\n\n• Consulta general: 45€\n• Vacunaciones: 30€\n• Cirugía: desde 200€\n• Urgencias 24h\n• Peluquería: desde 35€\n• Odontología: desde 80€',
+    opts: [{ txt: '🐾 Pedir cita', sig: 'cita_animal' }, { txt: '⬅️ Volver', sig: 'duda_inicio' }]
+  },
+  duda_llegar: {
+    bot: '📍 Estamos en **Calle de Velázquez, 47, Madrid**.\n\nMetro: Velázquez (L4) o Príncipe de Vergara (L9). Parking en Calle de Goya.',
+    opts: [{ txt: '⬅️ Volver', sig: 'duda_inicio' }]
+  },
+  duda_exoticos: {
+    bot: '🦜 Nuestra Dra. Sara López está especializada en animales exóticos — reptiles, aves, conejos, hurones y más. Llámanos al 91 234 56 78 para consultar.',
+    opts: [{ txt: '🐾 Pedir cita', sig: 'cita_animal' }, { txt: '⬅️ Volver', sig: 'duda_inicio' }]
+  }
+};
+
+let vetPasoActual = null;
+let vetUserSeleccion = {};
+
+function abrirVetChat() {
+  const modal = document.getElementById('vetChatModal');
+  modal.style.display = 'flex';
+  document.getElementById('vetFab').style.display = 'none';
+  if (!vetPasoActual) iniciarVetChat();
+}
+function cerrarVetChat() {
+  document.getElementById('vetChatModal').style.display = 'none';
+  document.getElementById('vetFab').style.display = 'flex';
+}
+function reiniciarVetChat() {
+  vetPasoActual = null;
+  vetUserSeleccion = {};
+  document.getElementById('vetChatMsgs').innerHTML = '';
+  document.getElementById('vetChatOpts').innerHTML = '';
+  document.getElementById('vetChatRestart').style.display = 'none';
+  iniciarVetChat();
+}
+function iniciarVetChat() {
+  mostrarVetPaso('inicio', null);
+}
+function mostrarVetPaso(id, userTxt) {
+  vetPasoActual = id;
+  const paso = VET_FLUJOS[id];
+  if (!paso) return;
+  if (userTxt) agregarVetMsg(userTxt, 'user');
+  setTimeout(() => {
+    mostrarVetTyping();
+    setTimeout(() => {
+      quitarVetTyping();
+      agregarVetMsg(paso.bot, 'bot');
+      renderVetOpts(paso);
+      if (paso.final) document.getElementById('vetChatRestart').style.display = 'block';
+    }, 700);
+  }, 200);
+}
+function mostrarVetTyping() {
+  const msgs = document.getElementById('vetChatMsgs');
+  const t = document.createElement('div');
+  t.id = 'vetTyping';
+  t.style.cssText = 'display:flex;gap:4px;align-items:center;padding:10px 14px;background:#fff;border-radius:12px 12px 12px 4px;width:fit-content;box-shadow:0 1px 4px rgba(0,0,0,0.08);';
+  t.innerHTML = '<span style="width:7px;height:7px;background:#0d4d4d;border-radius:50%;animation:vdot 1s infinite 0s"></span><span style="width:7px;height:7px;background:#0d4d4d;border-radius:50%;animation:vdot 1s infinite 0.2s"></span><span style="width:7px;height:7px;background:#0d4d4d;border-radius:50%;animation:vdot 1s infinite 0.4s"></span>';
+  msgs.appendChild(t);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function quitarVetTyping() { const t = document.getElementById('vetTyping'); if (t) t.remove(); }
+function agregarVetMsg(txt, tipo) {
+  const msgs = document.getElementById('vetChatMsgs');
+  const d = document.createElement('div');
+  const isBot = tipo === 'bot';
+  d.style.cssText = `max-width:85%;padding:10px 14px;border-radius:${isBot?'12px 12px 12px 4px':'12px 12px 4px 12px'};font-size:13px;line-height:1.5;align-self:${isBot?'flex-start':'flex-end'};background:${isBot?'#fff':'#0d4d4d'};color:${isBot?'#2d3748':'#fff'};box-shadow:0 1px 4px rgba(0,0,0,0.08);white-space:pre-line;`;
+  d.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function renderVetOpts(paso) {
+  const opts = document.getElementById('vetChatOpts');
+  opts.innerHTML = '';
+  if (paso.input) {
+    const inp = document.createElement('input');
+    inp.placeholder = 'Escribe tu nombre y el de tu mascota...';
+    inp.style.cssText = 'width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;outline:none;font-family:inherit;';
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && inp.value.trim()) {
+        mostrarVetPaso(paso.sig, inp.value.trim());
+      }
+    });
+    opts.appendChild(inp);
+    setTimeout(() => inp.focus(), 100);
+  } else {
+    paso.opts.forEach(op => {
+      const btn = document.createElement('button');
+      btn.textContent = op.txt;
+      btn.style.cssText = 'padding:8px 14px;border:1px solid #0d4d4d;border-radius:100px;background:#fff;color:#0d4d4d;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;';
+      btn.onmouseover = () => { btn.style.background='#0d4d4d'; btn.style.color='#fff'; };
+      btn.onmouseout = () => { btn.style.background='#fff'; btn.style.color='#0d4d4d'; };
+      btn.onclick = () => mostrarVetPaso(op.sig, op.txt);
+      opts.appendChild(btn);
+    });
+  }
+}
+document.getElementById('vetChatModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('vetChatModal')) cerrarVetChat();
+});
+
+// Actualizar botones "Pedir cita online" para abrir chatbot
+document.querySelectorAll('a[href="#contacto"]').forEach(btn => {
+  if (btn.textContent.includes('cita')) {
+    btn.href = '#';
+    btn.addEventListener('click', e => { e.preventDefault(); abrirVetChat(); });
+  }
+});
+</script>
+<style>
+@keyframes vdot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+</style>
+
+<script>
+// ── NAVBAR SCROLL ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+
+      // Counter animation
+      const counters = entry.target.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const duration = 1800;
+        const step = target / (duration / 16);
+        let current = 0;
+        const update = () => {
+          current = Math.min(current + step, target);
+          counter.textContent = Math.floor(current).toLocaleString('es-ES');
+          if (current < target) requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+      });
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach(el => {
+  observer.observe(el);
+});
+
+// ── PARALLAX HERO ──
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const orb1 = document.querySelector('.hero-orb1');
+  const orb2 = document.querySelector('.hero-orb2');
+  if (orb1) orb1.style.transform = `translateY(${scrollY * 0.3}px)`;
+  if (orb2) orb2.style.transform = `translateY(${scrollY * -0.2}px)`;
+}, { passive: true });
+
+// ── FORM SUBMIT ──
+document.querySelector('.form-submit').addEventListener('click', function(e) {
+  e.preventDefault();
+  this.textContent = '✅ ¡Solicitud enviada!';
+  this.style.background = 'var(--green-mid)';
+  setTimeout(() => {
+    this.textContent = '🐾 Pedir cita ahora';
+    this.style.background = '';
+  }, 3000);
+});
+</script>
+</body>
+</html>
