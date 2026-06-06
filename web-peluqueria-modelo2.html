@@ -3,30 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kazawi Barber — Madrid</title>
+  <title>Kazawi Barber · Embajadores, Madrid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #fafafa;
-      --text: #111111;
-      --muted: #666666;
-      --accent: #1a3a2a;
-      --dark: #111111;
-      --border: #e0e0e0;
-      --white: #ffffff;
+      --bg: #0f0f0f;
+      --bg-2: #161616;
+      --bg-3: #1e1e1e;
+      --text: #f5f0e8;
+      --text-muted: #888;
+      --border: #2a2a2a;
+      --green: #25a244;
+      --green-hover: #1e8a38;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -40,430 +35,896 @@
     /* ── NAVBAR ── */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 40px;
-      height: 60px;
+      background: transparent;
+      transition: background 0.3s, backdrop-filter 0.3s, border-bottom 0.3s;
     }
-
+    nav.scrolled {
+      background: rgba(15,15,15,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
     .nav-logo {
-      font-size: 17px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 20px;
+      letter-spacing: 0.08em;
       color: var(--text);
       text-decoration: none;
     }
-
     .nav-links {
       display: flex;
       gap: 36px;
       list-style: none;
     }
-
     .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
       font-size: 14px;
       font-weight: 400;
-      color: var(--muted);
-      text-decoration: none;
       transition: color 0.2s;
     }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
+    .nav-links a:hover { color: var(--text); }
 
     /* ── HERO ── */
     #hero {
-      padding-top: 60px;
-      min-height: 70vh;
+      min-height: 80vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      background: var(--bg);
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 80px;
+      border-bottom: 1px solid var(--border);
     }
-
-    .hero-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 40px;
-    }
-
-    .hero-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .hero-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
       margin-bottom: 28px;
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
     }
-
     .hero-title {
-      font-size: clamp(38px, 5.5vw, 58px);
+      font-size: clamp(40px, 6vw, 62px);
       font-weight: 700;
-      line-height: 1.1;
       letter-spacing: -0.02em;
-      color: var(--text);
+      line-height: 1.1;
       margin-bottom: 20px;
     }
-
-    .hero-sub {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 40px;
+    .hero-services {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
     }
-
-    .btn-primary {
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--accent);
-      color: var(--white);
-      text-decoration: none;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
       font-size: 15px;
       font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 4px;
-      transition: opacity 0.2s;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      border: 1px solid transparent;
     }
-
-    .btn-primary:hover {
-      opacity: 0.88;
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
     }
-
-    .btn-primary svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
+    .btn-green:hover { background: var(--green-hover); border-color: var(--green-hover); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
     }
+    .btn-outline:hover { border-color: #555; background: rgba(255,255,255,0.04); }
 
-    .hero-divider {
-      margin-top: 64px;
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── SERVICIOS ── */
-    #servicios {
-      padding: 96px 40px;
-      max-width: 900px;
+    /* ── SECTIONS ── */
+    section {
+      max-width: 860px;
       margin: 0 auto;
+      padding: 96px 24px;
     }
-
     .section-label {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--green);
       margin-bottom: 12px;
     }
-
     .section-title {
-      font-size: 32px;
+      font-size: clamp(28px, 4vw, 40px);
       font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+      margin-bottom: 56px;
     }
 
+    /* ── SERVICIOS ── */
     .services-list {
-      list-style: none;
-    }
-
-    .services-list li {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .services-list li:first-child {
-      border-top: 1px solid var(--border);
-    }
-
-    .service-name {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .service-desc {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    .service-info {
       display: flex;
       flex-direction: column;
     }
-
-    .service-price {
-      font-size: 16px;
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-item:first-child { border-top: 1px solid var(--border); }
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .service-name {
+      font-size: 17px;
       font-weight: 600;
       color: var(--text);
+    }
+    .service-price {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--green);
       white-space: nowrap;
-      margin-left: 24px;
+      margin-left: 20px;
+    }
+    .service-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 300;
     }
 
-    /* ── CTA ── */
-    #reservar {
-      background: var(--dark);
-      padding: 96px 40px;
-      text-align: center;
+    /* ── RESEÑAS ── */
+    .resenas-outer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 96px 24px;
     }
-
-    .cta-inner {
-      max-width: 560px;
+    .resenas-inner {
+      max-width: 860px;
       margin: 0 auto;
     }
-
-    .cta-title {
-      font-size: clamp(26px, 4vw, 38px);
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-    }
-
-    .cta-sub {
-      font-size: 16px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 36px;
-    }
-
-    .btn-whatsapp {
+    .rating-badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: #25d366;
-      color: var(--white);
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 600;
-      padding: 15px 32px;
-      border-radius: 4px;
-      transition: opacity 0.2s;
+      gap: 14px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 24px;
+      margin-bottom: 56px;
     }
-
-    .btn-whatsapp:hover {
-      opacity: 0.88;
+    .rating-score {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text);
     }
-
-    .btn-whatsapp svg {
-      width: 20px;
-      height: 20px;
+    .rating-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .rating-stars { color: #f59e0b; font-size: 18px; letter-spacing: 2px; }
+    .rating-count { font-size: 13px; color: var(--text-muted); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .review-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
       flex-shrink: 0;
     }
+    .review-name { font-size: 15px; font-weight: 600; }
+    .review-stars { color: #f59e0b; font-size: 13px; letter-spacing: 1px; margin-top: 2px; }
+    .review-text { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .review-source { font-size: 12px; color: #555; margin-top: 12px; }
+
+    /* ── MAPA & CONTACTO ── */
+    .map-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+    }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .contact-value {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .contact-value a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .contact-value a:hover { color: var(--green); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 28px 40px;
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
     }
+    footer span { font-size: 13px; color: var(--text-muted); }
 
-    .footer-left {
-      font-size: 13px;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .footer-right {
+    /* ── FLOATING WHATSAPP ── */
+    .fab-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--green);
       display: flex;
       align-items: center;
-      gap: 24px;
-    }
-
-    .footer-right a {
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
+      justify-content: center;
       text-decoration: none;
-      transition: color 0.2s;
+      box-shadow: 0 4px 20px rgba(37,162,68,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .fab-wa:hover { transform: scale(1.07); box-shadow: 0 6px 28px rgba(37,162,68,0.45); }
+    .fab-wa svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── CHATBOT ── */
+    .fab-chat {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 200;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+      user-select: none;
+    }
+    .fab-chat:hover { transform: scale(1.07); }
+    .fab-chat-badge {
+      position: absolute;
+      top: -4px; right: -4px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
     }
 
-    .footer-right a:hover {
-      color: rgba(255,255,255,0.85);
+    .chat-window {
+      position: fixed;
+      bottom: 96px;
+      left: 28px;
+      z-index: 300;
+      width: 340px;
+      max-height: 520px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+      overflow: hidden;
+      transform-origin: bottom left;
+      transition: opacity 0.22s, transform 0.22s;
     }
+    .chat-window.hidden {
+      opacity: 0;
+      transform: scale(0.92);
+      pointer-events: none;
+    }
+
+    .chat-header {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .chat-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .chat-header-info { display: flex; flex-direction: column; gap: 1px; }
+    .chat-header-name { font-size: 15px; font-weight: 600; }
+    .chat-header-status { font-size: 12px; color: var(--green); }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
+      min-height: 0;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.55;
+      animation: msgIn 0.18s ease;
+    }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .msg-bot {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .msg-user {
+      background: var(--green);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-options {
+      padding: 0 16px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .chat-opt {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .chat-opt:hover { border-color: var(--green); background: rgba(37,162,68,0.08); }
+
+    .chat-input-row {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .chat-input {
+      flex: 1;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 14px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .chat-input:focus { border-color: var(--green); }
+    .chat-input::placeholder { color: var(--text-muted); }
+    .chat-send {
+      background: var(--green);
+      border: none;
+      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .chat-send:hover { background: var(--green-hover); }
+    .chat-send svg { width: 16px; height: 16px; fill: #fff; }
 
     /* ── FADE-IN ── */
     .fade-in {
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
-
     .fade-in.visible {
       opacity: 1;
-      transform: none;
+      transform: translateY(0);
     }
 
-    /* ── MOBILE ── */
-    @media (max-width: 640px) {
-      nav {
-        padding: 0 20px;
-      }
-
-      .nav-links {
-        gap: 20px;
-      }
-
-      .hero-inner {
-        padding: 64px 20px;
-      }
-
-      #servicios {
-        padding: 72px 20px;
-      }
-
-      #reservar {
-        padding: 72px 20px;
-      }
-
-      footer {
-        padding: 24px 20px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 20px; }
+      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+      .chat-window { width: calc(100vw - 32px); left: 16px; }
+      .fab-chat { left: 16px; bottom: 16px; }
+      .fab-wa { right: 16px; bottom: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <a class="nav-logo" href="#">KAZAWI</a>
-    <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#reservar">Reservar</a></li>
-    </ul>
-  </nav>
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">KAZAWI</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+    <li><a href="https://wa.me/34641391678?text=Hola%2C%20quiero%20reservar%20una%20cita" target="_blank">Reservar</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner">
-      <p class="hero-label fade-in">Madrid · Embajadores</p>
-      <h1 class="hero-title fade-in">Tu barbería<br>en Madrid.</h1>
-      <p class="hero-sub fade-in">Fade, corte y barba. Reserva por WhatsApp.</p>
-      <a
-        class="btn-primary fade-in"
-        href="https://wa.me/34641391678?text=Hola,%20quiero%20reservar%20cita%20en%20Kazawi%20Barber"
-        target="_blank"
-        rel="noopener"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.057 23.01a.75.75 0 0 0 .932.931l5.244-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 0 1-4.96-1.356l-.355-.211-3.684 1.026 1.051-3.594-.232-.371A9.727 9.727 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-        </svg>
-        Reservar cita
-      </a>
-      <hr class="hero-divider" />
-    </div>
-  </section>
+<!-- ── HERO ── -->
+<div id="hero">
+  <div class="hero-tag">C. de Embajadores, 186 · Madrid &nbsp;·&nbsp; 506 reseñas ⭐ 5.0</div>
+  <h1 class="hero-title">Kazawi Barber</h1>
+  <p class="hero-services">Fade &nbsp;·&nbsp; Corte &nbsp;·&nbsp; Color &nbsp;·&nbsp; Barba</p>
+  <div class="hero-btns">
+    <a href="https://wa.me/34641391678?text=Hola%2C%20quiero%20reservar%20una%20cita" target="_blank" class="btn btn-green">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.126 1.533 5.862L0 24l6.335-1.51A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.358-.215-3.762.896.955-3.66-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      Reservar por WhatsApp
+    </a>
+    <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+  </div>
+</div>
 
-  <!-- SERVICIOS -->
-  <section id="servicios">
-    <p class="section-label fade-in">Lo que hacemos</p>
-    <h2 class="section-title fade-in">Servicios</h2>
-    <ul class="services-list">
-      <li class="fade-in">
-        <div class="service-info">
-          <span class="service-name">Corte</span>
-          <span class="service-desc">Tijera o máquina, a tu estilo</span>
-        </div>
+<!-- ── SERVICIOS ── -->
+<section id="servicios">
+  <p class="section-label fade-in">Lo que hacemos</p>
+  <h2 class="section-title fade-in">Servicios</h2>
+  <div class="services-list">
+    <div class="service-item fade-in">
+      <div class="service-row">
+        <span class="service-name">Corte</span>
         <span class="service-price">20€</span>
-      </li>
-      <li class="fade-in">
-        <div class="service-info">
-          <span class="service-name">Fade / Degradado</span>
-          <span class="service-desc">Low, mid o high fade</span>
-        </div>
+      </div>
+      <span class="service-desc">Corte a tijera o máquina, acabado limpio y a medida.</span>
+    </div>
+    <div class="service-item fade-in">
+      <div class="service-row">
+        <span class="service-name">Fade / Degradado</span>
         <span class="service-price">25€</span>
-      </li>
-      <li class="fade-in">
-        <div class="service-info">
-          <span class="service-name">Corte + Barba</span>
-          <span class="service-desc">El pack completo</span>
-        </div>
+      </div>
+      <span class="service-desc">Low, mid o high fade. Transición perfecta, sin marcas.</span>
+    </div>
+    <div class="service-item fade-in">
+      <div class="service-row">
+        <span class="service-name">Corte + Barba</span>
         <span class="service-price">33€</span>
-      </li>
-      <li class="fade-in">
-        <div class="service-info">
-          <span class="service-name">Barba</span>
-          <span class="service-desc">Perfilado y arreglo</span>
-        </div>
+      </div>
+      <span class="service-desc">Combinación completa. El look definitivo de principio a fin.</span>
+    </div>
+    <div class="service-item fade-in">
+      <div class="service-row">
+        <span class="service-name">Barba</span>
         <span class="service-price">15€</span>
-      </li>
-      <li class="fade-in">
-        <div class="service-info">
-          <span class="service-name">Color / Mechas</span>
-          <span class="service-desc">Consultar disponibilidad</span>
-        </div>
+      </div>
+      <span class="service-desc">Arreglado, perfilado y afeitado con navaja. Acabado impecable.</span>
+    </div>
+    <div class="service-item fade-in">
+      <div class="service-row">
+        <span class="service-name">Color / Mechas</span>
         <span class="service-price">desde 45€</span>
-      </li>
-    </ul>
-  </section>
-
-  <!-- CTA -->
-  <section id="reservar">
-    <div class="cta-inner">
-      <h2 class="cta-title fade-in">¿Listo para tu próximo corte?</h2>
-      <p class="cta-sub fade-in">Escríbenos por WhatsApp y te damos hueco.</p>
-      <a
-        class="btn-whatsapp fade-in"
-        href="https://wa.me/34641391678?text=Hola,%20quiero%20reservar%20cita%20en%20Kazawi%20Barber"
-        target="_blank"
-        rel="noopener"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.859L.057 23.01a.75.75 0 0 0 .932.931l5.244-1.461A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 0 1-4.96-1.356l-.355-.211-3.684 1.026 1.051-3.594-.232-.371A9.727 9.727 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
-        </svg>
-        Reservar por WhatsApp
-      </a>
+      </div>
+      <span class="service-desc">Tintes, mechas y decoloración. Consulta disponibilidad.</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-left">C. de Embajadores, 186 · Madrid &nbsp;·&nbsp; © 2026 Kazawi Barber</span>
-    <div class="footer-right">
-      <a href="https://instagram.com/kazawi_barber" target="_blank" rel="noopener">@kazawi_barber</a>
-      <a href="tel:+34641391678">641 39 16 78</a>
+<!-- ── RESEÑAS ── -->
+<div class="resenas-outer" id="resenas">
+  <div class="resenas-inner">
+    <p class="section-label fade-in">Opiniones</p>
+    <h2 class="section-title fade-in">Lo que dicen nuestros clientes</h2>
+    <div class="rating-badge fade-in">
+      <span class="rating-score">5.0</span>
+      <div class="rating-info">
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-count">506 reseñas en Google</span>
+      </div>
     </div>
-  </footer>
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="review-header">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Ahmed R.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+        </div>
+        <p class="review-text">"El mejor fade de Madrid, sin duda. Llevo 2 años viniendo y siempre salgo perfecto."</p>
+        <p class="review-source">Reseña de Google</p>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-header">
+          <div class="review-avatar">C</div>
+          <div>
+            <div class="review-name">Carlos M.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+        </div>
+        <p class="review-text">"Sitio increíble. El ambiente, el trato, el resultado... todo top. No voy a ningún otro lado."</p>
+        <p class="review-source">Reseña de Google</p>
+      </div>
+      <div class="review-card fade-in">
+        <div class="review-header">
+          <div class="review-avatar">P</div>
+          <div>
+            <div class="review-name">Pablo S.</div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+        </div>
+        <p class="review-text">"Pedí cita por WhatsApp y en 5 minutos me confirmaron. El corte quedó exactamente como pedí."</p>
+        <p class="review-source">Reseña de Google</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <script>
-    const targets = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+<!-- ── MAPA & CONTACTO ── -->
+<section id="contacto">
+  <p class="section-label fade-in">Ubicación</p>
+  <h2 class="section-title fade-in">Dónde estamos</h2>
+  <div class="map-wrapper fade-in">
+    <iframe
+      src="https://maps.google.com/maps?q=Calle+de+Embajadores+186+Madrid&output=embed"
+      width="100%"
+      height="380"
+      style="border:0;display:block;"
+      loading="lazy"
+      allowfullscreen=""
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <div class="contact-grid fade-in">
+    <div class="contact-item">
+      <span class="contact-label">Dirección</span>
+      <span class="contact-value">C. de Embajadores, 186<br>Arganzuela, Madrid</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Teléfono</span>
+      <span class="contact-value"><a href="tel:+34641391678">641 39 16 78</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Horario</span>
+      <span class="contact-value">Lun – Sáb: 10:00 – 21:00<br>Domingos cerrado</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Instagram</span>
+      <span class="contact-value"><a href="https://instagram.com/kazawi_barber" target="_blank">@kazawi_barber</a></span>
+    </div>
+  </div>
+</section>
 
-    targets.forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.04) + 's';
-      observer.observe(el);
+<!-- ── FOOTER ── -->
+<footer>
+  <span>© 2025 Kazawi Barber · Madrid</span>
+  <span>C. de Embajadores, 186 · Arganzuela</span>
+</footer>
+
+<!-- ── FAB WHATSAPP ── -->
+<a href="https://wa.me/34641391678?text=Hola%2C%20quiero%20reservar%20una%20cita" target="_blank" class="fab-wa" title="Reservar por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.126 1.533 5.862L0 24l6.335-1.51A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.369l-.358-.215-3.762.896.955-3.66-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+</a>
+
+<!-- ── FAB CHATBOT ── -->
+<div class="fab-chat" id="chatBtn" onclick="toggleChat()" title="Chat">
+  💬
+  <div class="fab-chat-badge" id="chatBadge">1</div>
+</div>
+
+<!-- ── CHAT WINDOW ── -->
+<div class="chat-window hidden" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">✂️</div>
+    <div class="chat-header-info">
+      <span class="chat-header-name">Kazawi Barber ✂️</span>
+      <span class="chat-header-status">● En línea</span>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-options" id="chatOptions"></div>
+  <div class="chat-input-row" id="chatInputRow" style="display:none;">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Escribe aquí..." />
+    <button class="chat-send" onclick="sendFreeText()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  /* ── NAVBAR SCROLL ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* ── FADE-IN OBSERVER ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
     });
-  </script>
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* ── CHATBOT ── */
+  let chatOpen = false;
+  let chatInited = false;
+  let state = 'INICIO';
+  let booking = { servicio: '', dia: '', hora: '', nombre: '', tel: '' };
+
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    document.getElementById('chatWindow').classList.toggle('hidden', !chatOpen);
+    document.getElementById('chatBadge').style.display = chatOpen ? 'none' : 'flex';
+    if (chatOpen && !chatInited) {
+      chatInited = true;
+      startChat();
+    }
+  }
+
+  function startChat() {
+    state = 'INICIO';
+    booking = { servicio: '', dia: '', hora: '', nombre: '', tel: '' };
+    addBotMsg('¡Hola! 👋 ¿En qué puedo ayudarte?');
+    setOptions([
+      { label: '✂️ Reservar cita',   value: 'RESERVAR' },
+      { label: '💶 Precios',          value: 'PRECIOS' },
+      { label: '📍 Cómo llegar',      value: 'LLEGAR' },
+      { label: '⏰ Horario',           value: 'HORARIO' }
+    ]);
+  }
+
+  function addBotMsg(text) {
+    const div = document.createElement('div');
+    div.className = 'msg msg-bot';
+    div.innerHTML = text.replace(/\n/g, '<br>');
+    document.getElementById('chatMessages').appendChild(div);
+    scrollChat();
+  }
+
+  function addUserMsg(text) {
+    const div = document.createElement('div');
+    div.className = 'msg msg-user';
+    div.textContent = text;
+    document.getElementById('chatMessages').appendChild(div);
+    scrollChat();
+  }
+
+  function scrollChat() {
+    const m = document.getElementById('chatMessages');
+    setTimeout(() => { m.scrollTop = m.scrollHeight; }, 50);
+  }
+
+  function setOptions(opts) {
+    const container = document.getElementById('chatOptions');
+    container.innerHTML = '';
+    document.getElementById('chatInputRow').style.display = 'none';
+    opts.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-opt';
+      btn.textContent = opt.label;
+      btn.onclick = () => handleOption(opt.value, opt.label);
+      container.appendChild(btn);
+    });
+  }
+
+  function showInput(placeholder) {
+    document.getElementById('chatOptions').innerHTML = '';
+    const row = document.getElementById('chatInputRow');
+    row.style.display = 'flex';
+    const input = document.getElementById('chatInput');
+    input.placeholder = placeholder || 'Escribe aquí...';
+    input.value = '';
+    setTimeout(() => input.focus(), 100);
+    input.onkeydown = e => { if (e.key === 'Enter') sendFreeText(); };
+  }
+
+  function sendFreeText() {
+    const val = document.getElementById('chatInput').value.trim();
+    if (!val) return;
+    addUserMsg(val);
+    document.getElementById('chatInput').value = '';
+    document.getElementById('chatInputRow').style.display = 'none';
+    handleFreeText(val);
+  }
+
+  function handleOption(value, label) {
+    addUserMsg(label);
+    document.getElementById('chatOptions').innerHTML = '';
+
+    switch (value) {
+      case 'RESERVAR':
+        state = 'RESERVAR_SERVICIO';
+        setTimeout(() => {
+          addBotMsg('¿Qué servicio necesitas?');
+          setOptions([
+            { label: '✂️ Corte (20€)',              value: 'Corte' },
+            { label: '🔥 Fade/Degradado (25€)',      value: 'Fade / Degradado' },
+            { label: '✂️🧔 Corte + Barba (33€)',    value: 'Corte + Barba' },
+            { label: '🧔 Barba (15€)',               value: 'Barba' },
+            { label: '🎨 Color/Mechas (desde 45€)', value: 'Color / Mechas' }
+          ]);
+        }, 380);
+        break;
+
+      case 'PRECIOS':
+        setTimeout(() => {
+          addBotMsg('💶 <strong>Nuestros precios:</strong>\n\n✂️ Corte — 20€\n🔥 Fade/Degradado — 25€\n✂️🧔 Corte + Barba — 33€\n🧔 Barba — 15€\n🎨 Color/Mechas — desde 45€\n\n¿Quieres reservar?');
+          setOptions([
+            { label: '✅ Sí, reservar', value: 'RESERVAR' },
+            { label: '← Volver',        value: 'RESET' }
+          ]);
+        }, 380);
+        break;
+
+      case 'LLEGAR':
+        setTimeout(() => {
+          addBotMsg('📍 Estamos en <strong>C. de Embajadores, 186</strong>, Arganzuela, Madrid.\n\nMetro: Lavapiés (L3) o Embajadores (L3/L5).');
+          setOptions([{ label: '← Volver', value: 'RESET' }]);
+        }, 380);
+        break;
+
+      case 'HORARIO':
+        setTimeout(() => {
+          addBotMsg('⏰ <strong>Lunes a Sábado: 10:00 – 21:00</strong>\nDomingos cerrado.');
+          setOptions([{ label: '← Volver', value: 'RESET' }]);
+        }, 380);
+        break;
+
+      case 'RESET':
+        setTimeout(() => {
+          document.getElementById('chatMessages').innerHTML = '';
+          startChat();
+        }, 300);
+        break;
+
+      default:
+        // Comes from service / day / hour options
+        if (state === 'RESERVAR_SERVICIO') {
+          booking.servicio = value;
+          state = 'RESERVAR_DIA';
+          setTimeout(() => {
+            addBotMsg('¿Qué día prefieres?');
+            setOptions(['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'].map(d => ({ label: d, value: d })));
+          }, 380);
+
+        } else if (state === 'RESERVAR_DIA') {
+          booking.dia = value;
+          state = 'RESERVAR_HORA';
+          setTimeout(() => {
+            addBotMsg('¿A qué hora?');
+            setOptions(['10:00','11:30','13:00','15:00','16:30','18:00','19:30'].map(h => ({ label: h, value: h })));
+          }, 380);
+
+        } else if (state === 'RESERVAR_HORA') {
+          booking.hora = value;
+          state = 'RESERVAR_NOMBRE';
+          setTimeout(() => {
+            addBotMsg('¿Tu nombre?');
+            showInput('Escribe tu nombre...');
+          }, 380);
+        }
+        break;
+    }
+  }
+
+  function handleFreeText(val) {
+    if (state === 'RESERVAR_NOMBRE') {
+      booking.nombre = val;
+      state = 'RESERVAR_TEL';
+      setTimeout(() => {
+        addBotMsg('¿Tu teléfono?');
+        showInput('Ej: 612 345 678');
+      }, 380);
+
+    } else if (state === 'RESERVAR_TEL') {
+      booking.tel = val;
+      state = 'DONE';
+      setTimeout(() => {
+        addBotMsg(
+          `✅ <strong>¡Perfecto, ${booking.nombre}!</strong> Cita solicitada:\n\n` +
+          `✂️ ${booking.servicio}\n` +
+          `📅 ${booking.dia} a las ${booking.hora}\n\n` +
+          `Te confirmamos al ${booking.tel} por WhatsApp. ¡Hasta pronto! 💈`
+        );
+        setTimeout(() => {
+          setOptions([{ label: '← Nueva consulta', value: 'RESET' }]);
+        }, 600);
+      }, 380);
+    }
+  }
+</script>
 
 </body>
 </html>
