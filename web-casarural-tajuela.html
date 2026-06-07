@@ -1568,28 +1568,77 @@ async function ctcto(){
 
 async function startRes(){
   clrO();await addM('📅 Quiero consultar fechas',false);addT();await wait(600);rmT();
-  await addM('Perfecto 🙌 ¿Qué fecha de entrada te gustaría? (Ej: 12/07/2026)');
-  askInput(v=>{res.fecha=v;askNoches()});
+  await addM('Perfecto 🙌 ¿Qué fecha de entrada tienes en mente? (Ej: 15/08/2026)');
+  askFecha();
+}
+async function askFecha(){
+  askInput(async v=>{
+    const m=v.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})$/);
+    if(!m){addT();await wait(500);rmT();
+      await addM('No reconozco esa fecha 🤔 Por favor, escríbela en formato <strong>día/mes/año</strong>. Ej: <strong>15/08/2026</strong>');
+      askFecha();return;}
+    let [,d,mo,y]=m;if(y.length===2)y='20'+y;
+    const f=new Date(+y,+mo-1,+d),hoy=new Date();hoy.setHours(0,0,0,0);
+    if(isNaN(f)||f<hoy){addT();await wait(500);rmT();
+      await addM('Esa fecha ya ha pasado o no es válida 📅 ¿Qué otra fecha te gustaría?');
+      askFecha();return;}
+    res.fecha=v;askNoches();
+  });
 }
 async function askNoches(){
   addT();await wait(500);rmT();
-  await addM('¡Genial! ¿Cuántas noches? (mínimo 2)');
-  askInput(v=>{res.noches=v;askPers()});
+  await addM('¿Cuántas noches te quedarías? (mínimo 2)');
+  askNochesV();
+}
+async function askNochesV(){
+  askInput(async v=>{
+    const n=parseInt(v);
+    if(isNaN(n)||n<2){addT();await wait(400);rmT();
+      await addM('La estancia mínima es de 2 noches 🌙 ¿Cuántas noches serían?');
+      askNochesV();return;}
+    res.noches=n;askPers();
+  });
 }
 async function askPers(){
   addT();await wait(500);rmT();
   await addM('¿Cuántas personas? (máx. 6 adultos + 2 bebés)');
-  askInput(v=>{res.pers=v;askNom()});
+  askPersV();
+}
+async function askPersV(){
+  askInput(async v=>{
+    const n=parseInt(v);
+    if(isNaN(n)||n<1||n>8){addT();await wait(400);rmT();
+      await addM('Podemos alojar hasta 6 adultos y 2 bebés 👥 ¿Cuántas personas seríais?');
+      askPersV();return;}
+    res.pers=v;askNom();
+  });
 }
 async function askNom(){
   addT();await wait(500);rmT();
   await addM('¿Cuál es tu nombre?');
-  askInput(v=>{res.nom=v;askTel()});
+  askNomV();
+}
+async function askNomV(){
+  askInput(async v=>{
+    if(v.trim().length<2){addT();await wait(400);rmT();
+      await addM('Por favor, dime tu nombre para personalizar la reserva 😊');
+      askNomV();return;}
+    res.nom=v;askTel();
+  });
 }
 async function askTel(){
   addT();await wait(500);rmT();
   await addM('Por último, déjame tu teléfono y te confirmamos enseguida 📲');
-  askInput(v=>{res.tel=v;confirm()});
+  askTelV();
+}
+async function askTelV(){
+  askInput(async v=>{
+    const t=v.replace(/[\s\-\(\)\.]/g,'');
+    if(!/^\+?[\d]{7,15}$/.test(t)){addT();await wait(400);rmT();
+      await addM('No reconozco ese número 🤔 Indícame un teléfono válido. Ej: <strong>612 345 678</strong>');
+      askTelV();return;}
+    res.tel=v;confirm();
+  });
 }
 async function confirm(){
   hideInput();addT();await wait(800);rmT();
