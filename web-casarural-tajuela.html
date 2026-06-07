@@ -824,7 +824,7 @@ footer{background:#0f1a0c;color:rgba(255,255,255,.65);padding:70px 48px 26px}
       </div>
       <div class="ct-r rr">
         <span class="sl">Reserva directa</span>
-        <h2>Habla con <em>José Bernardo</em></h2>
+        <h2>Habla con <em>el alojamiento</em></h2>
         <p class="body-text">Reserva directamente con nosotros: sin comisiones de Booking, mejor precio garantizado y trato cercano de quien conoce cada rincón del pueblo.</p>
         <div class="ct-btns">
           <a class="bwa" href="https://wa.me/34630440942?text=Hola%20José%20Bernardo%2C%20quiero%20reservar%20en%20La%20Tajuela" target="_blank">💬 WhatsApp</a>
@@ -1520,7 +1520,7 @@ async function start(){
   showO([
     {l:'📅 Consultar disponibilidad',a:startRes},
     {l:'❓ Preguntas frecuentes',a:showFAQ},
-    {l:'📞 Hablar con José Bernardo',a:ctcto}
+    {l:'📞 Hablar con el alojamiento',a:ctcto}
   ]);
 }
 async function showFAQ(){
@@ -1561,7 +1561,7 @@ async function fLlego(){
   showO([{l:'📅 Reservar',a:startRes},{l:'⬅️ Más preguntas',a:showFAQ}]);
 }
 async function ctcto(){
-  clrO();await addM('📞 Hablar con José Bernardo',false);addT();await wait(600);rmT();
+  clrO();await addM('📞 Hablar con el alojamiento',false);addT();await wait(600);rmT();
   await addM('Puedes contactar directamente:<br/><br/>📞 <strong>+34 630 44 09 42</strong><br/>✉️ <strong>hola@latajuelacasarural.es</strong><br/><br/><a href="https://wa.me/34630440942" target="_blank" class="ml">💬 Abrir WhatsApp</a>');
   showO([{l:'⬅️ Volver al inicio',a:start}]);
 }
@@ -1593,8 +1593,8 @@ async function askTel(){
 }
 async function confirm(){
   hideInput();addT();await wait(800);rmT();
-  await addM('¡Perfecto, '+escapeHtml(res.nom)+'! 🎉<br/><br/>📅 Fecha: <strong>'+escapeHtml(res.fecha)+'</strong><br/>🌙 Noches: <strong>'+escapeHtml(res.noches)+'</strong><br/>👥 Personas: <strong>'+escapeHtml(res.pers)+'</strong><br/>📞 Tel: <strong>'+escapeHtml(res.tel)+'</strong><br/><br/>Te paso al WhatsApp de José Bernardo para confirmar disponibilidad.');
-  const msg=encodeURIComponent('Hola José Bernardo, quiero reservar en La Tajuela.\n\nFecha entrada: '+res.fecha+'\nNoches: '+res.noches+'\nPersonas: '+res.pers+'\nNombre: '+res.nom+'\nTeléfono: '+res.tel);
+  await addM('¡Perfecto, '+escapeHtml(res.nom)+'! 🎉<br/><br/>📅 Fecha: <strong>'+escapeHtml(res.fecha)+'</strong><br/>🌙 Noches: <strong>'+escapeHtml(res.noches)+'</strong><br/>👥 Personas: <strong>'+escapeHtml(res.pers)+'</strong><br/>📞 Tel: <strong>'+escapeHtml(res.tel)+'</strong><br/><br/>Te paso al WhatsApp del alojamiento para confirmar disponibilidad.');
+  const msg=encodeURIComponent('Hola, quiero reservar en La Tajuela.\n\nFecha entrada: '+res.fecha+'\nNoches: '+res.noches+'\nPersonas: '+res.pers+'\nNombre: '+res.nom+'\nTeléfono: '+res.tel);
   showO([
     {l:'💬 Enviar por WhatsApp',a:()=>window.open('https://wa.me/34630440942?text='+msg,'_blank')},
     {l:'⬅️ Volver al inicio',a:start}
