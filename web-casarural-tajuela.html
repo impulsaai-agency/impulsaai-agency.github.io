@@ -182,6 +182,20 @@
     .dif-hard{background:rgba(239,68,68,.12);color:#991b1b}
     .rut-link{font-size:.78rem;font-weight:500;color:var(--gold);text-decoration:none}
     .rut-link:hover{text-decoration:underline}
+    .rut-img{height:190px;overflow:hidden;border-radius:14px 14px 0 0}
+    .rut-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .rut-c:hover .rut-img img{transform:scale(1.06)}
+    .rut-tramos{margin:12px 0;display:flex;flex-direction:column;gap:0}
+    .rut-tramo{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--stone);font-size:.78rem;color:var(--text2);line-height:1.5}
+    .rut-tramo:last-child{border:none}
+    .rut-km{font-size:.7rem;font-weight:700;color:var(--gold);width:52px;flex-shrink:0;padding-top:2px}
+
+    /* ── GASTRONOMÍA ── */
+    #gastro{background:var(--forest2)}
+    .gastro-g{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .gastro-g img{border-radius:14px;object-fit:cover;height:380px;width:100%}
+    .gastro-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+    .gastro-tag{font-size:.77rem;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);padding:5px 14px;border-radius:40px;border:1px solid rgba(255,255,255,.12)}
 
     /* ── INFO PRÁCTICA ── */
     #info{background:var(--forest2)}
@@ -314,6 +328,7 @@
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#entorno">Entorno</a></li>
     <li><a href="#planes">Planes</a></li>
+    <li><a href="#gastro">Gastronomía</a></li>
     <li><a href="#rutas">Rutas</a></li>
     <li><a href="#info">Info</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -513,21 +528,22 @@
     <!-- TRUJILLO -->
     <div class="panel on">
       <div class="plan-grid">
-        <div class="plan-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/06/casa-rural-la-tajuela-casa-rural-bohonal-de-ibor-21.webp" alt="Trujillo" loading="lazy"/></div>
+        <div class="plan-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/06/Monumento_a_Pizarro.jpg" alt="Trujillo · Estatua de Pizarro en la Plaza Mayor" loading="lazy"/></div>
         <div>
           <div class="plan-tag">45 minutos · Ciudad de conquistadores</div>
           <div class="plan-title">Trujillo y Bodegas Habla</div>
           <p class="plan-body">Una de las ciudades mejor conservadas de Extremadura. Su Plaza Mayor, presidida por la estatua ecuestre de Francisco Pizarro, sus palacios renacentistas y su castillo árabe la convierten en una visita imprescindible.</p>
           <div class="itin">
-            <div class="itin-row"><div class="itin-time">Mañana</div><div class="itin-text"><strong>Plaza Mayor y Castillo</strong>Estatua de Pizarro, palacios renacentistas, callejuelas empedradas hasta el Castillo árabe (s. IX-X) con vistas panorámicas al casco histórico.</div></div>
-            <div class="itin-row"><div class="itin-time">Mediodía</div><div class="itin-text"><strong>Iglesia de Santa María la Mayor</strong>Espectacular torre panorámica con vistas a toda la ciudad. Imprescindible subir.</div></div>
-            <div class="itin-row"><div class="itin-time">Tarde</div><div class="itin-text"><strong>Bodegas Habla</strong>A las afueras de Trujillo. Tres experiencias disponibles: Clásico (visita bodega + cata), Selección (ediciones especiales + maridaje gourmet) y Duende (menú gastronómico maridado). Descuento del 10% con código de La Tajuela.</div></div>
+            <div class="itin-row"><div class="itin-time">Mañana</div><div class="itin-text"><strong>Plaza Mayor de Trujillo</strong>La estatua ecuestre de Francisco Pizarro —fundador del Imperio Inca para la Corona española— preside la plaza más monumental de Extremadura. Rodeada de palacios renacentistas del s. XVI: Palacio de la Conquista, Casa del Duque de San Carlos. Permite 1-2h de paseo.</div></div>
+            <div class="itin-row"><div class="itin-time">11:30</div><div class="itin-text"><strong>Castillo árabe (s. IX-X)</strong>Fortaleza de origen árabe sobre roca viva con vistas panorámicas a toda la ciudad y la dehesa extremeña. Subida empinada por callejuelas empedradas pero merece la pena. Entrada ~3€.</div></div>
+            <div class="itin-row"><div class="itin-time">12:30</div><div class="itin-text"><strong>Iglesia de Santa María la Mayor</strong>La torre-campanario ofrece las mejores vistas de la ciudad. La planta de la iglesia tiene enterramientos y arte románico-gótico. También: Museo del Queso y el Vino de Trujillo para probar queso Torta del Casar y vinos Habla.</div></div>
+            <div class="itin-row"><div class="itin-time">Tarde</div><div class="itin-text"><strong>Bodegas Habla · Enoturismo</strong>A las afueras de Trujillo (15 min en coche). Tres experiencias disponibles:<br/>• <strong>Habla Clásico</strong> — recorrido por viñedos + cata de vinos<br/>• <strong>Habla Selección</strong> — degustación ediciones especiales + maridaje gourmet<br/>• <strong>Habla Duende</strong> — menú gastronómico maridado (experiencia completa)<br/><em>Con tu reserva en La Tajuela: descuento del 10%.</em></div></div>
           </div>
-          <div style="font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;margin-top:8px">🍽️ Dónde comer</div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;margin-top:8px">🍽️ Dónde comer en Trujillo</div>
           <div class="rests">
-            <div class="rest-c"><div class="rest-name">Corral del Rey</div><div class="rest-desc">Calle Sillerías 7. Especializado en cocina neorural extremeña con platos de carne de retinto. Ambiente rústico y producto local.</div></div>
-            <div class="rest-c"><div class="rest-name">La Alberca</div><div class="rest-desc">Clásico de la gastronomía trujillana. Cocina extremeña tradicional con materia prima de la zona.</div></div>
-            <div class="rest-c"><div class="rest-name">Café Bar Hordas</div><div class="rest-desc">Para un aperitivo o pintxo en el centro histórico antes de seguir con la visita.</div></div>
+            <div class="rest-c"><div class="rest-name">Corral del Rey — El 7 de Sillerías</div><div class="rest-desc">Calle Sillerías 7. Cocina neorural extremeña centrada en la carne de retinto y el cerdo ibérico de bellota. El restaurante más recomendado de la ciudad por los locales.</div></div>
+            <div class="rest-c"><div class="rest-name">La Alberca</div><div class="rest-desc">Clásico indispensable de Trujillo. Cocina extremeña tradicional: migas, morteruelo, corderito al horno. Materia prima siempre de la zona.</div></div>
+            <div class="rest-c"><div class="rest-name">Café Bar Hordas</div><div class="rest-desc">Ideal para el aperitivo en el casco histórico antes de visitar el castillo. Tapas extremeñas y ambiente auténtico de pueblo.</div></div>
           </div>
           <div class="plan-badge">🍷 10% de descuento en Bodegas Habla incluido con tu reserva</div>
         </div>
@@ -537,22 +553,24 @@
     <!-- LA VERA -->
     <div class="panel">
       <div class="plan-grid">
-        <div class="plan-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/04/La-vera.webp" alt="La Vera" loading="lazy"/></div>
+        <div class="plan-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/06/960px-Monasterio_de_San_Jeronimo_Cuacos_de_Yuste-Caceres.jpg" alt="Monasterio de Yuste · La Vera" loading="lazy"/></div>
         <div>
           <div class="plan-tag">40 minutos · Valle verde de Extremadura</div>
           <div class="plan-title">Escapada a La Vera</div>
           <p class="plan-body">Un valle frondoso con gargantas de agua cristalina, pueblos con casas de entramado de madera y el Real Monasterio de Yuste, donde Carlos I se retiró a morir. Pimentón con Denominación de Origen y gastronomía de primer nivel.</p>
           <div class="itin">
-            <div class="itin-row"><div class="itin-time">9:30</div><div class="itin-text"><strong>Salida hacia Cuacos de Yuste</strong>Por la EX-118 (37 km, 40 min). "Uno de los pueblos más bonitos de la comarca": plaza porticada, casas de entramado, Casa de Jeromín, tiendas de queso de cabra y embutidos artesanos.</div></div>
-            <div class="itin-row"><div class="itin-time">11:30</div><div class="itin-text"><strong>Real Monasterio de Yuste</strong>A 2 km de Cuacos. Donde murió el Emperador Carlos I. Visita guiada de 45-60 min. Horario: martes a domingo, mañana y tarde. Entrada: ~7 €/persona.</div></div>
-            <div class="itin-row"><div class="itin-time">13:00</div><div class="itin-text"><strong>Garganta la Olla</strong>Baño en piscinas naturales: Charco del Calderón y El Puente. Aguas cristalinas entre granito.</div></div>
-            <div class="itin-row"><div class="itin-time">16:30</div><div class="itin-text"><strong>Jarandilla de la Vera</strong>Paseo por el castillo (ahora Parador Nacional) y el puente medieval. Ruta escénica por Valverde, Losar y Jaraíz.</div></div>
+            <div class="itin-row"><div class="itin-time">9:30</div><div class="itin-text"><strong>Salida por la EX-118 hacia Cuacos de Yuste</strong>37 km · 40 min desde La Tajuela. Cuacos de Yuste es uno de los pueblos más bonitos de Extremadura: plaza porticada medieval, casas con entramado de madera, Casa de Jeromín (hijo ilegítimo de Carlos V), tiendas con queso de cabra artesano, embutidos veratos y pimentón D.O.</div></div>
+            <div class="itin-row"><div class="itin-time">11:30</div><div class="itin-text"><strong>Real Monasterio de Yuste</strong>A 2 km de Cuacos de Yuste. El emperador Carlos I eligió este rincón apartado para retirarse tras abdicar y murió aquí en 1558. Rodeado de jardines y silencio. Visita guiada de 45-60 min.<br/>📅 Horario: martes a domingo, mañana y tarde<br/>🎟️ Entrada: ~7 €/persona</div></div>
+            <div class="itin-row"><div class="itin-time">13:00</div><div class="itin-text"><strong>Garganta la Olla · Baño en la naturaleza</strong>Pueblo imprescindible junto a la garganta Mayor. Zonas de baño: <em>Charco del Calderón</em> y <em>El Puente</em> — aguas cristalinas entre roca de granito, frescas incluso en verano. Ideal para familias.</div></div>
+            <div class="itin-row"><div class="itin-time">14:30</div><div class="itin-text"><strong>Comida en La Vera</strong>Elige entre La Finca, Al Norte o Imperial Kitchen (ver abajo). Reserva con antelación, especialmente en fin de semana. Todos ofrecen opciones sin gluten y productos con pimentón D.O. La Vera.</div></div>
+            <div class="itin-row"><div class="itin-time">16:30</div><div class="itin-text"><strong>Jarandilla de la Vera</strong>Paseo por el Castillo de los Zúñiga (Parador Nacional desde 1966) y el puente medieval. Ruta panorámica opcional por Valverde, Losar de la Vera y Jaraíz con miradores sobre el valle.</div></div>
+            <div class="itin-row"><div class="itin-time">18:30</div><div class="itin-text"><strong>Regreso a La Tajuela</strong>Por la EX-119 y EX-118. Piscina climatizada esperándote para la vuelta.</div></div>
           </div>
-          <div style="font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;margin-top:8px">🍽️ Dónde comer (reserva recomendada)</div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;margin-top:8px">🍽️ Dónde comer en La Vera (reserva recomendada en fin de semana)</div>
           <div class="rests">
-            <div class="rest-c"><div class="rest-badge">Michelin Bib Gourmand</div><div class="rest-name">La Finca – Villa Xarahiz · Jaraíz de la Vera</div><div class="rest-desc">Pilar y Víctor. Migas de la abuela Fidela, cabrito lechal local y cochinillo. Vinoteca con más de 100 selecciones de ron. El restaurante más reputado de La Vera.</div></div>
-            <div class="rest-c"><div class="rest-badge">Michelin</div><div class="rest-name">Al Norte · Jarandilla de la Vera</div><div class="rest-desc">Chef Ruth Vicente. Fusión de tradición y creatividad: torrija de tomate con sardina ahumada, carrillera con papaya. Propuesta innovadora y reconocida.</div></div>
-            <div class="rest-c"><div class="rest-name">Imperial Kitchen · Jarandilla de la Vera</div><div class="rest-desc">Homenaje a la cocina imperial de Carlos V. Eventos con chefs invitados y ambiente elegante que celebra la gastronomía regional.</div></div>
+            <div class="rest-c"><div class="rest-badge">Michelin Bib Gourmand</div><div class="rest-name">La Finca – Villa Xarahiz · Jaraíz de la Vera</div><div class="rest-desc">Hermanos Pilar y Víctor. Las migas de la abuela Fidela, cabrito lechal local y cochinillo son su firma. Vinoteca con más de 100 referencias de ron. El restaurante más reputado de toda La Vera.</div></div>
+            <div class="rest-c"><div class="rest-badge">Michelin</div><div class="rest-name">Al Norte · Jarandilla de la Vera</div><div class="rest-desc">Chef Ruth Vicente. Platos de autor que fusionan tradición extremeña y creatividad: torrija de tomate con sardina ahumada, carrillera con papaya. Ambiente colorido y propuesta innovadora reconocida por Michelin.</div></div>
+            <div class="rest-c"><div class="rest-name">Imperial Kitchen · Jarandilla de la Vera</div><div class="rest-desc">Concepto gastronómico único: homenaje a la cocina del Emperador Carlos V. Eventos con chefs reconocidos, productores locales y ambiente elegante. Web: imperialkitchenspain.es</div></div>
           </div>
         </div>
       </div>
@@ -561,23 +579,25 @@
     <!-- GUADALUPE -->
     <div class="panel">
       <div class="plan-grid">
-        <div class="plan-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/03/guadalupea.webp" alt="Guadalupe" loading="lazy"/></div>
+        <div class="plan-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/06/monaterio-guadalupe-2.webp" alt="Real Monasterio de Santa María de Guadalupe" loading="lazy"/></div>
         <div>
           <div class="plan-tag">37 km · 40 min · Patrimonio Mundial UNESCO 1993</div>
           <div class="plan-title">Escapada a Guadalupe</div>
           <p class="plan-body">El Real Monasterio de Nuestra Señora de Guadalupe alberga lienzos originales de Zurbarán y fue declarado Patrimonio de la Humanidad en 1993. Un pueblo medieval que conserva intacto su carácter y su gastronomía única.</p>
           <div class="itin">
-            <div class="itin-row"><div class="itin-time">9:00</div><div class="itin-text"><strong>Salida por la EX-118</strong>Parada recomendada en el mirador natural entre Castañar y Navezuelas para fotografiar el Geoparque.</div></div>
-            <div class="itin-row"><div class="itin-time">10:00</div><div class="itin-text"><strong>Real Monasterio de Guadalupe</strong>Horario: 10-13:30 h y 15:30-18 h (todos los días). Entrada: ~6 €/persona, guía incluida (1h15 min). Claustro mudéjar, sacristía barroca con Zurbarán original, capilla relicario y la imagen de la Virgen de Guadalupe, patrona de Extremadura.</div></div>
-            <div class="itin-row"><div class="itin-time">12:00</div><div class="itin-text"><strong>Casco histórico</strong>Calle Sevilla y Plaza de Santa María. Artesanía en cuero, cerámica y forja. Pimentón de La Vera, miel de Villuercas, AOVE y dulces conventuales. No te vayas sin probar la morcilla de Guadalupe a la plancha con pimientos confitados.</div></div>
-            <div class="itin-row"><div class="itin-time">16:00</div><div class="itin-text"><strong>Mirador de Altamira</strong>5 min en coche. Vistas amplias al Geoparque Villuercas. Opcionalmente: Museo de Bordados del Monasterio (piezas religiosas únicas).</div></div>
+            <div class="itin-row"><div class="itin-time">9:00</div><div class="itin-text"><strong>Salida desde La Tajuela por la EX-118 sur</strong>37 km · 40 min. Parada recomendada en el <em>mirador natural entre Castañar de Ibor y Navezuelas</em> — panorámica espectacular del Geoparque Villuercas-Ibores-Jara.</div></div>
+            <div class="itin-row"><div class="itin-time">10:00</div><div class="itin-text"><strong>Real Monasterio de Santa María de Guadalupe (UNESCO 1993)</strong>Visita guiada de 1h 15 min. Qué ver:<br/>• <em>Claustro mudéjar</em> — con templete central único en España<br/>• <em>Sacristía barroca</em> — 8 lienzos originales de Zurbarán<br/>• <em>Capilla relicario</em> — tesoros medievales<br/>• <em>Imagen de la Virgen de Guadalupe</em> — Patrona de Extremadura<br/>📅 Horario: 10:00-13:30 h y 15:30-18:00 h (todos los días)<br/>🎟️ Entrada: ~6 €/persona, guía incluida</div></div>
+            <div class="itin-row"><div class="itin-time">12:00</div><div class="itin-text"><strong>Casco histórico medieval · Calle Sevilla y Plaza de Santa María</strong>Artesanía local: cuero repujado, cerámica de Talavera, forja artesanal. Productos para llevar: pimentón de La Vera D.O., miel de Villuercas, aceite virgen extra, morcilla de Guadalupe envasada al vacío y dulces conventuales. No te vayas sin probar la <em>morcilla a la plancha con pimientos confitados</em>.</div></div>
+            <div class="itin-row"><div class="itin-time">13:30</div><div class="itin-text"><strong>Almuerzo en Guadalupe</strong>La Posada del Rincón o Las Ánimas del Tiempo (ver abajo). Para postre: floretas o quesillo conventual.</div></div>
+            <div class="itin-row"><div class="itin-time">16:00</div><div class="itin-text"><strong>Mirador de Altamira + tarde libre</strong>5 min en coche desde el pueblo. Vistas panorámicas al Geoparque Villuercas. Opcionalmente: Museo de Bordados del Monasterio con piezas religiosas y profanas únicas de los siglos XIV-XVIII.</div></div>
+            <div class="itin-row"><div class="itin-time">Regreso</div><div class="itin-text"><strong>Ruta de vuelta opcional por Cañamero</strong>Pasa por el Centro de Interpretación del Geoparque y llega a La Tajuela para aprovechar la piscina al atardecer.</div></div>
           </div>
-          <div style="font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;margin-top:8px">🍽️ Dónde comer</div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text2);margin-bottom:10px;margin-top:8px">🍽️ Dónde comer en Guadalupe</div>
           <div class="rests">
-            <div class="rest-c"><div class="rest-name">La Posada del Rincón</div><div class="rest-desc">Especialidades: cabrito cuchifrito, morcilla guadalupana, migas del pastor y carnes de caza. Ambiente rústico con chimenea.</div><div class="rest-price">Precio medio: 20-25 €/persona</div></div>
-            <div class="rest-c"><div class="rest-name">Las Ánimas del Tiempo</div><div class="rest-desc">Cocina tradicional con toques creativos: sopa de tomate, patatera asada, tarta de castaña. Buen surtido de vinos extremeños.</div><div class="rest-price">Precio medio: 25-30 €/persona</div></div>
+            <div class="rest-c"><div class="rest-name">La Posada del Rincón</div><div class="rest-desc">Especialidades: cabrito cuchifrito, morcilla guadalupana a la plancha, migas del pastor con tropiezos y carnes de caza local. Ambiente rústico con chimenea invernal. El clásico del pueblo.</div><div class="rest-price">Precio medio: 20-25 €/persona</div></div>
+            <div class="rest-c"><div class="rest-name">Las Ánimas del Tiempo</div><div class="rest-desc">Cocina tradicional extremeña con toques creativos: sopa de tomate de temporada, patatera asada, tarta de castaña. Amplia selección de vinos extremeños. Ambiente cuidado.</div><div class="rest-price">Precio medio: 25-30 €/persona</div></div>
           </div>
-          <p style="font-size:.8rem;color:var(--muted);margin-top:4px">💡 Tip: En el regreso, pasa por Cañamero y visita el Centro de Interpretación del Geoparque.</p>
+          <p style="font-size:.8rem;color:var(--muted);margin-top:4px">💡 Tip: En el regreso, para en Cañamero para visitar el Centro de Interpretación del Geoparque Villuercas.</p>
         </div>
       </div>
     </div>
@@ -604,6 +624,35 @@
   </div>
 </section>
 
+<!-- GASTRONOMÍA -->
+<section id="gastro">
+  <div class="co">
+    <div class="gastro-g">
+      <div class="rl">
+        <span class="sl" style="color:var(--gold2)">Sabor y territorio</span>
+        <h2 style="color:#fff">La dehesa en tu <em style="color:var(--gold2)">mesa</em></h2>
+        <p style="font-size:.95rem;color:rgba(255,255,255,.68);line-height:1.85;max-width:480px">La dieta de la zona mezcla la dehesa ibérica con la huerta verata: cabrito, patatera, pimentón D.O. La Vera, quesos de cabra y dulces de toda la vida. Desde tabernas familiares hasta gastro-bares de reconocimiento Michelin.</p>
+        <div class="gastro-tags">
+          <span class="gastro-tag">🐐 Cabrito lechal</span>
+          <span class="gastro-tag">🥩 Ibérico de bellota</span>
+          <span class="gastro-tag">🌶️ Pimentón D.O. La Vera</span>
+          <span class="gastro-tag">🧀 Queso de cabra artesano</span>
+          <span class="gastro-tag">🫒 AOVE local</span>
+          <span class="gastro-tag">🍯 Miel de Villuercas</span>
+          <span class="gastro-tag">🍖 Morcilla guadalupana</span>
+          <span class="gastro-tag">🌰 Dulces conventuales</span>
+          <span class="gastro-tag">🍷 Vinos Bodegas Habla</span>
+          <span class="gastro-tag">🥣 Migas extremeñas</span>
+        </div>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.45);margin-top:24px;line-height:1.75">La región tiene 3 restaurantes con reconocimiento Michelin en un radio de 40 km. En nuestra sección <em style="color:var(--gold2)">Planes</em> encontrarás las recomendaciones detalladas con precios y reservas.</p>
+      </div>
+      <div class="rr">
+        <img src="https://latajuelacasarural.es/wp-content/uploads/2025/06/casa-rural-la-tajuela-casa-rural-bohonal-de-ibor-21.webp" alt="Gastronomía extremeña · La Tajuela" loading="lazy" style="border-radius:14px;object-fit:cover;height:400px;width:100%"/>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- RUTAS -->
 <section id="rutas">
   <div class="co">
@@ -616,117 +665,152 @@
 
       <!-- RUTA 1 -->
       <div class="rut-c reveal d1">
+        <div class="rut-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/03/geoparque-villuercas.webp" alt="Geoparque Villuercas · Ruta Apalaches" loading="lazy"/></div>
         <div class="rut-head">
-          <div class="rut-num">Ruta 01 · Lineal</div>
+          <div class="rut-num">Ruta 01 · Lineal · GR-113</div>
           <div class="rut-name">Apalaches Extremeños</div>
           <div class="rut-stats">
             <div class="rut-stat">📍 <strong>24,67 km</strong></div>
             <div class="rut-stat">⏱️ <strong>5h 56 min</strong></div>
             <div class="rut-stat">📈 <strong>+358 / -467 m</strong></div>
+            <div class="rut-stat">🏔️ <strong>Máx. 503 m</strong></div>
           </div>
         </div>
         <div class="rut-body">
-          <div class="rut-desc">Tramo 3 del GR-113 de Valdelacasa de Tajo a Bohonal de Ibor. Calzada empedrada medieval, valles fluviales, fauna salvaje y miradores infinitos. Señalizada con marcas rojas y blancas. Termina a pocos pasos de La Tajuela.</div>
+          <div class="rut-desc">Tramo 3 del GR-113 (marcas rojas/blancas). De Valdelacasa de Tajo a Bohonal de Ibor atravesando calzada medieval, vegas fluviales y miradores sobre el embalse de Valdecañas con la Sierra de Gredos al fondo. La ruta termina a pasos de La Tajuela.</div>
+          <div class="rut-tramos">
+            <div class="rut-tramo"><div class="rut-km">Km 0-5</div><div>Calzada empedrada bajomedieval. Sube suavemente entre muros de piedra con vistas a la vega del Tajo.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 5-11</div><div>Sendero estrecho entre alambradas de caza mayor: fincas privadas con venados y muflones visibles.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 11-16</div><div>Cortijo Valdemujeres. Descenso entre encinas. Desvío opcional para evitar asfalto. Avituallamiento en Peraleda de San Román.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 16-20</div><div>Vegas del río Gualija — puente de piedra de un solo arco. El contraste de jarales quemados con rebrote verde.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 20-24</div><div>Ascenso entre madroños y romeros. Mirador natural sobre el embalse de Valdecañas con vistas a Gredos.</div></div>
+          </div>
           <div class="rut-pois">
             <span class="rut-poi">Calzada medieval</span>
             <span class="rut-poi">Puente del Gualija</span>
-            <span class="rut-poi">Mirador embalse Valdecañas</span>
+            <span class="rut-poi">Mirador Valdecañas</span>
             <span class="rut-poi">Venados y muflones</span>
-            <span class="rut-poi">Sierra de Gredos al fondo</span>
-            <span class="rut-poi">Templo Mármoles (desvío)</span>
+            <span class="rut-poi">Sierra de Gredos</span>
+            <span class="rut-poi">Templo Mármoles (desvío +1 km)</span>
           </div>
-          <p style="font-size:.78rem;color:var(--muted)">💡 Avituallamiento en Peraleda de San Román (km 15). Llevar mínimo 2 L agua. Mejor época: octubre-abril.</p>
+          <p style="font-size:.78rem;color:var(--muted)">💡 Llevar 2 L de agua mínimo. Avituallamiento en Peraleda (km 15). Mejor época: octubre-abril. Logística: 2º coche en Bohonal o taxi rural.</p>
         </div>
         <div class="rut-foot">
-          <span class="rut-dif dif-med">Moderada</span>
-          <a href="https://www.wikiloc.com" target="_blank" class="rut-link">GPS en Wikiloc →</a>
+          <span class="rut-dif dif-med">Moderada · TrailRank 34</span>
+          <span class="rut-link" style="cursor:default">Track GPS ID 127850248</span>
         </div>
       </div>
 
       <!-- RUTA 2 -->
       <div class="rut-c reveal d2">
+        <div class="rut-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/03/Los-Marmoles-1.webp" alt="Camino de los Jerónimos · Geoparque" loading="lazy"/></div>
         <div class="rut-head">
-          <div class="rut-num">Ruta 02 · Lineal</div>
+          <div class="rut-num">Ruta 02 · Lineal · Etapa 4</div>
           <div class="rut-name">Camino de los Jerónimos</div>
           <div class="rut-stats">
             <div class="rut-stat">📍 <strong>30,45 km</strong></div>
             <div class="rut-stat">⏱️ <strong>9h 30 min</strong></div>
             <div class="rut-stat">📈 <strong>+892 / -511 m</strong></div>
+            <div class="rut-stat">🏔️ <strong>Máx. 745 m</strong></div>
           </div>
         </div>
         <div class="rut-body">
-          <div class="rut-desc">Bohonal de Ibor → Navalvillar de Ibor. Etapa exigente ("rompepiernas") que atraviesa el Geoparque por su cima. Cerro del Búho (520m), Barranco de los Lobos, Cancho Ladrón y Risco Paloma. Para senderistas experimentados.</div>
+          <div class="rut-desc">Bohonal → Navalvillar de Ibor. La etapa "rompepiernas" del Camino de los Jerónimos. Dos subidas potentes, canchales graníticos, fauna activa y vistas al Pico Villuercas. Para senderistas con experiencia y buen estado físico.</div>
+          <div class="rut-tramos">
+            <div class="rut-tramo"><div class="rut-km">Km 0-8</div><div>Pista ancha entre encinas y olivares. Rampa del 9% en el Cerro del Búho (520 m). Mirador del embalse de Valdecañas.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 8-16</div><div>Vereda pedregosa entre jarales y brezos. Corredor ecológico del arroyo Manzano — huellas de jabalí y ciervo.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 16-22</div><div>Segunda ascensión en Barranco de los Lobos: +350 m en 4 km. Sierra de Fuentefría (745 m, cota máxima).</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 22-28</div><div>Bajada pronunciada entre canchales. Miradores de Cancho Ladrón y Risco Paloma. Solo fuente fiable en km 28.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 28-30</div><div>Pista forestal suave por olivares centenarios hasta Navalvillar de Ibor (Bar El Parador para recuperarse).</div></div>
+          </div>
           <div class="rut-pois">
-            <span class="rut-poi">Cerro del Búho</span>
-            <span class="rut-poi">Vistas al Pico Villuercas</span>
-            <span class="rut-poi">Canchales graníticos</span>
+            <span class="rut-poi">Cerro del Búho 520 m</span>
+            <span class="rut-poi">Pico Villuercas</span>
             <span class="rut-poi">Cancho Ladrón</span>
             <span class="rut-poi">Risco Paloma</span>
-            <span class="rut-poi">Jabalíes y ciervos</span>
+            <span class="rut-poi">Oropéndola y rabilargo</span>
+            <span class="rut-poi">Huellas de jabalí y ciervo</span>
           </div>
-          <p style="font-size:.78rem;color:var(--muted)">💡 GPS imprescindible. Llevar 2,5 L agua. Solo una fuente fiable en km 28. Coordinar transporte de vuelta.</p>
+          <p style="font-size:.78rem;color:var(--muted)">💡 GPS imprescindible (Wikiloc ID 3108182). 2,5 L agua mínimo — solo fuente en km 28. Dejar 2º coche en Navalvillar. Octubre-mayo.</p>
         </div>
         <div class="rut-foot">
-          <span class="rut-dif dif-hard">Moderada-Alta</span>
-          <a href="https://www.wikiloc.com" target="_blank" class="rut-link">GPS en Wikiloc →</a>
+          <span class="rut-dif dif-hard">Moderada-Alta · TrailRank 24</span>
+          <span class="rut-link" style="cursor:default">Track GPS ID 3108182</span>
         </div>
       </div>
 
       <!-- RUTA 3 -->
       <div class="rut-c reveal d3">
+        <div class="rut-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/03/Los-Marmoles-1.webp" alt="Templo de los Mármoles · Ruta La Pasera" loading="lazy"/></div>
         <div class="rut-head">
-          <div class="rut-num">Ruta 03 · Lineal</div>
+          <div class="rut-num">Ruta 03 · Lineal · Patrimonio romano</div>
           <div class="rut-name">Ruta La Pasera</div>
           <div class="rut-stats">
             <div class="rut-stat">📍 <strong>26,33 km</strong></div>
             <div class="rut-stat">⏱️ <strong>10h 46 min</strong></div>
             <div class="rut-stat">📈 <strong>+539 / -484 m</strong></div>
+            <div class="rut-stat">🏔️ <strong>Máx. 634 m</strong></div>
           </div>
         </div>
         <div class="rut-body">
-          <div class="rut-desc">Del Templo de Los Mármoles al río Ibor por la antigua Vereda de los Frailes (Wikiloc #6507466). Patrimonio romano, veredas históricas y cumbres "rañosas". El Tres Mojones marca la frontera de tres municipios con panorámicas espectaculares.</div>
+          <div class="rut-desc">Del Templo de Los Mármoles (ruinas de Augustóbriga, columnas corintias del s. I a.C.) al río Ibor por la Vereda de los Frailes. Naturaleza, patrimonio romano y ecosistemas únicos de raña. La travesía icónica de la comarca.</div>
+          <div class="rut-tramos">
+            <div class="rut-tramo"><div class="rut-km">Km 0-6</div><div>Inicio en el Templo de Los Mármoles. Cruza la EX-118 y asciende por la Vereda de los Frailes entre jarales hasta 460 m. Vistas al embalse de Valdecañas.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 6-14</div><div>Enlaza con GR-113 "Camino Natural del Tajo". Pastizales, calzadas ganaderas y colmenas tradicionales. Tres Mojones: mirador donde convergen tres municipios.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 14-20</div><div>Ascenso a la Raña de Valdeazores (+150 m): planicie rojiza con vistas a la Sierra de La Vera. Ecosistema de pastizal ácido con jaras pringosas.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 20-26</div><div>Cruza EX-118 y baja por GR-113 paralelo al río Ibor. Finaliza con vistas a las Marmitas de Gigante — erosiones fluviales esculpidas en granito.</div></div>
+          </div>
           <div class="rut-pois">
-            <span class="rut-poi">Templo Los Mármoles</span>
+            <span class="rut-poi">Templo Los Mármoles (romano)</span>
             <span class="rut-poi">Vereda de los Frailes</span>
-            <span class="rut-poi">GR-113</span>
             <span class="rut-poi">Tres Mojones</span>
+            <span class="rut-poi">Raña de Valdeazores</span>
             <span class="rut-poi">Marmitas de Gigante</span>
             <span class="rut-poi">Buitres y águilas calzadas</span>
           </div>
-          <p style="font-size:.78rem;color:var(--muted)">💡 Inicio a 8 min en coche desde La Tajuela. Sin fuentes potables. Requiere hábito de marcha larga.</p>
+          <p style="font-size:.78rem;color:var(--muted)">💡 Inicio a 8 min en coche (o a pie directamente desde La Tajuela). Sin fuentes potables. Llevar 2 L agua. Mejor: octubre-mayo.</p>
         </div>
         <div class="rut-foot">
-          <span class="rut-dif dif-med">Moderada</span>
-          <a href="https://www.wikiloc.com/wikiloc/view.do?id=6507466" target="_blank" class="rut-link">GPS en Wikiloc →</a>
+          <span class="rut-dif dif-med">Moderada · TrailRank 54</span>
+          <span class="rut-link" style="cursor:default">Track GPS ID 6507466</span>
         </div>
       </div>
 
       <!-- RUTA 4 -->
       <div class="rut-c reveal d4">
+        <div class="rut-img"><img src="https://latajuelacasarural.es/wp-content/uploads/2025/04/1080px-Iglesia_de_San_Bartolome_Apostol_Bohonal_de_Ibor_03.jpg" alt="Iglesia de San Bartolomé · Bohonal de Ibor" loading="lazy"/></div>
         <div class="rut-head">
-          <div class="rut-num">Ruta 04 · Circular · Desde La Tajuela a pie</div>
+          <div class="rut-num">Ruta 04 · Circular · Desde La Tajuela a pie 🏡</div>
           <div class="rut-name">Dolmen de Pibor</div>
           <div class="rut-stats">
             <div class="rut-stat">📍 <strong>14,52 km</strong></div>
             <div class="rut-stat">⏱️ <strong>4h 31 min</strong></div>
             <div class="rut-stat">📈 <strong>±246 m</strong></div>
+            <div class="rut-stat">🏔️ <strong>Máx. 422 m</strong></div>
           </div>
         </div>
         <div class="rut-body">
-          <div class="rut-desc">La joya de la comarca. Comienza a pie desde La Tajuela. Asciende junto al arroyo San Bartolomé hasta el dolmen neolítico (4.000 años), formado por nueve ortostatos de cuarcita protegidos por un acebuche centenario. Vistas al último meandro del río Ibor.</div>
+          <div class="rut-desc">La excursión imprescindible de la comarca — y la única que comienzas a pie desde La Tajuela. Circular por el Dolmen del Pibor (Neolítico final, cámara de 4,5 m con 9 ortostatos de cuarcita) y la desembocadura del río Ibor. 85% pista de tierra, señalizada con marcas blancas-amarillas.</div>
+          <div class="rut-tramos">
+            <div class="rut-tramo"><div class="rut-km">Inicio</div><div>Sale directamente desde La Tajuela (Calle Real, 31). Sube por el arroyo San Bartolomé entre encinas, jaras pringosas y acebuches.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 4-6</div><div><strong>Risco Amarillo</strong>: berrocal granítico con tafonis y alveolos fotogénicos. Mirador natural con vistas al embalse.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 7</div><div><strong>Dolmen del Pibor</strong>: túmulo neolítico (4.000 años). Cámara poligonal de 4,5 m de diámetro con 9 ortostatos de cuarcita bajo un acebuche centenario.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Km 10</div><div><strong>Cancho Gordo</strong>: bolo granítico de 8 m de altura, mirador 360° sobre la confluencia del río Ibor con el Tajo y el embalse de Valdecañas.</div></div>
+            <div class="rut-tramo"><div class="rut-km">Regreso</div><div>Vuelta circular por pista forestal hasta Bohonal de Ibor. Desvío opcional de 300 m al Templo de los Mármoles al regreso.</div></div>
+          </div>
           <div class="rut-pois">
             <span class="rut-poi">Dolmen neolítico (4.000 años)</span>
             <span class="rut-poi">Risco Amarillo</span>
-            <span class="rut-poi">Mirador río Ibor</span>
-            <span class="rut-poi">Cigüeña negra y nutria</span>
-            <span class="rut-poi">Milano real</span>
-            <span class="rut-poi">85% pista de tierra</span>
+            <span class="rut-poi">Cancho Gordo (360°)</span>
+            <span class="rut-poi">Mirador río Ibor-Tajo</span>
+            <span class="rut-poi">Cigüeña negra · Nutria · Milano real</span>
+            <span class="rut-poi">Templo Mármoles (desvío)</span>
           </div>
-          <p style="font-size:.78rem;color:var(--muted)">💡 La única que puedes hacer a pie desde casa. Llevar 1,5 L agua, no hay fuentes. Ideal oct-mayo. Botas de media caña recomendadas.</p>
+          <p style="font-size:.78rem;color:var(--muted)">💡 La única ruta que sale a pie desde La Tajuela. 1,5 L agua, no hay fuentes. Botas de media caña. Mejor octubre-mayo. Respeta los ortostatos.</p>
         </div>
         <div class="rut-foot">
-          <span class="rut-dif dif-easy">Fácil</span>
-          <a href="https://www.wikiloc.com" target="_blank" class="rut-link">GPS en Wikiloc →</a>
+          <span class="rut-dif dif-easy">Fácil · IBP 54</span>
+          <span class="rut-link" style="cursor:default">Track GPS disponible</span>
         </div>
       </div>
 
@@ -812,6 +896,7 @@
           <a href="#planes">La Vera</a>
           <a href="#planes">Guadalupe</a>
           <a href="#planes">Monfragüe</a>
+          <a href="#gastro">Gastronomía extremeña</a>
           <a href="#rutas">Rutas de senderismo</a>
         </div>
       </div>
