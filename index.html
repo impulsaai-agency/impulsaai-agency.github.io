@@ -1312,22 +1312,6 @@
             p.y += p.vy;
         });
 
-        // líneas
-        for (let i = 0; i < pts.length; i++) {
-            for (let j = i+1; j < pts.length; j++) {
-                const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-                const d  = Math.sqrt(dx*dx + dy*dy);
-                if (d < LINK) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(${C},${(1 - d/LINK) * 0.38})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.moveTo(pts[i].x, pts[i].y);
-                    ctx.lineTo(pts[j].x, pts[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-
         // puntos
         pts.forEach(p => {
             ctx.beginPath();
