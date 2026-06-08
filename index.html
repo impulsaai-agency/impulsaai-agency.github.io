@@ -584,24 +584,40 @@
            SECTORS STRIP
         ========================================== */
         .sectors-strip {
-            padding: 28px 0;
+            padding: 22px 0;
             border-top: 1px solid rgba(255,255,255,0.05);
             border-bottom: 1px solid rgba(255,255,255,0.05);
             background: rgba(255,255,255,0.02);
+            overflow: hidden;
         }
         .sectors-label {
             text-align: center; font-size: 12px; color: var(--text3);
-            text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px;
+            text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;
         }
-        .sectors-list {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 12px 24px;
+        .sectors-track {
+            display: flex; width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        .sectors-track:hover { animation-play-state: paused; }
+        @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
         .sector-item {
             display: flex; align-items: center; gap: 8px;
             font-size: 14px; color: var(--text2); font-weight: 500;
+            padding: 0 36px; white-space: nowrap;
         }
-        .sector-item span { font-size: 18px; }
+        .sector-item span { font-size: 20px; }
+        /* fade en los bordes */
+        .sectors-fade {
+            position: relative; overflow: hidden;
+        }
+        .sectors-fade::before, .sectors-fade::after {
+            content: ''; position: absolute; top: 0; width: 80px; height: 100%; z-index: 2;
+        }
+        .sectors-fade::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+        .sectors-fade::after  { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
 
         /* ==========================================
            CHATBOT CTA BAND
@@ -779,9 +795,9 @@
 
 <!-- SECTORES -->
 <div class="sectors-strip">
-    <div class="wrap">
-        <p class="sectors-label">Trabajamos con</p>
-        <div class="sectors-list">
+    <p class="sectors-label">Trabajamos con</p>
+    <div class="sectors-fade">
+        <div class="sectors-track">
             <div class="sector-item"><span>🦷</span>Dentistas</div>
             <div class="sector-item"><span>✂️</span>Peluquerías</div>
             <div class="sector-item"><span>🍽️</span>Restaurantes</div>
@@ -790,6 +806,19 @@
             <div class="sector-item"><span>💪</span>Gimnasios</div>
             <div class="sector-item"><span>⚖️</span>Abogados</div>
             <div class="sector-item"><span>💅</span>Estéticas</div>
+            <div class="sector-item"><span>🏨</span>Hoteles</div>
+            <div class="sector-item"><span>🧘</span>Centros de bienestar</div>
+            <!-- duplicado para loop infinito -->
+            <div class="sector-item"><span>🦷</span>Dentistas</div>
+            <div class="sector-item"><span>✂️</span>Peluquerías</div>
+            <div class="sector-item"><span>🍽️</span>Restaurantes</div>
+            <div class="sector-item"><span>🏥</span>Clínicas</div>
+            <div class="sector-item"><span>🐾</span>Veterinarias</div>
+            <div class="sector-item"><span>💪</span>Gimnasios</div>
+            <div class="sector-item"><span>⚖️</span>Abogados</div>
+            <div class="sector-item"><span>💅</span>Estéticas</div>
+            <div class="sector-item"><span>🏨</span>Hoteles</div>
+            <div class="sector-item"><span>🧘</span>Centros de bienestar</div>
         </div>
     </div>
 </div>
