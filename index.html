@@ -1258,7 +1258,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let W, H, pts;
-    const N = 85, REPEL = 115, FORCE = 14;
+    const N = 85, LINK = 150, REPEL = 115, FORCE = 14;
     const C = '99,102,241';
 
     function resize() {
@@ -1311,6 +1311,22 @@
             if (p.y < 0)  { p.y = 0;  p.vy = Math.abs(p.vy); }
             if (p.y > H)  { p.y = H;  p.vy = -Math.abs(p.vy); }
         });
+
+        // líneas
+        for (let i = 0; i < pts.length; i++) {
+            for (let j = i+1; j < pts.length; j++) {
+                const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+                const d  = Math.sqrt(dx*dx + dy*dy);
+                if (d < LINK) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(${C},${(1 - d/LINK) * 0.38})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.moveTo(pts[i].x, pts[i].y);
+                    ctx.lineTo(pts[j].x, pts[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
 
         // puntos
         pts.forEach(p => {
