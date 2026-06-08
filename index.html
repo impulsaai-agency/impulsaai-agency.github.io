@@ -1258,7 +1258,7 @@
     if(!canvas) return;
     const ctx = canvas.getContext('2d');
     let W, H, particles, mouse = {x: -9999, y: -9999};
-    const NUM = 80, CONNECT_DIST = 160, REPEL_DIST = 120, REPEL_FORCE = 6;
+    const NUM = 80, CONNECT_DIST = 150, REPEL_DIST = 130, REPEL_FORCE = 12;
     const COLOR = '139,92,246';
 
     function resize(){
@@ -1267,13 +1267,15 @@
     }
 
     function Particle(){
-        this.hx = Math.random()*W;   // home x
-        this.hy = Math.random()*H;   // home y
+        this.hx = Math.random()*W;
+        this.hy = Math.random()*H;
         this.x  = this.hx;
         this.y  = this.hy;
-        this.vx = (Math.random()-0.5)*0.5;
-        this.vy = (Math.random()-0.5)*0.5;
-        this.r  = Math.random()*2.5 + 2.5; // 2.5–5px
+        this.dvx = (Math.random()-0.5)*0.5; // drift velocity
+        this.dvy = (Math.random()-0.5)*0.5;
+        this.vx = 0; // actual velocity (for spring)
+        this.vy = 0;
+        this.r  = Math.random()*1.2 + 1.2; // 1.2–2.4px
     }
 
     function init(){
@@ -1285,27 +1287,30 @@
         ctx.clearRect(0,0,W,H);
 
         particles.forEach(p=>{
-            // drift natural de la home position
-            p.hx += p.vx; p.hy += p.vy;
-            if(p.hx<0||p.hx>W) p.vx*=-1;
-            if(p.hy<0||p.hy>H) p.vy*=-1;
+            // mueve la home suavemente
+            p.hx += p.dvx; p.hy += p.dvy;
+            if(p.hx < 0 || p.hx > W) p.dvx *= -1;
+            if(p.hy < 0 || p.hy > H) p.dvy *= -1;
 
             // repulsión del ratón
             const dx = p.x - mouse.x, dy = p.y - mouse.y;
             const d  = Math.sqrt(dx*dx + dy*dy);
-            let ax = 0, ay = 0;
             if(d < REPEL_DIST && d > 0){
                 const force = (1 - d/REPEL_DIST) * REPEL_FORCE;
-                ax = (dx/d) * force;
-                ay = (dy/d) * force;
+                p.vx += (dx/d) * force;
+                p.vy += (dy/d) * force;
             }
 
-            // resorte hacia home position
-            const springX = (p.hx - p.x) * 0.08;
-            const springY = (p.hy - p.y) * 0.08;
+            // resorte hacia home (más suave = más recorrido antes de volver)
+            p.vx += (p.hx - p.x) * 0.035;
+            p.vy += (p.hy - p.y) * 0.035;
 
-            p.x += ax + springX;
-            p.y += ay + springY;
+            // fricción para que no oscile infinito
+            p.vx *= 0.82;
+            p.vy *= 0.82;
+
+            p.x += p.vx;
+            p.y += p.vy;
         });
 
         // conexiones
@@ -1316,7 +1321,7 @@
                 if(d<CONNECT_DIST){
                     ctx.beginPath();
                     ctx.strokeStyle=`rgba(${COLOR},${(1-d/CONNECT_DIST)*0.4})`;
-                    ctx.lineWidth=0.8;
+                    ctx.lineWidth=0.7;
                     ctx.moveTo(particles[i].x,particles[i].y);
                     ctx.lineTo(particles[j].x,particles[j].y);
                     ctx.stroke();
@@ -1324,15 +1329,12 @@
             }
         }
 
-        // puntos con glow
+        // puntos
         particles.forEach(p=>{
             ctx.beginPath();
             ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
             ctx.fillStyle=`rgba(${COLOR},0.85)`;
-            ctx.shadowColor=`rgba(${COLOR},0.5)`;
-            ctx.shadowBlur=6;
             ctx.fill();
-            ctx.shadowBlur=0;
         });
 
         requestAnimationFrame(draw);
