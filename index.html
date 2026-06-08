@@ -579,6 +579,107 @@
             width: calc(100% - 32px);
         }
         .chat-restart:hover { background: rgba(99,102,241,0.2); }
+
+        /* ==========================================
+           SECTORS STRIP
+        ========================================== */
+        .sectors-strip {
+            padding: 28px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.02);
+        }
+        .sectors-label {
+            text-align: center; font-size: 12px; color: var(--text3);
+            text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px;
+        }
+        .sectors-list {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 12px 24px;
+        }
+        .sector-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; color: var(--text2); font-weight: 500;
+        }
+        .sector-item span { font-size: 18px; }
+
+        /* ==========================================
+           CHATBOT CTA BAND
+        ========================================== */
+        .chatbot-cta-band {
+            background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(168,85,247,0.08));
+            border-top: 1px solid rgba(99,102,241,0.2);
+            border-bottom: 1px solid rgba(99,102,241,0.2);
+            padding: 32px 0;
+        }
+
+        /* ==========================================
+           HOW IT WORKS (STEPS)
+        ========================================== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .step-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .step-num {
+            font-size: 72px; font-weight: 800;
+            color: rgba(99,102,241,0.08);
+            position: absolute; top: 16px; right: 24px;
+            line-height: 1; font-family: 'Inter', sans-serif;
+        }
+        .step-icon { font-size: 36px; margin-bottom: 20px; }
+        .step-title {
+            font-size: 20px; font-weight: 700;
+            color: var(--text); margin-bottom: 12px;
+        }
+        .step-desc {
+            font-size: 14px; color: var(--text2);
+            line-height: 1.75; margin-bottom: 20px;
+        }
+        .step-pill {
+            display: inline-flex; align-items: center;
+            background: rgba(99,102,241,0.1);
+            border: 1px solid rgba(99,102,241,0.25);
+            border-radius: 100px; padding: 6px 14px;
+            font-size: 12px; font-weight: 600; color: #a5b4fc;
+        }
+
+        /* ==========================================
+           FAQ
+        ========================================== */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+        .faq-q {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            gap: 16px; padding: 22px 0; background: none; border: none;
+            color: var(--text); font-size: 16px; font-weight: 600;
+            font-family: 'Inter', sans-serif; cursor: pointer; text-align: left;
+            transition: color 0.2s;
+        }
+        .faq-q:hover { color: #a5b4fc; }
+        .faq-arrow {
+            font-size: 18px; color: var(--a1); flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+        .faq-q.open .faq-arrow { transform: rotate(180deg); }
+        .faq-a {
+            display: none; padding: 0 0 22px;
+            color: var(--text2); font-size: 15px; line-height: 1.75;
+        }
+        .faq-a.open { display: block; }
     </style>
 </head>
 <body>
@@ -619,7 +720,9 @@
             <ul class="nav-links">
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#como-funciona">Cómo funciona</a></li>
                 <li><a href="#automatizaciones">Automatizaciones</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#precios">Precios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
@@ -673,6 +776,23 @@
         </div>
     </div>
 </section>
+
+<!-- SECTORES -->
+<div class="sectors-strip">
+    <div class="wrap">
+        <p class="sectors-label">Trabajamos con</p>
+        <div class="sectors-list">
+            <div class="sector-item"><span>🦷</span>Dentistas</div>
+            <div class="sector-item"><span>✂️</span>Peluquerías</div>
+            <div class="sector-item"><span>🍽️</span>Restaurantes</div>
+            <div class="sector-item"><span>🏥</span>Clínicas</div>
+            <div class="sector-item"><span>🐾</span>Veterinarias</div>
+            <div class="sector-item"><span>💪</span>Gimnasios</div>
+            <div class="sector-item"><span>⚖️</span>Abogados</div>
+            <div class="sector-item"><span>💅</span>Estéticas</div>
+        </div>
+    </div>
+</div>
 
 <!-- SERVICES -->
 <section id="services" class="section">
@@ -728,6 +848,18 @@
         </div>
     </div>
 </section>
+
+<!-- CHATBOT CTA -->
+<div class="chatbot-cta-band">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div>
+            <div style="font-size:13px;color:#a5b4fc;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">💬 Demo en vivo</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text);">Prueba nuestro chatbot ahora mismo</div>
+            <div style="font-size:14px;color:var(--text2);margin-top:4px;">Así es exactamente como funciona en el negocio de tu cliente.</div>
+        </div>
+        <button onclick="abrirChatbot()" class="btn btn-p" style="white-space:nowrap;flex-shrink:0;">Abrir chatbot →</button>
+    </div>
+</div>
 
 <!-- PORTFOLIO -->
 <section id="portfolio" class="section">
@@ -829,7 +961,42 @@
     </div>
 </section>
 
-
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" class="section">
+    <div class="wrap">
+        <div class="rv" style="text-align:center;max-width:600px;margin:0 auto 56px;">
+            <div class="tag">El proceso</div>
+            <h2 style="font-size:clamp(32px,4.5vw,52px);margin:16px 0 16px;">Tres pasos y tu web<br><em class="grad-text">está funcionando</em></h2>
+            <p style="color:var(--text2);font-size:16px;line-height:1.75;">Sin reuniones interminables. Sin sorpresas. Sin tecnicismos.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card rv d1">
+                <div class="step-num">01</div>
+                <div class="step-icon">📞</div>
+                <h3 class="step-title">Nos cuentas tu negocio</h3>
+                <p class="step-desc">Una llamada de 15 minutos. Nos dices qué haces, a quién te diriges y qué quieres mejorar. Sin formularios largos ni compromisos.</p>
+                <div class="step-pill">Gratis · 15 minutos</div>
+            </div>
+            <div class="step-card rv d2">
+                <div class="step-num">02</div>
+                <div class="step-icon">🎨</div>
+                <h3 class="step-title">Te enseñamos el diseño</h3>
+                <p class="step-desc">En 24–48h tienes una propuesta visual de cómo quedaría tu web. La revisamos juntos y ajustamos lo que quieras antes de empezar.</p>
+                <div class="step-pill">Sin compromiso</div>
+            </div>
+            <div class="step-card rv d3">
+                <div class="step-num">03</div>
+                <div class="step-icon">🚀</div>
+                <h3 class="step-title">Publicamos en 5 días</h3>
+                <p class="step-desc">Tu web está online con el chatbot funcionando. Tú nos das el visto bueno — nosotros nos encargamos de todo lo técnico.</p>
+                <div class="step-pill">Todo incluido</div>
+            </div>
+        </div>
+        <div class="rv" style="text-align:center;margin-top:48px;">
+            <a href="#contact" class="btn btn-p">Empezar ahora — es gratis →</a>
+        </div>
+    </div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact" class="section">
@@ -943,6 +1110,53 @@
         <div style="margin-top:24px;text-align:center;padding:18px 24px;background:rgba(99,102,241,0.07);border:1px solid rgba(99,102,241,0.2);border-radius:12px;max-width:560px;margin-left:auto;margin-right:auto;">
             <span style="font-size:20px;">🛡️</span>
             <span style="font-size:15px;font-weight:600;color:var(--text);margin-left:8px;">No publicamos hasta que el resultado te convenza — revisiones ilimitadas incluidas</span>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+    <div class="wrap">
+        <div class="rv" style="text-align:center;max-width:600px;margin:0 auto 56px;">
+            <div class="tag">FAQ</div>
+            <h2 style="font-size:clamp(32px,4.5vw,52px);margin:16px 0 16px;">Preguntas <em class="grad-text">frecuentes</em></h2>
+        </div>
+        <div class="faq-list" style="max-width:760px;margin:0 auto;">
+            <div class="faq-item rv">
+                <button class="faq-q" onclick="toggleFaq(this)">
+                    ¿Necesito saber de tecnología para gestionar mi web?
+                    <span class="faq-arrow">↓</span>
+                </button>
+                <div class="faq-a">Para nada. Te entregamos la web lista y funcionando. Si necesitas cambiar algo (un texto, una foto, un precio), te explicamos cómo en 5 minutos. Y si no quieres tocarlo tú, nosotros lo hacemos.</div>
+            </div>
+            <div class="faq-item rv d1">
+                <button class="faq-q" onclick="toggleFaq(this)">
+                    ¿Puedo cambiar cosas después de publicar?
+                    <span class="faq-arrow">↓</span>
+                </button>
+                <div class="faq-a">Sí, siempre. La web es tuya. Puedes pedirnos cambios cuando quieras — los pequeños son gratuitos, los grandes los presupuestamos sin compromiso.</div>
+            </div>
+            <div class="faq-item rv d2">
+                <button class="faq-q" onclick="toggleFaq(this)">
+                    ¿El chatbot funciona con mi web actual de WordPress?
+                    <span class="faq-arrow">↓</span>
+                </button>
+                <div class="faq-a">Sí. Se integra en cualquier web — WordPress, Wix, Squarespace o web propia — con una sola línea de código. No hace falta tocar nada más.</div>
+            </div>
+            <div class="faq-item rv d3">
+                <button class="faq-q" onclick="toggleFaq(this)">
+                    ¿Hay contrato de permanencia?
+                    <span class="faq-arrow">↓</span>
+                </button>
+                <div class="faq-a">No. La web es tuya desde el primer día (pago único). El chatbot tiene una cuota mensual sin permanencia — puedes cancelar cuando quieras.</div>
+            </div>
+            <div class="faq-item rv d4">
+                <button class="faq-q" onclick="toggleFaq(this)">
+                    ¿Qué pasa si no me gusta el resultado?
+                    <span class="faq-arrow">↓</span>
+                </button>
+                <div class="faq-a">No publicamos hasta que estés 100% satisfecho. Incluimos rondas de revisión sin coste adicional. Si al final no convencemos — no cobras.</div>
+            </div>
         </div>
     </div>
 </section>
@@ -1250,6 +1464,20 @@
     document.getElementById('chatModal').addEventListener('click', e => {
         if (e.target === document.getElementById('chatModal')) cerrarChatbot();
     });
+
+    // ── FAQ TOGGLE ────────────────────────────────────────────────
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        document.querySelectorAll('.faq-q').forEach(b => {
+            b.classList.remove('open');
+            b.nextElementSibling.classList.remove('open');
+        });
+        if (!isOpen) {
+            btn.classList.add('open');
+            answer.classList.add('open');
+        }
+    }
 </script>
 
 <script>
