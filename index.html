@@ -598,7 +598,6 @@
             display: flex; width: max-content;
             animation: marquee 28s linear infinite;
         }
-        .sectors-track:hover { animation-play-state: paused; }
         @keyframes marquee {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -606,9 +605,11 @@
         .sector-item {
             display: flex; align-items: center; gap: 8px;
             font-size: 14px; color: var(--text2); font-weight: 500;
-            padding: 0 36px; white-space: nowrap;
+            padding: 0 32px; white-space: nowrap;
         }
-        .sector-item span { font-size: 20px; }
+        .sector-item::after {
+            content: '·'; color: var(--text3); margin-left: 32px;
+        }
         /* fade en los bordes */
         .sectors-fade {
             position: relative; overflow: hidden;
@@ -798,27 +799,27 @@
     <p class="sectors-label">Trabajamos con</p>
     <div class="sectors-fade">
         <div class="sectors-track">
-            <div class="sector-item"><span>🦷</span>Dentistas</div>
-            <div class="sector-item"><span>✂️</span>Peluquerías</div>
-            <div class="sector-item"><span>🍽️</span>Restaurantes</div>
-            <div class="sector-item"><span>🏥</span>Clínicas</div>
-            <div class="sector-item"><span>🐾</span>Veterinarias</div>
-            <div class="sector-item"><span>💪</span>Gimnasios</div>
-            <div class="sector-item"><span>⚖️</span>Abogados</div>
-            <div class="sector-item"><span>💅</span>Estéticas</div>
-            <div class="sector-item"><span>🏨</span>Hoteles</div>
-            <div class="sector-item"><span>🧘</span>Centros de bienestar</div>
+            <div class="sector-item">Dentistas</div>
+            <div class="sector-item">Peluquerías</div>
+            <div class="sector-item">Restaurantes</div>
+            <div class="sector-item">Clínicas</div>
+            <div class="sector-item">Veterinarias</div>
+            <div class="sector-item">Gimnasios</div>
+            <div class="sector-item">Abogados</div>
+            <div class="sector-item">Estéticas</div>
+            <div class="sector-item">Hoteles</div>
+            <div class="sector-item">Centros de bienestar</div>
             <!-- duplicado para loop infinito -->
-            <div class="sector-item"><span>🦷</span>Dentistas</div>
-            <div class="sector-item"><span>✂️</span>Peluquerías</div>
-            <div class="sector-item"><span>🍽️</span>Restaurantes</div>
-            <div class="sector-item"><span>🏥</span>Clínicas</div>
-            <div class="sector-item"><span>🐾</span>Veterinarias</div>
-            <div class="sector-item"><span>💪</span>Gimnasios</div>
-            <div class="sector-item"><span>⚖️</span>Abogados</div>
-            <div class="sector-item"><span>💅</span>Estéticas</div>
-            <div class="sector-item"><span>🏨</span>Hoteles</div>
-            <div class="sector-item"><span>🧘</span>Centros de bienestar</div>
+            <div class="sector-item">Dentistas</div>
+            <div class="sector-item">Peluquerías</div>
+            <div class="sector-item">Restaurantes</div>
+            <div class="sector-item">Clínicas</div>
+            <div class="sector-item">Veterinarias</div>
+            <div class="sector-item">Gimnasios</div>
+            <div class="sector-item">Abogados</div>
+            <div class="sector-item">Estéticas</div>
+            <div class="sector-item">Hoteles</div>
+            <div class="sector-item">Centros de bienestar</div>
         </div>
     </div>
 </div>
