@@ -623,6 +623,7 @@
 
 <!-- HERO -->
 <section id="hero">
+    <canvas id="particles-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
     <div class="hero-bg">
         <div class="orb orb1"></div>
         <div class="orb orb2"></div>
@@ -1213,6 +1214,96 @@
     document.getElementById('chatModal').addEventListener('click', e => {
         if (e.target === document.getElementById('chatModal')) cerrarChatbot();
     });
+</script>
+
+<script>
+(function(){
+    const canvas = document.getElementById('particles-canvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles, mouse = {x: -9999, y: -9999};
+    const NUM = 90, CONNECT_DIST = 140, MOUSE_DIST = 160;
+    const COLOR = '139,92,246'; // purple
+
+    function resize(){
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+    }
+
+    function Particle(){
+        this.x = Math.random()*W;
+        this.y = Math.random()*H;
+        this.vx = (Math.random()-0.5)*0.4;
+        this.vy = (Math.random()-0.5)*0.4;
+        this.r = Math.random()*1.8+0.8;
+    }
+
+    function init(){
+        resize();
+        particles = Array.from({length:NUM}, ()=> new Particle());
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+
+        // update positions
+        particles.forEach(p=>{
+            p.x += p.vx; p.y += p.vy;
+            if(p.x<0||p.x>W) p.vx*=-1;
+            if(p.y<0||p.y>H) p.vy*=-1;
+        });
+
+        // draw connections
+        for(let i=0;i<particles.length;i++){
+            for(let j=i+1;j<particles.length;j++){
+                const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+                const d=Math.sqrt(dx*dx+dy*dy);
+                if(d<CONNECT_DIST){
+                    ctx.beginPath();
+                    ctx.strokeStyle=`rgba(${COLOR},${(1-d/CONNECT_DIST)*0.35})`;
+                    ctx.lineWidth=0.7;
+                    ctx.moveTo(particles[i].x,particles[i].y);
+                    ctx.lineTo(particles[j].x,particles[j].y);
+                    ctx.stroke();
+                }
+            }
+            // mouse connections
+            const mdx=particles[i].x-mouse.x, mdy=particles[i].y-mouse.y;
+            const md=Math.sqrt(mdx*mdx+mdy*mdy);
+            if(md<MOUSE_DIST){
+                ctx.beginPath();
+                ctx.strokeStyle=`rgba(99,102,241,${(1-md/MOUSE_DIST)*0.6})`;
+                ctx.lineWidth=1;
+                ctx.moveTo(particles[i].x,particles[i].y);
+                ctx.lineTo(mouse.x,mouse.y);
+                ctx.stroke();
+            }
+        }
+
+        // draw dots
+        particles.forEach(p=>{
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            ctx.fillStyle=`rgba(${COLOR},0.7)`;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    const hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', e=>{
+        const rect = hero.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+    hero.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
+
+    window.addEventListener('resize', ()=>{ resize(); });
+
+    init();
+    draw();
+})();
 </script>
 </body>
 </html>
