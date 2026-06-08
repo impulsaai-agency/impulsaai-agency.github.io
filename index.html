@@ -1258,7 +1258,7 @@
     if(!canvas) return;
     const ctx = canvas.getContext('2d');
     let W, H, particles, mouse = {x: -9999, y: -9999};
-    const NUM = 90, CONNECT_DIST = 140, REPEL_DIST = 100, REPEL_FORCE = 4;
+    const NUM = 80, CONNECT_DIST = 160, REPEL_DIST = 120, REPEL_FORCE = 6;
     const COLOR = '139,92,246';
 
     function resize(){
@@ -1267,13 +1267,13 @@
     }
 
     function Particle(){
-        this.x  = Math.random()*W;
-        this.y  = Math.random()*H;
-        this.baseVx = (Math.random()-0.5)*0.45;
-        this.baseVy = (Math.random()-0.5)*0.45;
-        this.vx = this.baseVx;
-        this.vy = this.baseVy;
-        this.r  = Math.random()*1.8+0.8;
+        this.hx = Math.random()*W;   // home x
+        this.hy = Math.random()*H;   // home y
+        this.x  = this.hx;
+        this.y  = this.hy;
+        this.vx = (Math.random()-0.5)*0.5;
+        this.vy = (Math.random()-0.5)*0.5;
+        this.r  = Math.random()*2.5 + 2.5; // 2.5–5px
     }
 
     function init(){
@@ -1285,36 +1285,38 @@
         ctx.clearRect(0,0,W,H);
 
         particles.forEach(p=>{
+            // drift natural de la home position
+            p.hx += p.vx; p.hy += p.vy;
+            if(p.hx<0||p.hx>W) p.vx*=-1;
+            if(p.hy<0||p.hy>H) p.vy*=-1;
+
             // repulsión del ratón
             const dx = p.x - mouse.x, dy = p.y - mouse.y;
             const d  = Math.sqrt(dx*dx + dy*dy);
+            let ax = 0, ay = 0;
             if(d < REPEL_DIST && d > 0){
                 const force = (1 - d/REPEL_DIST) * REPEL_FORCE;
-                p.vx += (dx/d) * force;
-                p.vy += (dy/d) * force;
+                ax = (dx/d) * force;
+                ay = (dy/d) * force;
             }
-            // amortiguación suave hacia velocidad base
-            p.vx += (p.baseVx - p.vx) * 0.04;
-            p.vy += (p.baseVy - p.vy) * 0.04;
 
-            // limitar velocidad máxima
-            const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
-            if(speed > 6){ p.vx = p.vx/speed*6; p.vy = p.vy/speed*6; }
+            // resorte hacia home position
+            const springX = (p.hx - p.x) * 0.08;
+            const springY = (p.hy - p.y) * 0.08;
 
-            p.x += p.vx; p.y += p.vy;
-            if(p.x<0||p.x>W){ p.vx*=-1; p.baseVx*=-1; p.x = Math.max(0,Math.min(W,p.x)); }
-            if(p.y<0||p.y>H){ p.vy*=-1; p.baseVy*=-1; p.y = Math.max(0,Math.min(H,p.y)); }
+            p.x += ax + springX;
+            p.y += ay + springY;
         });
 
-        // conexiones entre partículas
+        // conexiones
         for(let i=0;i<particles.length;i++){
             for(let j=i+1;j<particles.length;j++){
                 const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
                 const d=Math.sqrt(dx*dx+dy*dy);
                 if(d<CONNECT_DIST){
                     ctx.beginPath();
-                    ctx.strokeStyle=`rgba(${COLOR},${(1-d/CONNECT_DIST)*0.35})`;
-                    ctx.lineWidth=0.7;
+                    ctx.strokeStyle=`rgba(${COLOR},${(1-d/CONNECT_DIST)*0.4})`;
+                    ctx.lineWidth=0.8;
                     ctx.moveTo(particles[i].x,particles[i].y);
                     ctx.lineTo(particles[j].x,particles[j].y);
                     ctx.stroke();
@@ -1322,12 +1324,15 @@
             }
         }
 
-        // puntos
+        // puntos con glow
         particles.forEach(p=>{
             ctx.beginPath();
             ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-            ctx.fillStyle=`rgba(${COLOR},0.75)`;
+            ctx.fillStyle=`rgba(${COLOR},0.85)`;
+            ctx.shadowColor=`rgba(${COLOR},0.5)`;
+            ctx.shadowBlur=6;
             ctx.fill();
+            ctx.shadowBlur=0;
         });
 
         requestAnimationFrame(draw);
