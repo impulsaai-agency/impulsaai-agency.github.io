@@ -553,16 +553,24 @@
         }
         .chat-input {
             flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 100px; padding: 10px 16px; color: #94a3b8;
+            border-radius: 100px; padding: 10px 16px; color: #e2e8f0;
             font-size: 13px; font-family: 'Inter', sans-serif; outline: none;
-            pointer-events: none;
+            pointer-events: none; transition: all 0.2s;
         }
+        .chat-input.active {
+            pointer-events: all; border-color: rgba(99,102,241,0.4);
+            background: rgba(99,102,241,0.08); color: #e2e8f0;
+        }
+        .chat-input.active::placeholder { color: #64748b; }
+        .chat-input:focus { border-color: rgba(99,102,241,0.6); }
         .chat-send {
             width: 38px; height: 38px; border-radius: 50%; border: none;
             background: linear-gradient(135deg, #6366f1, #a855f7);
             color: #fff; font-size: 16px; cursor: default; display: flex;
-            align-items: center; justify-content: center; opacity: 0.6;
+            align-items: center; justify-content: center; opacity: 0.4; transition: opacity 0.2s;
         }
+        .chat-send.active { cursor: pointer; opacity: 1; }
+        .chat-send.active:hover { transform: scale(1.08); }
         .chat-restart {
             width: 100%; padding: 12px; background: rgba(99,102,241,0.1);
             border: 1px solid rgba(99,102,241,0.2); border-radius: 10px;
@@ -584,9 +592,9 @@
 <div id="chatModal">
     <div class="chat-wrap">
         <div class="chat-header">
-            <div class="chat-avatar">🍽️</div>
+            <div class="chat-avatar">⚡</div>
             <div class="chat-header-info">
-                <div class="chat-header-name">Restaurante Alma · Asistente IA</div>
+                <div class="chat-header-name">ImpulsaAI · Asistente</div>
                 <div class="chat-header-status"><span class="chat-dot"></span> En línea · Responde al instante</div>
             </div>
             <button class="chat-close" onclick="cerrarChatbot()">✕</button>
@@ -1016,128 +1024,20 @@
     });
 
     /* ─── CHATBOT DEMO ─────────────────────────────────────────────────── */
-    const FLUJOS = {
-        inicio: {
-            bot: '¡Hola! 👋 Soy el asistente de **Restaurante Alma**. ¿En qué puedo ayudarte?',
-            opts: [
-                { txt: '🍽️ Reservar mesa', next: 'reserva_personas' },
-                { txt: '❓ Tengo una pregunta', next: 'duda_inicio' },
-            ]
-        },
-        reserva_personas: {
-            user: 'Quiero reservar una mesa',
-            bot: '¡Perfecto! ¿Para cuántas personas sería la reserva?',
-            opts: [
-                { txt: '1–2 personas', next: 'reserva_dia' },
-                { txt: '3–4 personas', next: 'reserva_dia' },
-                { txt: '5–6 personas', next: 'reserva_dia' },
-                { txt: 'Más de 6', next: 'reserva_grupo' },
-            ]
-        },
-        reserva_grupo: {
-            user: 'Más de 6 personas',
-            bot: 'Para grupos grandes os recomendamos contactarnos directamente al **91 234 56 78** para preparar algo especial 🥂 ¿Puedo ayudarte en algo más?',
-            opts: [
-                { txt: '🔄 Volver al inicio', next: 'inicio' },
-            ]
-        },
-        reserva_dia: {
-            user: null,
-            bot: 'Genial 😊 ¿Qué día tenéis pensado venir?',
-            opts: [
-                { txt: 'Hoy', next: 'reserva_turno' },
-                { txt: 'Mañana', next: 'reserva_turno' },
-                { txt: 'Este fin de semana', next: 'reserva_turno' },
-                { txt: 'Otro día', next: 'reserva_turno' },
-            ]
-        },
-        reserva_turno: {
-            user: null,
-            bot: '¿Para comer o para cenar?',
-            opts: [
-                { txt: '🌞 Comer (13:30–16:00)', next: 'reserva_hora' },
-                { txt: '🌙 Cenar (20:30–23:30)', next: 'reserva_hora' },
-            ]
-        },
-        reserva_hora: {
-            user: null,
-            bot: '¿A qué hora aproximadamente?',
-            opts: [
-                { txt: '13:30', next: 'reserva_datos' },
-                { txt: '14:00', next: 'reserva_datos' },
-                { txt: '14:30', next: 'reserva_datos' },
-                { txt: '20:30', next: 'reserva_datos' },
-                { txt: '21:00', next: 'reserva_datos' },
-                { txt: '21:30', next: 'reserva_datos' },
-            ]
-        },
-        reserva_datos: {
-            user: null,
-            bot: 'Perfecto, casi listo. ¿Me das tu nombre y un teléfono de contacto?',
-            opts: [
-                { txt: 'Carlos · 612 345 678', next: 'reserva_confirm' },
-            ]
-        },
-        reserva_confirm: {
-            user: 'Carlos · 612 345 678',
-            bot: '✅ ¡Reserva confirmada, Carlos! Te hemos enviado un SMS con todos los detalles. ¡Te esperamos! 🍷',
-            opts: [
-                { txt: '🔄 Volver al inicio', next: 'inicio' },
-            ]
-        },
-        duda_inicio: {
-            user: 'Tengo una pregunta',
-            bot: '¡Claro! ¿Sobre qué quieres saber?',
-            opts: [
-                { txt: '🕐 Horario', next: 'duda_horario' },
-                { txt: '🥩 La carta', next: 'duda_carta' },
-                { txt: '🅿️ Aparcamiento', next: 'duda_parking' },
-                { txt: '📍 Cómo llegar', next: 'duda_llegar' },
-            ]
-        },
-        duda_horario: {
-            user: '¿Cuál es el horario?',
-            bot: 'Abrimos **todos los días** excepto los lunes.\n\n🌞 Comidas: **13:30 a 16:00**\n🌙 Cenas: **20:30 a 23:30**\n\n¿Quieres hacer una reserva?',
-            opts: [
-                { txt: '🍽️ Sí, reservar mesa', next: 'reserva_personas' },
-                { txt: '🔄 Volver al inicio', next: 'inicio' },
-            ]
-        },
-        duda_carta: {
-            user: '¿Qué tenéis en la carta?',
-            bot: 'Nuestra cocina es **mediterránea de mercado** — cambia según la temporada 🌿 Tenemos opciones para vegetarianos y podemos adaptar platos a alergias. El menú del día (L–V) son **18 €** con entrante, principal, postre y bebida.',
-            opts: [
-                { txt: '🍽️ Reservar mesa', next: 'reserva_personas' },
-                { txt: '🔄 Volver al inicio', next: 'inicio' },
-            ]
-        },
-        duda_parking: {
-            user: '¿Hay aparcamiento cerca?',
-            bot: 'Sí 🅿️ Hay un parking público a **50 metros** en la Calle Mayor, 12. También suele haber zona azul disponible en la plaza frente al restaurante.',
-            opts: [
-                { txt: '📍 Ver cómo llegar', next: 'duda_llegar' },
-                { txt: '🔄 Volver al inicio', next: 'inicio' },
-            ]
-        },
-        duda_llegar: {
-            user: '¿Cómo puedo llegar?',
-            bot: 'Estamos en **Calle de Serrano, 23**, Madrid. Metro más cercano: **Serrano** (L4) a 2 minutos a pie 📍',
-            opts: [
-                { txt: '🍽️ Reservar mesa', next: 'reserva_personas' },
-                { txt: '🔄 Volver al inicio', next: 'inicio' },
-            ]
-        },
-    };
-
+    // ── CHATBOT IMPULSAAI ──────────────────────────────────────────
     let chatActivo = false;
-    const msgs   = document.getElementById('chatMsgs');
-    const opts   = document.getElementById('chatOpts');
+    const msgs    = document.getElementById('chatMsgs');
+    const opts    = document.getElementById('chatOpts');
     const restart = document.getElementById('chatRestart');
+    const input   = document.querySelector('.chat-input');
+    const sendBtn = document.querySelector('.chat-send');
+    let inputCallback = null;
+    let lead = {};
 
     function abrirChatbot() {
         document.getElementById('chatModal').classList.add('open');
         document.body.style.overflow = 'hidden';
-        if (!chatActivo) { chatActivo = true; iniciarChat(); }
+        if (!chatActivo) { chatActivo = true; setTimeout(iniciarChat, 400); }
     }
     function cerrarChatbot() {
         document.getElementById('chatModal').classList.remove('open');
@@ -1146,68 +1046,204 @@
     function reiniciarChat() {
         msgs.innerHTML = ''; opts.innerHTML = '';
         restart.style.display = 'none';
+        inputCallback = null; lead = {};
+        desactivarInput();
         chatActivo = false;
         setTimeout(() => { chatActivo = true; iniciarChat(); }, 100);
     }
 
-    function iniciarChat() {
-        setTimeout(() => mostrarPaso('inicio'), 400);
+    // Utilidades
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+
+    function addMsg(txt, tipo) {
+        const d = document.createElement('div');
+        d.className = `msg msg-${tipo}`;
+        d.innerHTML = txt.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        msgs.appendChild(d);
+        scrollChat();
     }
 
-    function mostrarPaso(id, userTxt) {
-        const paso = FLUJOS[id];
-        if (!paso) return;
+    function addTyping() {
+        const t = document.createElement('div');
+        t.className = 'msg msg-typing'; t.id = 'typing-ind';
+        t.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        msgs.appendChild(t); scrollChat(); return t;
+    }
 
+    async function botMsg(txt, delay = 900) {
+        const t = addTyping();
+        await wait(delay);
+        t.remove();
+        addMsg(txt, 'bot');
+    }
+
+    function mostrarOpts(opciones) {
         opts.innerHTML = '';
-        restart.style.display = 'none';
-
-        // 1. Mensaje del usuario (si lo hay)
-        const textoUser = userTxt || paso.user;
-        if (textoUser) {
-            agregarMsg(textoUser, 'user');
-        }
-
-        // 2. Typing indicator
-        const typing = document.createElement('div');
-        typing.className = 'msg msg-typing';
-        typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-        msgs.appendChild(typing);
+        opciones.forEach(op => {
+            const btn = document.createElement('button');
+            btn.className = 'chat-opt';
+            btn.textContent = op.txt;
+            btn.onclick = () => { opts.innerHTML = ''; op.fn(); };
+            opts.appendChild(btn);
+        });
         scrollChat();
-
-        // 3. Mensaje del bot tras delay
-        setTimeout(() => {
-            msgs.removeChild(typing);
-            agregarMsg(paso.bot, 'bot');
-
-            if (paso.opts && paso.opts.length) {
-                paso.opts.forEach(op => {
-                    const btn = document.createElement('button');
-                    btn.className = 'chat-opt';
-                    btn.textContent = op.txt;
-                    btn.onclick = () => {
-                        opts.innerHTML = '';
-                        mostrarPaso(op.next, op.txt);
-                    };
-                    opts.appendChild(btn);
-                });
-            } else {
-                restart.style.display = 'block';
-            }
-            scrollChat();
-        }, 1100);
     }
 
-    function agregarMsg(txt, tipo) {
-        const div = document.createElement('div');
-        div.className = `msg msg-${tipo}`;
-        // Soportar **negrita**
-        div.innerHTML = txt.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-        msgs.appendChild(div);
-        scrollChat();
+    function activarInput(placeholder) {
+        input.placeholder = placeholder || 'Escribe tu respuesta...';
+        input.classList.add('active');
+        sendBtn.classList.add('active');
+        input.disabled = false;
+        input.focus();
+    }
+
+    function desactivarInput() {
+        input.classList.remove('active');
+        sendBtn.classList.remove('active');
+        input.disabled = true;
+        input.value = '';
+    }
+
+    function askInput(cb) {
+        activarInput();
+        inputCallback = cb;
+    }
+
+    sendBtn.addEventListener('click', enviarInput);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') enviarInput(); });
+
+    function enviarInput() {
+        if (!inputCallback) return;
+        const val = input.value.trim();
+        if (!val) return;
+        desactivarInput();
+        addMsg(val, 'user');
+        const cb = inputCallback;
+        inputCallback = null;
+        cb(val);
     }
 
     function scrollChat() {
         setTimeout(() => msgs.scrollTo({ top: msgs.scrollHeight, behavior: 'smooth' }), 50);
+    }
+
+    // ── FLUJO PRINCIPAL ───────────────────────────────────────────
+    async function iniciarChat() {
+        await botMsg('¡Hola! 👋 Soy el asistente de **ImpulsaAI**. ¿Qué estás buscando para tu negocio?', 800);
+        mostrarOpts([
+            { txt: '🌐 Quiero una web', fn: () => eligioServicio('web') },
+            { txt: '💬 Quiero un chatbot de citas', fn: () => eligioServicio('chatbot') },
+            { txt: '🚀 Las dos cosas', fn: () => eligioServicio('ambas') },
+            { txt: '❓ Tengo una pregunta', fn: flowDuda },
+        ]);
+    }
+
+    async function eligioServicio(servicio) {
+        lead.servicio = servicio;
+        const msgs_servicio = {
+            web: 'Una web nueva para tu negocio, perfecto 🌐',
+            chatbot: 'Un chatbot para gestionar citas solo, genial 💬',
+            ambas: 'Web + chatbot de citas integrado — la solución completa 🚀',
+        };
+        await botMsg(msgs_servicio[servicio] + ' ¿Qué tipo de negocio tienes?');
+        mostrarOpts([
+            { txt: '🦷 Clínica / Dentista', fn: () => eligioNegocio('Clínica / Dentista') },
+            { txt: '✂️ Peluquería / Estética', fn: () => eligioNegocio('Peluquería / Estética') },
+            { txt: '🍽️ Restaurante / Bar', fn: () => eligioNegocio('Restaurante / Bar') },
+            { txt: '🐾 Veterinaria', fn: () => eligioNegocio('Veterinaria') },
+            { txt: '📦 Otro', fn: () => eligioNegocio('Otro') },
+        ]);
+    }
+
+    async function eligioNegocio(tipo) {
+        lead.negocio = tipo;
+        await botMsg('¿Tienes web actualmente?');
+        mostrarOpts([
+            { txt: 'No tengo web', fn: () => eligioWeb('no') },
+            { txt: 'Sí, pero está desactualizada', fn: () => eligioWeb('desactualizada') },
+            { txt: 'Sí, tengo web', fn: () => eligioWeb('si') },
+        ]);
+    }
+
+    async function eligioWeb(estado) {
+        lead.web = estado;
+        const resp = {
+            no: 'Perfecto — partir de cero nos da total libertad de diseño 🎨',
+            desactualizada: 'Renovarla es lo mejor que puedes hacer — la primera impresión lo es todo 💪',
+            si: 'Genial, la analizamos y vemos qué se puede mejorar 🔍',
+        };
+        await botMsg(resp[estado] + '\n\nPara prepararte una propuesta personalizada sin compromiso — **¿cómo te llamas?**');
+        askInput('Escribe tu nombre...');
+        inputCallback = askNombre;
+    }
+
+    async function askNombre(val) {
+        if (val.length < 2) {
+            await botMsg('No reconozco ese nombre 🤔 ¿Cómo te llamas?');
+            askInput('Escribe tu nombre...'); inputCallback = askNombre; return;
+        }
+        lead.nombre = val;
+        await botMsg(`Encantado, **${val}** 😊 ¿Y tu teléfono o email para que te contactemos?`);
+        askInput('Teléfono o email...');
+        inputCallback = askContacto;
+    }
+
+    async function askContacto(val) {
+        const esPhone = /^[\d\s\+\-]{7,}$/.test(val);
+        const esEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        if (!esPhone && !esEmail) {
+            await botMsg('No reconozco ese formato 🤔 Escribe un teléfono (ej: 612 345 678) o un email.');
+            askInput('Teléfono o email...'); inputCallback = askContacto; return;
+        }
+        lead.contacto = val;
+        await botMsg(`✅ ¡Perfecto, **${lead.nombre}**! Hemos recibido tu solicitud.\n\nTe contactamos en menos de **24 horas** para enseñarte exactamente cómo quedaría tu proyecto. ¡Hasta pronto! 👋`, 1200);
+        restart.style.display = 'block';
+    }
+
+    // ── FLUJO DUDAS ───────────────────────────────────────────────
+    async function flowDuda() {
+        await botMsg('¡Claro! ¿Sobre qué quieres saber?');
+        mostrarOpts([
+            { txt: '💰 Precios', fn: flowPrecios },
+            { txt: '⏱️ ¿Cuánto tarda?', fn: flowTiempo },
+            { txt: '🔧 ¿Cómo funciona el chatbot?', fn: flowChatbot },
+            { txt: '📞 Hablar con alguien', fn: flowContacto },
+        ]);
+    }
+
+    async function flowPrecios() {
+        addMsg('¿Cuánto cuesta?', 'user');
+        await botMsg('Trabajamos con precios claros y sin sorpresas:\n\n🌐 **Web profesional** — desde 400 €\n💬 **Chatbot de citas** — desde 77 €/mes\n🚀 **Pack web + chatbot** — precio especial\n\nSiempre con propuesta personalizada antes de comprometerte a nada.');
+        mostrarOpts([
+            { txt: '🚀 Pedir propuesta gratis', fn: () => eligioServicio('ambas') },
+            { txt: '🔄 Volver al inicio', fn: reiniciarChat },
+        ]);
+    }
+
+    async function flowTiempo() {
+        addMsg('¿Cuánto tarda?', 'user');
+        await botMsg('⚡ **Web** — lista en 5 días hábiles\n💬 **Chatbot** — activo en 48 horas\n\nRevisamos juntos antes de publicar. No publicamos hasta que estés 100% satisfecho.');
+        mostrarOpts([
+            { txt: '🚀 Empezar ahora', fn: () => eligioServicio('ambas') },
+            { txt: '🔄 Volver al inicio', fn: reiniciarChat },
+        ]);
+    }
+
+    async function flowChatbot() {
+        addMsg('¿Cómo funciona el chatbot?', 'user');
+        await botMsg('El chatbot va integrado en tu web y responde a tus clientes **24/7** 🤖\n\nPregunta el servicio, la fecha, el nombre y el teléfono — y tú recibes la reserva directamente en WhatsApp o email.\n\nSin apps. Sin instalaciones. Funciona solo.');
+        mostrarOpts([
+            { txt: '💬 Quiero uno así', fn: () => eligioServicio('chatbot') },
+            { txt: '🔄 Volver al inicio', fn: reiniciarChat },
+        ]);
+    }
+
+    async function flowContacto() {
+        addMsg('Quiero hablar con alguien', 'user');
+        await botMsg('¡Por supuesto! Puedes llamarnos o escribirnos directamente:\n\n📞 **642 39 77 88**\n📩 **impulsaai.agencia@gmail.com**\n💬 WhatsApp disponible abajo a la derecha ↘️');
+        mostrarOpts([
+            { txt: '🔄 Volver al inicio', fn: reiniciarChat },
+        ]);
     }
 
     // Cerrar modal al hacer clic fuera
