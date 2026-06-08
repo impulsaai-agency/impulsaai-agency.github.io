@@ -1258,7 +1258,7 @@
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let W, H, pts;
-    const N = 85, LINK = 155, REPEL = 115, FORCE = 14;
+    const N = 85, REPEL = 115, FORCE = 14;
     const C = '99,102,241';
 
     function resize() {
@@ -1267,14 +1267,15 @@
     }
 
     function mkPt() {
-        const hx = Math.random()*W, hy = Math.random()*H;
+        const spd = 0.3 + Math.random() * 0.4;
+        const ang = Math.random() * Math.PI * 2;
         return {
-            hx, hy,          // home (deriva lentamente)
-            x: hx, y: hy,   // posición real
-            vx: 0, vy: 0,   // velocidad real
-            dvx: (Math.random()-.5)*.35,  // drift de home
-            dvy: (Math.random()-.5)*.35,
-            r: Math.random()*1.1 + 1.0   // 1–2.1px
+            x:  Math.random() * W,
+            y:  Math.random() * H,
+            vx: Math.cos(ang) * spd,
+            vy: Math.sin(ang) * spd,
+            spd,
+            r:  Math.random() * 1.1 + 1.0
         };
     }
 
@@ -1286,11 +1287,6 @@
         ctx.clearRect(0,0,W,H);
 
         pts.forEach(p => {
-            // home deriva suave
-            p.hx += p.dvx; p.hy += p.dvy;
-            if (p.hx < 0 || p.hx > W) p.dvx *= -1;
-            if (p.hy < 0 || p.hy > H) p.dvy *= -1;
-
             // repulsión ratón
             const dx = p.x - mx, dy = p.y - my;
             const d  = Math.sqrt(dx*dx + dy*dy);
@@ -1300,16 +1296,20 @@
                 p.vy += dy/d * f;
             }
 
-            // resorte hacia home
-            p.vx += (p.hx - p.x) * 0.03;
-            p.vy += (p.hy - p.y) * 0.03;
-
-            // amortiguación
-            p.vx *= 0.84;
-            p.vy *= 0.84;
+            // limitar velocidad máxima pero mantener mínima (que nunca pare)
+            const s = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+            if (s > 6) { p.vx = p.vx/s*6; p.vy = p.vy/s*6; }
+            // frenar suave hacia velocidad natural
+            if (s > p.spd) { p.vx *= 0.96; p.vy *= 0.96; }
 
             p.x += p.vx;
             p.y += p.vy;
+
+            // rebotan en los bordes
+            if (p.x < 0)  { p.x = 0;  p.vx = Math.abs(p.vx); }
+            if (p.x > W)  { p.x = W;  p.vx = -Math.abs(p.vx); }
+            if (p.y < 0)  { p.y = 0;  p.vy = Math.abs(p.vy); }
+            if (p.y > H)  { p.y = H;  p.vy = -Math.abs(p.vy); }
         });
 
         // puntos
