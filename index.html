@@ -1674,12 +1674,11 @@
 </script>
 
 <!-- Vapi AI Voice Demo Widget -->
-<button id="vapiBtn" title="🎙 Recepcionista IA — Haz una llamada de prueba"
-  style="position:fixed;bottom:100px;right:28px;z-index:999;width:58px;height:58px;background:linear-gradient(135deg,#6366f1,#a855f7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(99,102,241,0.45);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;"
-  onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(99,102,241,0.7)'"
-  onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(99,102,241,0.45)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-</button>
+<style>
+  /* Forzar que el widget de Vapi quede siempre por encima de todo */
+  body > div[style*="position: fixed"],
+  body > div[style*="position:fixed"] { z-index: 99999 !important; }
+</style>
 <script>
 (function(d,t){
     var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -1687,36 +1686,49 @@
     g.defer=true; g.async=true;
     s.parentNode.insertBefore(g,s);
     g.onload=function(){
-        var vapi = window.vapiSDK.run({
+        var isMobile = window.innerWidth < 768;
+        window.vapiSDK.run({
             apiKey: "282dc7ae-730c-49f3-b628-e923ae004512",
             assistant: "a428e741-bea7-4668-bc86-87727e56223f",
-            config: { position: "bottom-right", offset: "-200px" }
-        });
-        var btn = document.getElementById('vapiBtn');
-        var active = false;
-        var micIcon = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>';
-        var stopIcon = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.42 19.42 0 0 1 3.07 8.63 19.79 19.79 0 0 1 0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L6.18 7.85"/><line x1="23" y1="1" x2="1" y2="23"/></svg>';
-        btn.addEventListener('click', function(){
-            if (!active) {
-                vapi.start();
-                btn.style.background = 'linear-gradient(135deg,#06b6d4,#0891b2)';
-                btn.style.boxShadow = '0 4px 20px rgba(6,182,212,0.5)';
-                btn.innerHTML = stopIcon;
-                active = true;
-            } else {
-                vapi.stop();
-                btn.style.background = 'linear-gradient(135deg,#6366f1,#a855f7)';
-                btn.style.boxShadow = '0 4px 20px rgba(99,102,241,0.45)';
-                btn.innerHTML = micIcon;
-                active = false;
+            config: {
+                position: "bottom-right",
+                offset: isMobile ? "28px" : "98px",
+                width: "56px",
+                height: "56px",
+                idle: {
+                    color: "#6366f1",
+                    type: "pill",
+                    title: "🎙 Recepcionista IA",
+                    subtitle: "Haz una llamada de prueba",
+                    icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
+                },
+                loading: {
+                    color: "#a855f7",
+                    type: "pill",
+                    title: "Conectando...",
+                    subtitle: ""
+                },
+                active: {
+                    color: "#06b6d4",
+                    type: "pill",
+                    title: "En llamada",
+                    subtitle: "Pulsa para colgar",
+                    icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
+                }
             }
         });
-        vapi.on('call-end', function(){
-            btn.style.background = 'linear-gradient(135deg,#6366f1,#a855f7)';
-            btn.style.boxShadow = '0 4px 20px rgba(99,102,241,0.45)';
-            btn.innerHTML = micIcon;
-            active = false;
-        });
+        // Elevar z-index tras renderizar
+        setTimeout(function(){
+            var vapiEl = document.querySelector('div[style*="position: fixed"][style*="right"]');
+            if (vapiEl) vapiEl.style.zIndex = '99999';
+        }, 600);
+        // En móvil: reposicionar encima del botón de WhatsApp
+        if (isMobile) {
+            setTimeout(function(){
+                var vapiEl = document.querySelector('div[style*="position: fixed"][style*="right"]');
+                if (vapiEl) { vapiEl.style.bottom = '100px'; vapiEl.style.zIndex = '99999'; }
+            }, 800);
+        }
     };
 })(document,"script");
 </script>
