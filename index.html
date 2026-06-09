@@ -1715,19 +1715,20 @@
     g.defer=true; g.async=true;
     s.parentNode.insertBefore(g,s);
     g.onload=function(){
+        var isMobile = window.innerWidth < 768;
         window.vapiSDK.run({
             apiKey: "282dc7ae-730c-49f3-b628-e923ae004512",
             assistant: "a428e741-bea7-4668-bc86-87727e56223f",
             config: {
                 position: "bottom-right",
-                offset: "98px",
+                offset: isMobile ? "28px" : "98px",
                 width: "56px",
                 height: "56px",
                 idle: {
                     color: "#6366f1",
                     type: "pill",
-                    title: "Demo IA",
-                    subtitle: "Habla con el agente",
+                    title: "🎙 Recepcionista IA",
+                    subtitle: "Haz una llamada de prueba",
                     icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
                 },
                 loading: {
@@ -1745,6 +1746,15 @@
                 }
             }
         });
+        // En móvil: reposicionar el botón de Vapi encima del de WhatsApp tras renderizar
+        if (isMobile) {
+            setTimeout(function(){
+                var vapiEl = document.querySelector('div[style*="position: fixed"][style*="bottom"]');
+                if (vapiEl && vapiEl.querySelector('button')) {
+                    vapiEl.style.bottom = '100px';
+                }
+            }, 800);
+        }
     };
 })(document,"script");
 </script>
