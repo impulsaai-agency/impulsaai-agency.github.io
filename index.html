@@ -1716,7 +1716,7 @@
             icon.innerHTML=stopSVG; active=true;
         }
         pill.addEventListener('click',function(){
-            if(!active){ vapi.start(); setActive(); }
+            if(!active){ vapi.start("a428e741-bea7-4668-bc86-87727e56223f"); setActive(); }
             else { vapi.stop(); setIdle(); }
         });
         vapi.on('call-end', setIdle);
