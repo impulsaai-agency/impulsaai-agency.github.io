@@ -1673,10 +1673,18 @@
 </script>
 
 <!-- Vapi AI Voice Demo Widget — pill personalizado -->
+<style>
+#vapiText { display: flex; flex-direction: column; }
+@media (max-width: 620px) {
+  #vapiPill { padding: 0 !important; width: 58px; height: 58px; justify-content: center; border-radius: 50% !important; }
+  #vapiText { display: none; }
+  #vapiPill svg { margin: 0; }
+}
+</style>
 <div id="vapiPill" style="position:fixed;right:28px;z-index:99999;display:flex;align-items:center;gap:11px;background:#6366f1;border-radius:100px;padding:11px 18px 11px 13px;box-shadow:0 4px 22px rgba(99,102,241,0.5);cursor:pointer;transition:background 0.2s,box-shadow 0.2s,transform 0.15s;user-select:none;" onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 6px 28px rgba(99,102,241,0.7)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 22px rgba(99,102,241,0.5)'">
   <svg id="vapiIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-  <div style="font-family:'Inter',sans-serif;line-height:1.25;">
-    <div id="vapiTitle" style="font-size:13px;font-weight:700;color:#fff;">🎙 Recepcionista IA</div>
+  <div id="vapiText" style="font-family:'Inter',sans-serif;line-height:1.25;">
+    <div id="vapiTitle" style="font-size:13px;font-weight:700;color:#fff;">Recepcionista IA</div>
     <div id="vapiSub" style="font-size:11px;color:rgba(255,255,255,0.75);">Haz una llamada de prueba</div>
   </div>
 </div>
@@ -1713,7 +1721,7 @@
         function setIdle(){
             pill.style.background='#6366f1';
             pill.style.boxShadow='0 4px 22px rgba(99,102,241,0.5)';
-            title.textContent='🎙 Recepcionista IA';
+            title.textContent='Recepcionista IA';
             sub.textContent='Haz una llamada de prueba';
             icon.innerHTML=micSVG; active=false;
         }
