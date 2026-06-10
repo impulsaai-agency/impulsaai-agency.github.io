@@ -1534,7 +1534,7 @@ document.querySelectorAll('a[href="#contacto"]').forEach(btn => {
   setTimeout(function() {
     var t = document.getElementById('chatTooltip');
     if (t) t.classList.add('visible');
-  }, 2500);
+  }, 0);
   document.getElementById('chatFab').addEventListener('click', function() {
     var t = document.getElementById('chatTooltip');
     if (t) { t.classList.remove('visible'); t.style.display='none'; }
