@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script>if (history.scrollRestoration) history.scrollRestoration = 'manual'; window.scrollTo(0,0);</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clínica Dental Essen | Calle Serrano, Madrid</title>
@@ -1155,8 +1156,86 @@
   }
 
 </style>
+<!-- ZAYLO BANNER + POPUP STYLES -->
+<style>
+#zaylo-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+  height: 40px;
+  background: #0d4d4d;
+  color: #fff;
+  text-align: center;
+  padding: 0 48px 0 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  max-height: 40px;
+}
+#zaylo-banner a { color: #e8a844; font-weight: 700; text-decoration: none; margin-left: 6px; }
+#zaylo-banner a:hover { text-decoration: underline; }
+#zaylo-banner-close {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: rgba(255,255,255,0.6);
+  font-size: 18px; cursor: pointer; line-height: 1; padding: 4px;
+}
+#zaylo-banner-close:hover { color: #fff; }
+body.has-banner { padding-top: 40px; }
+#zaylo-exit {
+  display: none; position: fixed; inset: 0; z-index: 999999;
+  background: rgba(0,0,0,0.55); align-items: center; justify-content: center;
+  backdrop-filter: blur(3px);
+}
+#zaylo-exit.show { display: flex; }
+#zaylo-exit-box {
+  background: #fff; border-radius: 16px; padding: 40px 36px 32px;
+  max-width: 380px; width: 90%; text-align: center; position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+#zaylo-exit-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; font-size: 20px; color: #999; cursor: pointer;
+}
+#zaylo-exit-logo {
+  width: 52px; height: 52px; background: #0d4d4d; color: #fff;
+  border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 800; margin: 0 auto 20px; font-family: sans-serif;
+}
+#zaylo-exit-box h3 { font-size: 20px; font-weight: 700; color: #111; margin: 0 0 10px; font-family: sans-serif; }
+#zaylo-exit-box p { font-size: 14px; color: #555; line-height: 1.6; margin: 0 0 24px; font-family: sans-serif; }
+#zaylo-exit-cta {
+  display: block; background: #0d4d4d; color: #fff; padding: 13px 24px;
+  border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px;
+  margin-bottom: 12px; font-family: sans-serif;
+}
+#zaylo-exit-cta:hover { background: #0a3d3d; }
+#zaylo-exit-skip {
+  background: none; border: none; color: #999; font-size: 13px; cursor: pointer;
+  font-family: sans-serif;
+}
+</style>
 </head>
-<body>
+<body class="has-banner">
+
+<!-- ZAYLO BANNER -->
+<div id="zaylo-banner">
+  Esta web ha sido creada por Zaylo · ¿Quieres una igual para tu negocio?
+  <a href="https://zaylo.site" target="_blank">Visita zaylo.site →</a>
+  <button id="zaylo-banner-close">×</button>
+</div>
+
+<!-- EXIT INTENT POPUP -->
+<div id="zaylo-exit">
+  <div id="zaylo-exit-box">
+    <button id="zaylo-exit-close" onclick="closeExit()">×</button>
+    <div id="zaylo-exit-logo">Z</div>
+    <h3>¿Te ha gustado esta web?</h3>
+    <p>Creamos webs profesionales con chatbot de citas para negocios locales. Sin complicaciones.</p>
+    <a href="https://zaylo.site" target="_blank" id="zaylo-exit-cta">Ver más en zaylo.site →</a>
+    <button onclick="closeExit()" id="zaylo-exit-skip">No, gracias</button>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -1725,6 +1804,32 @@ function sendText() {
     if (t) { t.classList.remove('visible'); t.style.display='none'; }
   });
 
+</script>
+<script>
+// Banner close
+var banner = document.getElementById('zaylo-banner');
+var navbar = document.getElementById('navbar');
+if (navbar) navbar.style.top = '40px';
+document.getElementById('zaylo-banner-close').addEventListener('click', function() {
+  banner.style.maxHeight = '0'; banner.style.opacity = '0';
+  document.body.style.transition = 'padding-top 0.3s ease';
+  document.body.classList.remove('has-banner');
+  if (navbar) { navbar.style.transition = 'top 0.3s ease'; navbar.style.top = '0'; }
+  setTimeout(function() { banner.style.display = 'none'; }, 320);
+});
+// Popup
+var exitShown = false; var contactTimer = null;
+function showExit() { if (!exitShown) { document.getElementById('zaylo-exit').classList.add('show'); exitShown = true; } }
+function closeExit() { document.getElementById('zaylo-exit').classList.remove('show'); exitShown = true; }
+var contacto = document.getElementById('contacto');
+if (contacto) {
+  new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting && !exitShown && !contactTimer) contactTimer = setTimeout(showExit, 4000); });
+  }, { threshold: 0.2 }).observe(contacto);
+}
+window.addEventListener('scroll', function() {
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50) showExit();
+}, { passive: true });
 </script>
 </body>
 </html>
