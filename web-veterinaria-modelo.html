@@ -132,10 +132,19 @@ nav:not(.scrolled) .nav-links a:hover { color: var(--white); }
 .hero {
   min-height: 100vh;
   background: var(--green);
+  background-image: url('https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=1600&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center top;
   position: relative;
   display: flex;
   align-items: center;
   overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 77, 77, 0.78);
 }
 .hero-bg-pattern {
   position: absolute;
