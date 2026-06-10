@@ -1717,10 +1717,9 @@ document.getElementById('zaylo-banner-close').addEventListener('click', function
   setTimeout(function() { banner.style.display = 'none'; }, 320);
 });
 
-// Popup: al llegar al final de la página O 20s después del primer scroll
+// Popup: 4 segundos después de llegar a la sección de contacto
 var exitShown = false;
-var scrollTimer = null;
-var hasScrolled = false;
+var contactTimer = null;
 
 function showExit() {
   if (!exitShown) {
@@ -1733,20 +1732,20 @@ function closeExit() {
   exitShown = true;
 }
 
-window.addEventListener('scroll', function() {
-  // Arrancar temporizador de 20s al primer scroll
-  if (!hasScrolled) {
-    hasScrolled = true;
-    scrollTimer = setTimeout(showExit, 20000);
-  }
-  // Mostrar al llegar al final
-  var scrolled = window.scrollY + window.innerHeight;
-  var total = document.documentElement.scrollHeight;
-  if (scrolled >= total - 50) {
-    clearTimeout(scrollTimer);
-    showExit();
-  }
-}, { passive: true });
+var contacto = document.getElementById('contacto');
+if (contacto) {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !exitShown && !contactTimer) {
+        contactTimer = setTimeout(showExit, 4000);
+      } else if (!entry.isIntersecting && contactTimer) {
+        clearTimeout(contactTimer);
+        contactTimer = null;
+      }
+    });
+  }, { threshold: 0.2 });
+  observer.observe(contacto);
+}
 </script>
 </body>
 </html>
