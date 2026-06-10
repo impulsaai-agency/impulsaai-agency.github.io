@@ -954,14 +954,24 @@ footer {
 <style>
 #zaylo-banner {
   position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+  height: 40px;
   background: #0d4d4d;
   color: #fff;
   text-align: center;
-  padding: 9px 48px 9px 16px;
+  padding: 0 48px 0 16px;
+  display: flex; align-items: center; justify-content: center;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  line-height: 1.4;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  max-height: 40px;
+}
+body.has-banner {
+  padding-top: 40px;
+}
+body.has-banner nav {
+  top: 40px !important;
 }
 #zaylo-banner a {
   color: #e8a844;
@@ -1032,13 +1042,13 @@ footer {
 }
 </style>
 </head>
-<body>
+<body class="has-banner">
 
 <!-- ZAYLO BANNER -->
 <div id="zaylo-banner">
   Esta web ha sido creada por Zaylo · ¿Quieres una igual para tu negocio?
   <a href="https://zaylo.site" target="_blank">Visita zaylo.site →</a>
-  <button id="zaylo-banner-close" onclick="document.getElementById('zaylo-banner').style.display='none'">×</button>
+  <button id="zaylo-banner-close">×</button>
 </div>
 
 <!-- EXIT INTENT POPUP -->
@@ -1258,19 +1268,19 @@ footer {
     </div>
     <div class="equipo-grid stagger">
       <div class="equipo-card">
-        <div class="equipo-avatar" style="background: linear-gradient(135deg, #1a6b5a, #0d4d4d);">‍</div>
+        <div class="equipo-avatar" style="background: linear-gradient(135deg, #1a6b5a, #0d4d4d);"></div>
         <div class="equipo-nombre">Dra. Laura Martínez</div>
         <div class="equipo-cargo">Directora Médica</div>
         <div class="equipo-bio">Licenciada en Veterinaria por la Universidad Complutense de Madrid con más de 15 años de experiencia. Especialista en medicina interna y diagnóstico por imagen.</div>
       </div>
       <div class="equipo-card">
-        <div class="equipo-avatar" style="background: linear-gradient(135deg, #c48b2a, #e8a844);">‍</div>
+        <div class="equipo-avatar" style="background: linear-gradient(135deg, #c48b2a, #e8a844);"></div>
         <div class="equipo-nombre">Dr. Alejandro Ruiz</div>
         <div class="equipo-cargo">Cirujano Veterinario</div>
         <div class="equipo-bio">Especialista en cirugía de tejidos blandos y ortopedia. Máster en Cirugía Veterinaria Mínimamente Invasiva. Referente en laparoscopia animal en Madrid.</div>
       </div>
       <div class="equipo-card">
-        <div class="equipo-avatar" style="background: linear-gradient(135deg, #2d7a6b, #1a6b5a);">‍</div>
+        <div class="equipo-avatar" style="background: linear-gradient(135deg, #2d7a6b, #1a6b5a);"></div>
         <div class="equipo-nombre">Dra. Sara López</div>
         <div class="equipo-cargo">Animales Exóticos</div>
         <div class="equipo-bio">Especialista en reptiles, aves, conejos y pequeños mamíferos. Formación en la Universidad de Murcia y estancias en clínicas especializadas de Europa.</div>
@@ -1702,8 +1712,15 @@ document.querySelector('.form-submit').addEventListener('click', function(e) {
 </script>
 
 <script>
-// Adjust body padding for banner
-document.body.style.paddingTop = (document.getElementById('zaylo-banner').offsetHeight) + 'px';
+// Close banner smoothly
+document.getElementById('zaylo-banner-close').addEventListener('click', function() {
+  var banner = document.getElementById('zaylo-banner');
+  banner.style.maxHeight = '0';
+  banner.style.opacity = '0';
+  document.body.style.transition = 'padding-top 0.3s ease';
+  document.body.classList.remove('has-banner');
+  setTimeout(function() { banner.style.display = 'none'; }, 320);
+});
 
 // Exit intent
 var exitShown = false;
