@@ -1738,9 +1738,6 @@ if (contacto) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting && !exitShown && !contactTimer) {
         contactTimer = setTimeout(showExit, 4000);
-      } else if (!entry.isIntersecting && contactTimer) {
-        clearTimeout(contactTimer);
-        contactTimer = null;
       }
     });
   }, { threshold: 0.2 });
