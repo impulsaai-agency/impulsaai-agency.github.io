@@ -1722,34 +1722,36 @@ document.getElementById('zaylo-banner-close').addEventListener('click', function
   setTimeout(function() { banner.style.display = 'none'; }, 320);
 });
 
-// Exit intent
+// Popup: al llegar al final de la página O 20s después del primer scroll
 var exitShown = false;
-function closeExit() {
-  document.getElementById('zaylo-exit').classList.remove('show');
-  exitShown = true;
-}
-document.addEventListener('mouseleave', function(e) {
-  if (e.clientY < 10 && !exitShown) {
-    document.getElementById('zaylo-exit').classList.add('show');
-    exitShown = true;
-  }
-});
-// Mobile: show after 30s of inactivity
-var mobileTimer = setTimeout(function() {
+var scrollTimer = null;
+var hasScrolled = false;
+
+function showExit() {
   if (!exitShown) {
     document.getElementById('zaylo-exit').classList.add('show');
     exitShown = true;
   }
-}, 30000);
-document.addEventListener('touchstart', function() {
-  clearTimeout(mobileTimer);
-  mobileTimer = setTimeout(function() {
-    if (!exitShown) {
-      document.getElementById('zaylo-exit').classList.add('show');
-      exitShown = true;
-    }
-  }, 30000);
-});
+}
+function closeExit() {
+  document.getElementById('zaylo-exit').classList.remove('show');
+  exitShown = true;
+}
+
+window.addEventListener('scroll', function() {
+  // Arrancar temporizador de 20s al primer scroll
+  if (!hasScrolled) {
+    hasScrolled = true;
+    scrollTimer = setTimeout(showExit, 20000);
+  }
+  // Mostrar al llegar al final
+  var scrolled = window.scrollY + window.innerHeight;
+  var total = document.documentElement.scrollHeight;
+  if (scrolled >= total - 50) {
+    clearTimeout(scrollTimer);
+    showExit();
+  }
+}, { passive: true });
 </script>
 </body>
 </html>
