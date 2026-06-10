@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Los Santos Barber Shop — Carabanchel, Madrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --negro:#0a0a0a;
+  --negro-suave:#141414;
+  --negro-claro:#1f1f1f;
+  --oro:#c9a14a;
+  --oro-claro:#e5c97a;
+  --crema:#f5f1e8;
+  --gris:#a8a8a8;
+  --texto:#e8e8e8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--texto);background:var(--negro);line-height:1.6;overflow-x:hidden}
+body.locked{overflow:hidden}
+
+/* DEMO BANNER */
+#demo-banner{
+  position:fixed;top:0;left:0;right:0;z-index:99999;
+  background:linear-gradient(135deg,#0a0a0a,#1f1f1f);
+  color:#fff;padding:10px 24px;font-size:13px;
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  border-bottom:2px solid var(--oro);
+  flex-wrap:wrap;
+}
+#demo-banner strong{color:var(--oro-claro)}
+#demo-banner .pulse{
+  display:inline-block;width:8px;height:8px;background:var(--oro);
+  border-radius:50%;margin-right:8px;animation:pulse 1.5s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+#demo-banner a{color:var(--oro-claro);font-weight:700;text-decoration:underline}
+body.has-demo-banner{padding-top:44px}
+
+/* WATERMARK */
+.watermark{
+  position:fixed;bottom:20px;right:20px;z-index:99998;
+  background:rgba(201,161,74,.95);color:#000;padding:8px 14px;
+  border-radius:20px;font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;pointer-events:none;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:44px;left:0;right:0;z-index:1000;
+  padding:20px 8%;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(10,10,10,.96);backdrop-filter:blur(20px);
+  transition:all .3s ease;border-bottom:1px solid rgba(201,161,74,.15);
+}
+nav.scrolled{padding:14px 8%;box-shadow:0 4px 30px rgba(0,0,0,.5)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;font-weight:400;color:#fff;letter-spacing:3px}
+.logo span{color:var(--oro)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:var(--texto);text-decoration:none;font-weight:500;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--oro)}
+.nav-cta{
+  background:var(--oro);color:#000;padding:12px 24px;border-radius:0;
+  text-decoration:none;font-weight:700;font-size:13px;letter-spacing:1px;
+  text-transform:uppercase;transition:all .3s;border:2px solid var(--oro);
+}
+.nav-cta:hover{background:transparent;color:var(--oro)}
+@media(max-width:768px){.nav-links{display:none}nav{padding:14px 5%}}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  background-image:linear-gradient(135deg,rgba(10,10,10,.85),rgba(10,10,10,.6)),url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1800&q=80');
+  background-size:cover;background-position:center;background-attachment:fixed;
+  color:#fff;padding:120px 8% 80px;position:relative;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 30%,rgba(201,161,74,.18),transparent 60%);
+}
+.hero-content{position:relative;z-index:2;max-width:1100px;width:100%}
+.hero-tag{
+  display:inline-block;padding:8px 20px;border:1px solid var(--oro);
+  color:var(--oro-claro);font-size:11px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:32px;
+}
+.hero h1{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,140px);
+  font-weight:400;line-height:.95;letter-spacing:2px;margin-bottom:24px;
+  text-transform:uppercase;
+}
+.hero h1 .oro{color:var(--oro);font-family:'Playfair Display',serif;font-style:italic;font-weight:400;display:block;font-size:.55em;letter-spacing:-1px;margin-top:8px;text-transform:none}
+.hero-subtitle{
+  font-size:clamp(17px,2vw,21px);font-weight:300;
+  max-width:680px;margin-bottom:20px;color:rgba(255,255,255,.88);
+}
+.hero-location{
+  display:flex;align-items:center;gap:12px;font-size:15px;
+  color:var(--oro-claro);margin-bottom:48px;font-weight:500;letter-spacing:1px;
+}
+.hero-location svg{width:20px;height:20px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--oro);color:#000;padding:18px 38px;
+  text-decoration:none;font-weight:700;font-size:13px;letter-spacing:2px;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;
+  transition:all .3s;border:2px solid var(--oro);cursor:pointer;
+}
+.btn-primary:hover{background:transparent;color:var(--oro);transform:translateY(-2px)}
+.btn-secondary{
+  background:transparent;color:#fff;padding:18px 38px;
+  text-decoration:none;font-weight:600;font-size:13px;letter-spacing:2px;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;
+  transition:all .3s;border:2px solid rgba(255,255,255,.3);
+}
+.btn-secondary:hover{border-color:var(--oro);color:var(--oro)}
+
+/* SECTION BASE */
+section{padding:120px 8%}
+.section-tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:3px;
+  color:var(--oro);text-transform:uppercase;margin-bottom:16px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,72px);
+  font-weight:400;line-height:1;color:#fff;margin-bottom:24px;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.section-title .oro{color:var(--oro);font-family:'Playfair Display',serif;font-style:italic;text-transform:none}
+.section-sub{font-size:17px;color:var(--gris);max-width:600px;margin-bottom:64px}
+
+/* ABOUT */
+.about{background:var(--negro-suave);position:relative}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1300px;margin:0 auto}
+.about-text p{font-size:16px;color:var(--gris);margin-bottom:20px;line-height:1.8}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.stat{padding:24px;background:var(--negro);border:1px solid var(--negro-claro);text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--oro);font-weight:400;line-height:1;letter-spacing:2px}
+.stat-label{font-size:12px;color:var(--gris);text-transform:uppercase;letter-spacing:2px;margin-top:8px;font-weight:600}
+.about-img{
+  height:600px;background-size:cover;background-position:center;
+  background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=80');
+  position:relative;
+}
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  border:1px solid var(--oro);transform:translate(20px,20px);
+  pointer-events:none;
+}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px}.about-img{height:400px}}
+
+/* SERVICIOS */
+.servicios{background:var(--negro)}
+.servicios-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;max-width:1300px;margin:0 auto;
+}
+.servicio{
+  background:var(--negro-suave);padding:36px 32px;
+  border:1px solid var(--negro-claro);
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.servicio::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:0;
+  background:var(--oro);transition:height .4s;
+}
+.servicio:hover{border-color:var(--oro);transform:translateY(-4px)}
+.servicio:hover::before{height:100%}
+.servicio-name{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;
+}
+.servicio-dur{font-size:12px;color:var(--gris);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.servicio-precio{
+  font-family:'Playfair Display',serif;font-style:italic;font-size:32px;
+  color:var(--oro);font-weight:400;
+}
+
+/* RESERVA CTA */
+.reserva{
+  background-image:linear-gradient(135deg,rgba(10,10,10,.85),rgba(10,10,10,.7)),url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1800&q=80');
+  background-size:cover;background-position:center;background-attachment:fixed;
+  text-align:center;padding:140px 8%;
+}
+.reserva h2{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,68px);
+  color:#fff;letter-spacing:3px;margin-bottom:20px;text-transform:uppercase;
+}
+.reserva p{font-size:18px;color:rgba(255,255,255,.85);margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* CONTACTO */
+.contacto{background:var(--negro-suave)}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1200px;margin:0 auto}
+.info-item{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--negro-claro)}
+.info-item:last-child{border-bottom:none}
+.info-label{font-size:11px;color:var(--oro);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:8px}
+.info-value{font-size:18px;color:#fff;font-weight:500}
+.info-value a{color:#fff;text-decoration:none}
+.info-value a:hover{color:var(--oro)}
+.mapa{
+  height:100%;min-height:400px;
+  background:url('https://maps.googleapis.com/maps/api/staticmap?center=Calle+Azabache+14+Madrid&zoom=15&size=600x400&style=feature:all|element:all|invert_lightness:true');
+  background-color:#1a1a1a;
+  background-size:cover;background-position:center;
+  display:flex;align-items:flex-end;padding:24px;
+}
+.mapa-pin{
+  background:var(--oro);color:#000;padding:14px 20px;
+  font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:13px;
+}
+@media(max-width:900px){.contacto-grid{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{
+  background:#000;padding:40px 8%;text-align:center;
+  border-top:1px solid var(--negro-claro);
+}
+footer p{color:var(--gris);font-size:13px;letter-spacing:1px}
+footer .oro{color:var(--oro)}
+
+/* MODAL LOCK */
+.lock-modal{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
+  z-index:999999;align-items:center;justify-content:center;padding:20px;
+}
+.lock-modal.active{display:flex}
+.lock-content{
+  background:var(--negro-suave);border:1px solid var(--oro);
+  padding:48px;max-width:520px;width:100%;text-align:center;
+}
+.lock-icon{font-size:48px;margin-bottom:24px}
+.lock-content h3{
+  font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;
+  letter-spacing:2px;margin-bottom:16px;text-transform:uppercase;
+}
+.lock-content p{color:var(--gris);font-size:15px;line-height:1.7;margin-bottom:32px}
+.lock-content strong{color:var(--oro-claro)}
+.lock-close{
+  background:var(--oro);color:#000;border:none;padding:14px 32px;
+  font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;
+  font-size:13px;font-family:'Inter',sans-serif;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  section{padding:80px 6%}
+  .hero{padding:140px 6% 60px;background-attachment:scroll}
+  .reserva{padding:100px 6%;background-attachment:scroll}
+  #demo-banner{font-size:11px;padding:8px 12px;gap:12px}
+  body.has-demo-banner{padding-top:60px}
+  nav{top:60px}
+  .hero-ctas{flex-direction:column;width:100%}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;padding:16px 24px}
+  .watermark{font-size:9px;padding:6px 10px;bottom:10px;right:10px}
+}
+</style>
+</head>
+<body class="has-demo-banner" oncontextmenu="return false">
+
+<!-- DEMO BANNER -->
+<div id="demo-banner">
+  <span><span class="pulse"></span><strong>PREVIEW EXCLUSIVA PARA LOS SANTOS BARBER SHOP</strong></span>
+  <span>Caduca el <strong>17/06/2026</strong></span>
+  <span>Por <a href="https://impulsaai-agency.github.io" target="_blank">Zaylo</a></span>
+</div>
+
+<!-- WATERMARK -->
+<div class="watermark">Preview by Zaylo</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">LOS <span>SANTOS</span></div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="openLock(event)">Reservar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">— Carabanchel · Madrid</span>
+    <h1>Los Santos<span class="oro">Barber Shop</span></h1>
+    <p class="hero-subtitle">Cortes, barbas y estilo. El rollito de Carabanchel, en manos de Carlos y su equipo.</p>
+    <div class="hero-location">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Calle Azabache 14 · 28019 Madrid
+    </div>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary" onclick="openLock(event)">Reservar cita</a>
+      <a href="https://www.instagram.com/lossantosmadrid/" target="_blank" class="btn-secondary">Ver Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section class="about" id="sobre">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="section-tag">— Nuestra historia</span>
+      <h2 class="section-title">Más que cortes,<br><span class="oro">estilo de barrio</span></h2>
+      <p>Llevamos años haciendo de Los Santos un punto de referencia en Carabanchel. Para nosotros un corte no es solo un servicio — es 30 minutos para ti, una conversación, una cerveza y salir con una versión mejor.</p>
+      <p>Trabajamos clásico y moderno, sin prisas, sin postureo. Solo barbería bien hecha.</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Servicios</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Días/semana</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img"></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div style="max-width:1300px;margin:0 auto 64px">
+    <span class="section-tag">— Carta de servicios</span>
+    <h2 class="section-title">Precios <span class="oro">claros</span></h2>
+    <p class="section-sub">Sin sorpresas. Lo que ves es lo que pagas.</p>
+  </div>
+  <div class="servicios-grid">
+    <div class="servicio">
+      <div class="servicio-name">Corte Jubilado</div>
+      <div class="servicio-dur">20 minutos</div>
+      <div class="servicio-precio">10€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Corte + Bebida</div>
+      <div class="servicio-dur">40 minutos</div>
+      <div class="servicio-precio">15€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Corte + Cejas</div>
+      <div class="servicio-dur">40 minutos</div>
+      <div class="servicio-precio">18€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Corte + Barba + Bebida</div>
+      <div class="servicio-dur">1 hora</div>
+      <div class="servicio-precio">20€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Corte + Barba + Cejas</div>
+      <div class="servicio-dur">30 minutos</div>
+      <div class="servicio-precio">23€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Corte + Mascarilla facial</div>
+      <div class="servicio-dur">1h 10 min</div>
+      <div class="servicio-precio">25€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Corte + Barba + Mascarilla</div>
+      <div class="servicio-dur">1h 30 min</div>
+      <div class="servicio-precio">30€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Barba</div>
+      <div class="servicio-dur">30 minutos</div>
+      <div class="servicio-precio">10€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Mascarilla facial</div>
+      <div class="servicio-dur">30 minutos</div>
+      <div class="servicio-precio">12€</div>
+    </div>
+    <div class="servicio">
+      <div class="servicio-name">Cejas</div>
+      <div class="servicio-dur">5 minutos</div>
+      <div class="servicio-precio">3€</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA CTA -->
+<section class="reserva">
+  <h2>¿Listo para tu corte?</h2>
+  <p>Reserva en 30 segundos. Te confirmamos por WhatsApp.</p>
+  <a href="#" class="btn-primary" onclick="openLock(event)">Reservar ahora</a>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div style="max-width:1300px;margin:0 auto 64px">
+    <span class="section-tag">— Dónde encontrarnos</span>
+    <h2 class="section-title">Pásate <span class="oro">a vernos</span></h2>
+  </div>
+  <div class="contacto-grid">
+    <div>
+      <div class="info-item">
+        <div class="info-label">Dirección</div>
+        <div class="info-value">Calle Azabache, 14<br>28019 Madrid · Carabanchel</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Teléfono</div>
+        <div class="info-value"><a href="tel:661617248">661 617 248</a></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Instagram</div>
+        <div class="info-value"><a href="https://www.instagram.com/lossantosmadrid/" target="_blank">@lossantosmadrid</a></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Horario</div>
+        <div class="info-value">Lunes a sábado · 10:30 – 21:00<br>Domingo · 10:30 – 15:00</div>
+      </div>
+    </div>
+    <div class="mapa">
+      <div class="mapa-pin">📍 Azabache 14</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 LOS SANTOS BARBER SHOP · Preview diseñada por <span class="oro">Zaylo</span></p>
+</footer>
+
+<!-- LOCK MODAL -->
+<div class="lock-modal" id="lockModal">
+  <div class="lock-content">
+    <div class="lock-icon">🔒</div>
+    <h3>Esto es una preview</h3>
+    <p>Esta web es una demo personalizada para <strong>Los Santos Barber Shop</strong>. El sistema de reservas se activa al contratar el servicio con <strong>Zaylo</strong>.</p>
+    <p>¿Quieres activarlo? Escríbenos: <strong>642 39 77 88</strong></p>
+    <button class="lock-close" onclick="closeLock()">Entendido</button>
+  </div>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+function openLock(e){if(e)e.preventDefault();document.getElementById('lockModal').classList.add('active');document.body.classList.add('locked')}
+function closeLock(){document.getElementById('lockModal').classList.remove('active');document.body.classList.remove('locked')}
+
+// Bloquear devtools shortcuts
+document.addEventListener('keydown',function(e){
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))||(e.ctrlKey&&e.key==='U')){e.preventDefault()}
+});
+</script>
+</body>
+</html>
