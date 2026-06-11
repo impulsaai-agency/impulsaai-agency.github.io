@@ -1474,6 +1474,20 @@
 </a>
 
 <script>
+    /* COOKIE BANNER */
+    (function(){
+        const banner = document.getElementById('cookieBanner');
+        if (!banner) return;
+        const consent = localStorage.getItem('cookie_consent');
+        if (!consent) {
+            setTimeout(() => banner.style.display = 'block', 800);
+        }
+    })();
+    function acceptCookies(level) {
+        localStorage.setItem('cookie_consent', JSON.stringify({level, date: new Date().toISOString()}));
+        document.getElementById('cookieBanner').style.display = 'none';
+    }
+
     /* NAV SCROLL */
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), {passive:true});
