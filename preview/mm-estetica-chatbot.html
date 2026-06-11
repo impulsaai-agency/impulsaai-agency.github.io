@@ -351,12 +351,15 @@ function waBot(text,delay,cb){
 
 // FLOW
 function chatStart(){
-  waBot('¡Hola guapa! 💆‍♀️ Soy el asistente de <strong>MM Estética</strong>. ¿En qué te ayudo?',900,()=>{
+  waBot('¡Hola guapa! 💆‍♀️ Soy el asistente de <strong>MM Estética</strong>. Te ayudo con lo que necesites — reservas, precios, dudas, lo que sea. ¿En qué te ayudo?',900,()=>{
     waOptions([
       {text:'📅 Reservar cita',next:chatService},
       {text:'💰 Ver tratamientos y precios',next:chatPrices},
+      {text:'🎁 Bonos y packs con descuento',next:chatBonos},
+      {text:'🛍️ Productos cosmética',next:chatProductos},
+      {text:'🎀 Comprar regalo para alguien',next:chatRegalo},
       {text:'📍 Horario y ubicación',next:chatHours},
-      {text:'❓ Otra pregunta',next:chatOther},
+      {text:'❓ Tengo una duda',next:chatFAQ},
     ]);
   });
 }
