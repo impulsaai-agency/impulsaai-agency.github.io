@@ -300,10 +300,20 @@
         .port-card {
             position: relative; border-radius: var(--r); overflow: hidden;
             background: var(--card); border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.5s;
             text-decoration: none; display: block;
         }
-        .port-card:hover { border-color: rgba(168,85,247,0.4); transform: translateY(-6px); box-shadow: 0 24px 64px rgba(168,85,247,0.12); }
+        /* Borde con degradado que se ilumina al pasar el ratón */
+        .port-card::after {
+            content: ''; position: absolute; inset: 0; border-radius: var(--r);
+            padding: 1px; pointer-events: none; opacity: 0;
+            background: linear-gradient(135deg, rgba(168,85,247,0.7), rgba(99,102,241,0.4) 40%, transparent 70%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            transition: opacity 0.5s; z-index: 3;
+        }
+        .port-card:hover { border-color: rgba(168,85,247,0.5); transform: translateY(-8px); box-shadow: 0 30px 70px rgba(168,85,247,0.18), 0 8px 24px rgba(0,0,0,0.35); }
+        .port-card:hover::after { opacity: 1; }
         .port-img {
             width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #1a0a2e, #0f1a3a);
             border-bottom: 1px solid var(--border); overflow: hidden;
@@ -311,9 +321,24 @@
         }
         .port-img img {
             width: 100%; height: 100%; object-fit: cover; object-position: top center;
-            display: block; transition: transform 0.5s ease;
+            display: block; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
         }
-        .port-card:hover .port-img img { transform: scale(1.04); }
+        .port-card:hover .port-img img { transform: scale(1.07); }
+        /* Velo de color sobre la imagen al hacer hover */
+        .port-img::before {
+            content: ''; position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(to top, rgba(10,5,20,0.55), transparent 55%);
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .port-card:hover .port-img::before { opacity: 1; }
+        /* Brillo diagonal que cruza la imagen al hacer hover */
+        .port-img::after {
+            content: ''; position: absolute; top: 0; left: -75%; z-index: 2;
+            width: 50%; height: 100%; transform: skewX(-20deg);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
+            transition: left 0.7s ease;
+        }
+        .port-card:hover .port-img::after { left: 130%; }
         .port-img-inner {
             position: absolute; inset: 0;
             background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.1));

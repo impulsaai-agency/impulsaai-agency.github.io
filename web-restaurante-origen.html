@@ -2296,5 +2296,59 @@ window.addEventListener('scroll', function() {
   if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50) showExit();
 }, { passive: true });
 </script>
+
+<!-- ===== ZAYLO FX · capa de efectos premium ===== -->
+<style>
+@media (pointer:fine){
+  body, a, button, [role=button], .btn { cursor:none; }
+  .zfx-dot, .zfx-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);will-change:transform;mix-blend-mode:difference}
+  .zfx-dot{width:7px;height:7px;background:#fff}
+  .zfx-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,.7);transition:width .25s,height .25s,background .25s,opacity .3s}
+  .zfx-ring.zfx-hover{width:60px;height:60px;background:rgba(255,255,255,.15)}
+}
+.zfx-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99998;background:linear-gradient(90deg,#c9a84c,#e8c87a);box-shadow:0 0 14px rgba(201,168,76,.7);transition:width .1s linear}
+.zfx-curtain{position:fixed;inset:0;z-index:100000;background:#0a0807;display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s}
+.zfx-curtain.zfx-done{opacity:0;visibility:hidden}
+.zfx-curtain-logo{font-family:'Playfair Display',Georgia,serif;font-size:clamp(44px,9vw,100px);font-weight:800;letter-spacing:-.01em;color:#f5f0e6;opacity:0;transform:translateY(24px);animation:zfxLogoIn 1.1s .15s cubic-bezier(.16,1,.3,1) forwards}
+.zfx-curtain-logo span{color:#c9a84c}
+.zfx-curtain-line{position:absolute;bottom:32%;left:50%;transform:translateX(-50%);width:0;height:1px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);animation:zfxLineGrow 1.2s .5s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes zfxLogoIn{to{opacity:1;transform:translateY(0)}}
+@keyframes zfxLineGrow{to{width:min(240px,50vw)}}
+@media (prefers-reduced-motion:reduce){.zfx-curtain,.zfx-dot,.zfx-ring{display:none}}
+</style>
+<div class="zfx-curtain" id="zfxCurtain"><div class="zfx-curtain-logo">Orige<span>n</span></div><div class="zfx-curtain-line"></div></div>
+<div class="zfx-progress" id="zfxProgress"></div>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var curtain = document.getElementById('zfxCurtain');
+  function dropCurtain(){ if(curtain){ curtain.classList.add('zfx-done'); setTimeout(function(){ if(curtain&&curtain.parentNode) curtain.parentNode.removeChild(curtain); }, 950); } }
+  window.addEventListener('load', function(){ setTimeout(dropCurtain, 1150); });
+  setTimeout(dropCurtain, 3500); // failsafe
+
+  var bar = document.getElementById('zfxProgress');
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if(bar) bar.style.width = (h>0 ? (window.scrollY/h)*100 : 0) + '%';
+  }, {passive:true});
+
+  if(window.matchMedia('(pointer:fine)').matches && !reduce){
+    var dot=document.createElement('div'); dot.className='zfx-dot';
+    var ring=document.createElement('div'); ring.className='zfx-ring';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+    document.addEventListener('mousemove',function(e){ mx=e.clientX;my=e.clientY; dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)'; });
+    (function loop(){ rx+=(mx-rx)*.18; ry+=(my-ry)*.18; ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
+    document.addEventListener('mouseover',function(e){ if(e.target.closest('a,button,[role=button],.btn,input,textarea,[data-magnetic]')) ring.classList.add('zfx-hover'); });
+    document.addEventListener('mouseout',function(e){ if(e.target.closest('a,button,[role=button],.btn,input,textarea,[data-magnetic]')) ring.classList.remove('zfx-hover'); });
+    document.addEventListener('mouseleave',function(){ dot.style.opacity=0; ring.style.opacity=0; });
+    document.addEventListener('mouseenter',function(){ dot.style.opacity=1; ring.style.opacity=1; });
+    document.querySelectorAll('.btn, .hero-actions a, [data-magnetic]').forEach(function(b){
+      b.addEventListener('mousemove',function(e){ var r=b.getBoundingClientRect(); b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)'; });
+      b.addEventListener('mouseleave',function(){ b.style.transform=''; });
+    });
+  }
+})();
+</script>
 </body>
 </html>
