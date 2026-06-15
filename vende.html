@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu negocio en Google — ImpulsaAI</title>
+<meta name="description" content="Conseguimos que tu negocio aparezca en Google cuando te buscan. Web profesional publicada en 48h. Precio único 497€.">
+<meta property="og:title" content="Tu negocio en Google — ImpulsaAI">
+<meta property="og:description" content="Web profesional para tu negocio publicada en Google en 48h. Precio único sin mensualidades.">
+<meta property="og:type" content="website">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0f;--bg2:#16161a;--bg3:#1e1e24;
+  --border:#26262e;--text:#eeeef5;--muted:#888;
+  --accent:#6366f1;--accent2:#8b5cf6;
+  --green:#10b981;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,12,15,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:15px;font-weight:800;letter-spacing:-.4px}
+.nav-logo span{color:var(--accent)}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;font-size:13px;font-weight:700;padding:7px 16px;border-radius:20px;text-decoration:none;transition:.15s}
+.nav-cta:hover{background:#1db954;transform:scale(1.03)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 20px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,#6366f120 0%,transparent 70%);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);background:#6366f114;border:1px solid #6366f130;border-radius:20px;padding:5px 14px;margin-bottom:24px;text-transform:uppercase;letter-spacing:.8px}
+.hero h1{font-size:clamp(32px,7vw,64px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px;max-width:800px}
+.hero h1 .hi{color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text}
+.hero p{font-size:clamp(15px,3vw,19px);color:var(--muted);max-width:560px;margin-bottom:36px;line-height:1.6}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;font-size:16px;font-weight:700;padding:14px 28px;border-radius:14px;text-decoration:none;transition:.15s;box-shadow:0 4px 24px #25d36640}
+.btn-primary:hover{background:#1db954;transform:translateY(-2px);box-shadow:0 8px 32px #25d36650}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);color:var(--text);font-size:16px;font-weight:600;padding:14px 28px;border-radius:14px;text-decoration:none;border:1px solid var(--border);transition:.15s}
+.btn-secondary:hover{border-color:#444;transform:translateY(-2px)}
+.hero-note{font-size:12px;color:var(--muted);margin-top:16px}
+.hero-note span{color:var(--green)}
+
+/* TRUST BAR */
+.trust{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 20px}
+.trust-inner{max-width:900px;margin:0 auto;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;align-items:center}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.trust-item strong{color:var(--text)}
+
+/* PROBLEM */
+.section{padding:72px 20px;max-width:900px;margin:0 auto}
+.section-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px}
+.section h2{font-size:clamp(24px,4vw,38px);font-weight:800;letter-spacing:-.8px;margin-bottom:16px;line-height:1.2}
+.section p{font-size:16px;color:var(--muted);max-width:620px;line-height:1.7}
+
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:36px}
+.problem-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.problem-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.problem-card h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.problem-card p{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* DEMOS */
+.demos-section{padding:72px 20px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.demos-inner{max-width:900px;margin:0 auto}
+.demos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:36px}
+.demo-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s;text-decoration:none;display:block}
+.demo-card:hover{border-color:#444;transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.demo-preview{height:160px;position:relative;overflow:hidden;background:var(--bg3)}
+.demo-preview iframe{width:300%;height:300%;transform:scale(.333);transform-origin:top left;pointer-events:none;border:none}
+.demo-sector{position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:3px 8px;border-radius:8px}
+.demo-sector.dental{background:#10b98120;color:#10b981;border:1px solid #10b98130}
+.demo-sector.resto{background:#f9731620;color:#f97316;border:1px solid #f9731630}
+.demo-sector.vet{background:#3b82f620;color:#3b82f6;border:1px solid #3b82f630}
+.demo-sector.peluqueria{background:#a855f720;color:#a855f7;border:1px solid #a855f730}
+.demo-sector.barberia{background:#c9a84c20;color:#c9a84c;border:1px solid #c9a84c30}
+.demo-body{padding:14px 16px}
+.demo-body h3{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.demo-body p{font-size:12px;color:var(--muted)}
+.demo-link{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--accent)}
+
+/* HOW */
+.steps{display:flex;flex-direction:column;gap:0;margin-top:36px;position:relative}
+.steps::before{content:'';position:absolute;left:20px;top:32px;bottom:32px;width:1px;background:var(--border)}
+.step{display:flex;gap:20px;align-items:flex-start;position:relative;padding-bottom:32px}
+.step:last-child{padding-bottom:0}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.step-body h3{font-size:16px;font-weight:700;margin-bottom:4px;padding-top:8px}
+.step-body p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* PRICE */
+.price-section{padding:72px 20px}
+.price-inner{max-width:520px;margin:0 auto;text-align:center}
+.price-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:36px 32px;position:relative;overflow:hidden}
+.price-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#6366f108,transparent 60%);pointer-events:none}
+.price-badge{display:inline-block;background:#10b98120;color:#10b981;border:1px solid #10b98130;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:4px 12px;border-radius:20px;margin-bottom:20px}
+.price-amount{font-size:clamp(52px,10vw,80px);font-weight:900;letter-spacing:-2px;line-height:1}
+.price-amount sup{font-size:24px;font-weight:700;vertical-align:top;margin-top:16px;margin-right:2px}
+.price-once{font-size:14px;color:var(--muted);margin-top:6px;margin-bottom:28px}
+.price-includes{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;text-align:left}
+.pi{display:flex;align-items:center;gap:10px;font-size:14px}
+.pi .check{color:var(--green);font-size:16px;flex-shrink:0}
+.price-cta{display:block;background:#25d366;color:#fff;font-size:16px;font-weight:700;padding:16px;border-radius:14px;text-decoration:none;transition:.15s;text-align:center}
+.price-cta:hover{background:#1db954;transform:translateY(-2px)}
+.price-note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:1px;margin-top:36px}
+.faq{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:8px}
+.faq summary{padding:16px 18px;font-size:14px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:18px;color:var(--muted);transition:.2s}
+.faq[open] summary::after{content:'−';color:var(--text)}
+.faq-body{padding:0 18px 16px;font-size:14px;color:var(--muted);line-height:1.7}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 20px;text-align:center}
+footer p{font-size:13px;color:var(--muted)}
+footer strong{color:var(--text)}
+.footer-links{display:flex;gap:20px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--text)}
+
+/* STICKY CTA mobile */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;padding:12px 16px;background:rgba(12,12,15,.97);border-top:1px solid var(--border)}
+.sticky-cta a{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;font-size:15px;font-weight:700;padding:14px;border-radius:14px;text-decoration:none}
+
+@media(max-width:600px){
+  .sticky-cta{display:block}
+  .hero{padding-bottom:100px}
+  .btn-primary,.btn-secondary{font-size:14px;padding:12px 20px}
+  .section{padding:48px 16px}
+  .demos-section{padding:48px 16px}
+  .price-section{padding:48px 16px}
+  .steps::before{left:18px}
+  nav .nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Impulsa<span>AI</span></div>
+  <a class="nav-cta" href="https://wa.me/34634142337?text=Hola%2C%20me%20han%20pasado%20vuestro%20contacto%20y%20quiero%20saber%20m%C3%A1s%20sobre%20la%20web%20para%20mi%20negocio" target="_blank">
+    💬 Hablar por WhatsApp
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">📍 Madrid</div>
+  <h1>Tu negocio en <span class="hi">Google</span><br>en 48 horas</h1>
+  <p>Cada mes, gente de tu barrio busca en Google lo que tú ofreces — y acaba en la competencia porque tú no apareces. Lo cambiamos en dos días.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="https://wa.me/34634142337?text=Hola%2C%20quiero%20que%20mi%20negocio%20aparezca%20en%20Google.%20%C2%BFCu%C3%A1ndo%20podemos%20hablar%3F" target="_blank">
+      💬 Quiero que me encuentren
+    </a>
+    <a class="btn-secondary" href="#demos">
+      👁 Ver ejemplos reales
+    </a>
+  </div>
+  <div class="hero-note"><span>497€</span> pago único — sin mensualidades, sin sorpresas</div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">⚡ <strong>48h</strong> hasta publicado en Google</div>
+    <div class="trust-item">📱 <strong>100% responsive</strong> — funciona en móvil</div>
+    <div class="trust-item">🔍 <strong>SEO incluido</strong> — Google Maps + búsquedas</div>
+    <div class="trust-item">✅ <strong>Sin mensualidades</strong> — pagas una vez</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="section">
+  <div class="section-label">El problema</div>
+  <h2>Los clientes te buscan en Google.<br>¿Te encuentran?</h2>
+  <p>El 78% de las personas busca en Google antes de visitar un negocio local. Si no apareces, ese cliente va a la competencia — aunque lleves 20 años en el barrio.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-icon">🔍</div>
+      <div>
+        <h3>No apareces en Google</h3>
+        <p>Los competidores que sí tienen web aparecen primero. Tú no existes para quien busca online.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📵</div>
+      <div>
+        <h3>Tu teléfono no suena de nuevos</h3>
+        <p>Los clientes de siempre siguen, pero los nuevos del barrio van donde les manda Google.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📅</div>
+      <div>
+        <h3>Sin reservas online</h3>
+        <p>La gente quiere reservar a las 11 de la noche desde el sofá. Sin web, esa reserva no existe.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💸</div>
+      <div>
+        <h3>Publicidad cara sin resultados</h3>
+        <p>Instagram o folletos cuestan y no tienen ROI claro. Una web en Google trabaja sola, 24/7.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMOS -->
+<div class="demos-section" id="demos">
+  <div class="demos-inner">
+    <div class="section-label">Ejemplos reales</div>
+    <h2 style="font-size:clamp(24px,4vw,38px);font-weight:800;letter-spacing:-.8px;margin-bottom:12px">Así quedaría la web<br>de tu negocio</h2>
+    <p style="font-size:16px;color:var(--muted);line-height:1.6">Cada web es única, adaptada a tu sector, tus colores y tu información real. Aquí tienes ejemplos por tipo de negocio:</p>
+    <div class="demos-grid">
+
+      <a class="demo-card" href="web-dental-modelo.html" target="_blank">
+        <div class="demo-preview">
+          <iframe src="web-dental-modelo.html" scrolling="no" tabindex="-1"></iframe>
+          <span class="demo-sector dental">Dental</span>
+        </div>
+        <div class="demo-body">
+          <h3>Clínica Dental Ejemplo</h3>
+          <p>Con cita online, servicios y equipo médico</p>
+        </div>
+        <div class="demo-link">Ver demo completa →</div>
+      </a>
+
+      <a class="demo-card" href="web-restaurante-cinematic.html" target="_blank">
+        <div class="demo-preview">
+          <iframe src="web-restaurante-cinematic.html" scrolling="no" tabindex="-1"></iframe>
+          <span class="demo-sector resto">Restaurante</span>
+        </div>
+        <div class="demo-body">
+          <h3>Restaurante Ejemplo</h3>
+          <p>Con carta, reservas y fotos del local</p>
+        </div>
+        <div class="demo-link">Ver demo completa →</div>
+      </a>
+
+      <a class="demo-card" href="web-veterinaria-modelo.html" target="_blank">
+        <div class="demo-preview">
+          <iframe src="web-veterinaria-modelo.html" scrolling="no" tabindex="-1"></iframe>
+          <span class="demo-sector vet">Veterinaria</span>
+        </div>
+        <div class="demo-body">
+          <h3>Clínica Veterinaria Ejemplo</h3>
+          <p>Con servicios, horarios y cita</p>
+        </div>
+        <div class="demo-link">Ver demo completa →</div>
+      </a>
+
+      <a class="demo-card" href="web-peluqueria-modelo.html" target="_blank">
+        <div class="demo-preview">
+          <iframe src="web-peluqueria-modelo.html" scrolling="no" tabindex="-1"></iframe>
+          <span class="demo-sector peluqueria">Peluquería</span>
+        </div>
+        <div class="demo-body">
+          <h3>Peluquería Ejemplo</h3>
+          <p>Con servicios, precios y reservas</p>
+        </div>
+        <div class="demo-link">Ver demo completa →</div>
+      </a>
+
+      <a class="demo-card" href="web-barberia-elite.html" target="_blank">
+        <div class="demo-preview">
+          <iframe src="web-barberia-elite.html" scrolling="no" tabindex="-1"></iframe>
+          <span class="demo-sector barberia">Barbería</span>
+        </div>
+        <div class="demo-body">
+          <h3>Barbería Premium Ejemplo</h3>
+          <p>Diseño oscuro con efectos y reservas</p>
+        </div>
+        <div class="demo-link">Ver demo completa →</div>
+      </a>
+
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a class="btn-primary" href="https://wa.me/34634142337?text=Hola%2C%20he%20visto%20los%20ejemplos%20y%20quiero%20saber%20c%C3%B3mo%20quedar%C3%ADa%20la%20web%20de%20mi%20negocio" target="_blank" style="font-size:15px;padding:13px 24px">
+        💬 Quiero ver cómo quedaría la mía
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section" id="como">
+  <div class="section-label">Cómo funciona</div>
+  <h2>De cero a publicado<br>en 48 horas</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Nos envías los datos de tu negocio</h3>
+        <p>Por WhatsApp o llamada: nombre, dirección, servicios, precios, teléfono. Sin formularios complicados.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Diseñamos y publicamos tu web</h3>
+        <p>En 48 horas tienes tu web adaptada a tu negocio, subida a tu propio dominio y optimizada para Google.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Apareces en Google cuando te buscan</h3>
+        <p>Los clientes de tu barrio te encuentran. Tú no haces nada — la web trabaja sola las 24h.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICE -->
+<div class="price-section" id="precio">
+  <div class="price-inner">
+    <div class="section-label" style="text-align:center;margin-bottom:20px">Precio</div>
+    <div class="price-box">
+      <div class="price-badge">✅ Sin sorpresas</div>
+      <div class="price-amount"><sup>€</sup>497</div>
+      <div class="price-once">Pago único — sin mensualidades</div>
+      <div class="price-includes">
+        <div class="pi"><span class="check">✓</span> Web profesional adaptada a tu negocio</div>
+        <div class="pi"><span class="check">✓</span> Dominio propio (ej: miclinica.com)</div>
+        <div class="pi"><span class="check">✓</span> Optimización SEO para Google</div>
+        <div class="pi"><span class="check">✓</span> Diseño responsive (móvil + tablet)</div>
+        <div class="pi"><span class="check">✓</span> Botón de WhatsApp / reserva</div>
+        <div class="pi"><span class="check">✓</span> Publicada en 48 horas</div>
+        <div class="pi"><span class="check">✓</span> Sin mensualidades — es tuya</div>
+      </div>
+      <a class="price-cta" href="https://wa.me/34634142337?text=Hola%2C%20quiero%20contratar%20la%20web%20para%20mi%20negocio.%20%C2%BFC%C3%B3mo%20empezamos%3F" target="_blank">
+        💬 Empezar por WhatsApp
+      </a>
+      <div class="price-note">Habla con nosotros antes de decidir — sin compromiso</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" id="faq">
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2>Dudas habituales</h2>
+  <div class="faq-list">
+    <details class="faq">
+      <summary>¿Cuánto tiempo tarda en estar lista mi web?<span></span></summary>
+      <div class="faq-body">48 horas desde que nos envías los datos de tu negocio. En casos sencillos, a veces menos.</div>
+    </details>
+    <details class="faq">
+      <summary>¿Hay mensualidades o costes ocultos?<span></span></summary>
+      <div class="faq-body">No. Son 497€ una sola vez. El único coste que puede haber aparte es el dominio (ej: miclinica.com), que son unos 10-15€/año si quieres uno propio — lo gestionamos nosotros.</div>
+    </details>
+    <details class="faq">
+      <summary>¿Qué necesito darles para empezar?<span></span></summary>
+      <div class="faq-body">Nombre del negocio, dirección, servicios con precios, teléfono y horario. Si tienes fotos, mejor — si no, lo solucionamos. En 10 minutos por WhatsApp tenemos todo.</div>
+    </details>
+    <details class="faq">
+      <summary>¿Voy a aparecer en Google desde el primer día?<span></span></summary>
+      <div class="faq-body">La web estará publicada en 48h. Google tarda entre 1-4 semanas en indexarla del todo, pero desde el primer día ya apareces cuando buscan tu nombre exacto. El posicionamiento local mejora con el tiempo.</div>
+    </details>
+    <details class="faq">
+      <summary>¿Puedo cambiar la web después?<span></span></summary>
+      <div class="faq-body">Sí. Los cambios de contenido (precios, servicios, horarios) los hacemos sin coste adicional durante los primeros 3 meses.</div>
+    </details>
+    <details class="faq">
+      <summary>¿Qué pasa si ya tengo Instagram o redes sociales?<span></span></summary>
+      <div class="faq-body">Las redes están bien para fidelizar clientes, pero no aparecen en Google cuando alguien busca "dentista en Villaverde" o "restaurante cerca". Son herramientas distintas y se complementan.</div>
+    </details>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>ImpulsaAI</strong> — Webs para negocios locales en Madrid</p>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="#demos">Ejemplos</a>
+    <a href="#precio">Precio</a>
+    <a href="https://wa.me/34634142337" target="_blank">WhatsApp</a>
+  </div>
+  <p style="margin-top:16px;font-size:11px">© 2026 ImpulsaAI · 634 142 337</p>
+</footer>
+
+<!-- STICKY CTA (mobile) -->
+<div class="sticky-cta">
+  <a href="https://wa.me/34634142337?text=Hola%2C%20quiero%20que%20mi%20negocio%20aparezca%20en%20Google.%20%C2%BFCu%C3%A1ndo%20podemos%20hablar%3F" target="_blank">
+    💬 Hablar por WhatsApp — 634 142 337
+  </a>
+</div>
+
+</body>
+</html>
