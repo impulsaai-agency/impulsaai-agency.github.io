@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía del Comercial — Zaylo</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0f;--bg2:#16161a;--bg3:#1e1e24;--border:#26262e;
+  --text:#eeeef5;--muted:#888;--accent:#6366f1;
+  --dental:#10b981;--resto:#f97316;--vet:#3b82f6;--gym:#a855f7;--gold:#f59e0b;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(12,12,15,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:15px;font-weight:900;letter-spacing:-.4px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:.15s}
+.nav-links a:hover{color:var(--text)}
+.nav-back{font-size:12px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px}
+.nav-back:hover{color:var(--text)}
+
+/* LAYOUT */
+.wrapper{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+
+/* HERO */
+.guide-hero{text-align:center;padding:48px 0 56px;border-bottom:1px solid var(--border);margin-bottom:56px}
+.guide-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--accent);background:#6366f114;border:1px solid #6366f130;border-radius:20px;padding:4px 14px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.8px}
+.guide-hero h1{font-size:clamp(28px,6vw,48px);font-weight:900;letter-spacing:-1.2px;line-height:1.1;margin-bottom:14px}
+.guide-hero h1 span{color:var(--accent)}
+.guide-hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 24px;line-height:1.7}
+.guide-meta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.guide-meta span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px}
+
+/* TABLE OF CONTENTS */
+.toc{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:56px}
+.toc h3{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px}
+.toc-list{display:flex;flex-direction:column;gap:0}
+.toc-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);transition:.15s}
+.toc-item:last-child{border-bottom:none;padding-bottom:0}
+.toc-item:hover{color:var(--accent)}
+.toc-num{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;width:20px;flex-shrink:0}
+.toc-label{font-size:14px;font-weight:600;flex:1}
+.toc-arrow{font-size:12px;color:var(--muted)}
+
+/* SECTION */
+.section{margin-bottom:64px}
+.section-num{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:8px}
+.section h2{font-size:clamp(22px,4vw,32px);font-weight:800;letter-spacing:-.6px;margin-bottom:16px;line-height:1.2}
+.section > p{color:var(--muted);margin-bottom:20px;line-height:1.75}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:56px 0}
+
+/* CALLOUT */
+.callout{border-radius:12px;padding:16px 20px;margin:20px 0;display:flex;gap:14px;align-items:flex-start}
+.callout-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.callout.green{background:#10b98112;border:1px solid #10b98128}
+.callout.red{background:#ef444412;border:1px solid #ef444428}
+.callout.yellow{background:#f59e0b12;border:1px solid #f59e0b28}
+.callout.blue{background:#3b82f612;border:1px solid #3b82f628}
+.callout.purple{background:#6366f112;border:1px solid #6366f128}
+.callout-body h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.callout.green .callout-body h4{color:#10b981}
+.callout.red .callout-body h4{color:#ef4444}
+.callout.yellow .callout-body h4{color:#f59e0b}
+.callout.blue .callout-body h4{color:#3b82f6}
+.callout.purple .callout-body h4{color:#6366f1}
+.callout-body p{font-size:13px;color:var(--muted);line-height:1.6}
+.callout-body p strong{color:var(--text)}
+
+/* SCRIPT BOX */
+.script-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:20px 0}
+.script-header{padding:10px 16px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.script-body{padding:16px 20px;font-size:13px;line-height:1.8;color:var(--text)}
+.script-body em{color:var(--muted);font-style:normal;font-size:12px}
+.script-body strong{color:#f59e0b}
+.script-tag{display:inline-block;background:#6366f118;color:var(--accent);border-radius:6px;padding:1px 6px;font-size:10px;font-weight:700;margin-right:4px}
+
+/* SECTOR CARDS */
+.sector-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin:20px 0}
+.sector-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.sector-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sector-card.dental::before{background:var(--dental)}
+.sector-card.resto::before{background:var(--resto)}
+.sector-card.vet::before{background:var(--vet)}
+.sector-card.gym::before{background:var(--gym)}
+.sector-card h3{font-size:15px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sector-card .precio{font-size:20px;font-weight:900;margin:10px 0 4px}
+.sector-card.dental .precio{color:var(--dental)}
+.sector-card.resto .precio{color:var(--resto)}
+.sector-card.vet .precio{color:var(--vet)}
+.sector-card.gym .precio{color:var(--gym)}
+.sector-card .apertura{font-size:12px;color:var(--muted);background:var(--bg3);border-radius:8px;padding:8px 10px;margin:10px 0;line-height:1.5;font-style:italic}
+.sector-card .apertura strong{color:var(--text);font-style:normal}
+.sector-card ul{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.sector-card ul li{font-size:12px;color:var(--muted);display:flex;gap:6px}
+.sector-card ul li::before{content:'→';color:var(--muted);flex-shrink:0}
+.sector-card ul li strong{color:var(--text)}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:0;margin:20px 0;position:relative}
+.steps::before{content:'';position:absolute;left:19px;top:40px;bottom:40px;width:1px;background:var(--border)}
+.step-item{display:flex;gap:18px;align-items:flex-start;padding-bottom:28px}
+.step-item:last-child{padding-bottom:0}
+.step-circle{width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.step-body{padding-top:6px;flex:1}
+.step-body h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.step-body p{font-size:13px;color:var(--muted);line-height:1.6}
+.step-body p strong{color:var(--text)}
+
+/* OBJECTIONS */
+.obj-list{display:flex;flex-direction:column;gap:10px;margin:20px 0}
+.obj-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.obj-q{padding:12px 16px;background:var(--bg3);font-size:13px;color:var(--muted);font-style:italic;border-bottom:1px solid var(--border)}
+.obj-q::before{content:'"';color:var(--muted)}
+.obj-q::after{content:'"';color:var(--muted)}
+.obj-a{padding:12px 16px;font-size:13px;line-height:1.65;color:var(--text)}
+.obj-a strong{color:#10b981}
+
+/* TIPS GRID */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:20px 0}
+.tip-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px}
+.tip-card .tip-icon{font-size:20px;margin-bottom:8px}
+.tip-card h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.tip-card p{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ERRORS */
+.error-list{display:flex;flex-direction:column;gap:8px;margin:20px 0}
+.error-item{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid #ef444420;border-radius:10px;padding:12px 14px}
+.error-x{color:#ef4444;font-size:16px;flex-shrink:0;margin-top:1px}
+.error-body h4{font-size:13px;font-weight:700;color:#ef4444;margin-bottom:2px}
+.error-body p{font-size:12px;color:var(--muted);line-height:1.5}
+.error-body .fix{color:#10b981;font-weight:600}
+
+/* HORARIOS */
+.horario-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.horario-table th{background:var(--bg3);padding:8px 12px;text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);border-bottom:1px solid var(--border)}
+.horario-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.horario-table tr:last-child td{border-bottom:none}
+.horario-table .green{color:#10b981;font-weight:700}
+.horario-table .red{color:#ef4444}
+.horario-table .yellow{color:#f59e0b}
+
+/* BADGE */
+.badge-sector{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:8px;text-transform:uppercase;letter-spacing:.4px;margin-right:4px}
+.badge-sector.dental{background:#10b98118;color:#10b981}
+.badge-sector.resto{background:#f9731618;color:#f97316}
+.badge-sector.vet{background:#3b82f618;color:#3b82f6}
+.badge-sector.gym{background:#a855f718;color:#a855f7}
+
+/* HIGHLIGHT */
+.highlight{background:var(--bg2);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0;font-size:14px;line-height:1.7;color:var(--text)}
+.highlight strong{color:var(--accent)}
+
+/* COMMISSION REMINDER */
+.com-reminder{background:linear-gradient(135deg,#1a1500,#1a1200);border:1px solid #f59e0b30;border-radius:14px;padding:20px 24px;margin:20px 0}
+.com-reminder h4{font-size:13px;font-weight:800;color:#f59e0b;margin-bottom:12px}
+.com-table{width:100%;font-size:13px;border-collapse:collapse}
+.com-table td{padding:6px 0;border-bottom:1px solid #f59e0b15}
+.com-table tr:last-child td{border-bottom:none}
+.com-table .amt{font-weight:800;color:#f59e0b;text-align:right}
+.com-table .extra{font-size:11px;color:var(--muted)}
+
+/* MOBILE */
+@media(max-width:600px){
+  .wrapper{padding:32px 14px 60px}
+  .guide-hero{padding:32px 0 40px;margin-bottom:36px}
+  .toc{padding:18px 16px}
+  .nav-links{display:none}
+  .sector-grid{grid-template-columns:1fr}
+  .horario-table{font-size:12px}
+  .horario-table th,.horario-table td{padding:7px 10px}
+  .tips-grid{grid-template-columns:1fr 1fr}
+  .divider{margin:40px 0}
+  .section{margin-bottom:48px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Z<span>aylo</span></div>
+  <div class="nav-links">
+    <a href="#mentalidad">Mentalidad</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#sectores">Por sector</a>
+    <a href="#objeciones">Objeciones</a>
+    <a href="#errores">Errores</a>
+    <a href="#herramientas">Herramientas</a>
+  </div>
+  <a class="nav-back" href="comerciales.html">← Panel</a>
+</nav>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="guide-hero">
+    <div class="guide-tag">📖 Guía oficial Zaylo</div>
+    <h1>Cómo vender<br><span>como un profesional</span></h1>
+    <p>Todo lo que necesitas saber para cerrar ventas para Zaylo: la mentalidad, los scripts, las objeciones y los errores que te van a costar dinero.</p>
+    <div class="guide-meta">
+      <span>⏱ 10 min de lectura</span>
+      <span>🎯 Para comerciales Zaylo</span>
+      <span>📅 Actualizado junio 2026</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>Índice</h3>
+    <div class="toc-list">
+      <a class="toc-item" href="#mentalidad"><span class="toc-num">01</span><span class="toc-label">La mentalidad correcta</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#proceso"><span class="toc-num">02</span><span class="toc-label">El proceso completo de venta</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#sectores"><span class="toc-num">03</span><span class="toc-label">Scripts por sector</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#objeciones"><span class="toc-num">04</span><span class="toc-label">Cómo responder a las objeciones</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#horarios"><span class="toc-num">05</span><span class="toc-label">Cuándo llamar (y cuándo no)</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#errores"><span class="toc-num">06</span><span class="toc-label">Los 7 errores que te cuestan ventas</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#herramientas"><span class="toc-num">07</span><span class="toc-label">Cómo usar las herramientas</span><span class="toc-arrow">→</span></a>
+      <a class="toc-item" href="#comisiones"><span class="toc-num">08</span><span class="toc-label">Tus comisiones</span><span class="toc-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- 01 MENTALIDAD -->
+  <div class="section" id="mentalidad">
+    <div class="section-num">01 — Mentalidad</div>
+    <h2>No vendes webs.<br>Vendes clientes nuevos.</h2>
+    <p>Este es el error número uno de cualquier comercial que empieza: presentarse como "el que hace webs". La gente no quiere una web. La gente quiere más clientes, más reservas, más pacientes. La web es el medio, no el mensaje.</p>
+
+    <div class="callout purple">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <h4>La regla de oro</h4>
+        <p><strong>Nunca digas "web"</strong> en la primera frase. Di "clientes desde Google", "pacientes nuevos", "reservas online". El producto que vendes es visibilidad y negocio nuevo, no un archivo HTML.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      Piénsalo así: un dentista no quiere una web bonita, quiere <strong>que le lleguen pacientes de ortodoncia</strong>. Un restaurante no quiere una web, quiere <strong>que la gente le encuentre cuando busca dónde cenar en el barrio</strong>. Tu trabajo es hacer visible ese problema antes de ofrecer la solución.
+    </div>
+
+    <h3 style="font-size:17px;font-weight:800;margin:28px 0 12px">La pregunta que lo cambia todo</h3>
+    <p>Antes de hablar de lo que ofreces, haz una pregunta que ponga al cliente a pensar en el problema:</p>
+
+    <div class="script-box">
+      <div class="script-header">🎯 Pregunta de apertura universal</div>
+      <div class="script-body">
+        "¿Cuántos clientes nuevos os llegan al mes <strong>directamente desde Google</strong>?"
+        <br><br>
+        <em>Pausa. Deja que conteste. La mayoría no sabe la respuesta o dice "pocos". Ahí está tu entrada.</em>
+      </div>
+    </div>
+
+    <p>Si dicen "no muchos" o "no lo sé": ahí está tu entrada.<br>Si dicen "bastantes": pregunta "¿Tenéis web propia o cómo os encuentran?"</p>
+
+    <div class="callout green">
+      <div class="callout-icon">✅</div>
+      <div class="callout-body">
+        <h4>El marco mental que funciona</h4>
+        <p>No eres un vendedor de webs. Eres alguien que ha detectado que ese negocio está <strong>perdiendo clientes frente a la competencia que sí aparece en Google</strong>. Llamas para avisarles, no para venderles.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 02 PROCESO -->
+  <div class="section" id="proceso">
+    <div class="section-num">02 — Proceso</div>
+    <h2>El proceso completo<br>en 4 pasos</h2>
+    <p>Una venta de Zaylo no se cierra en una llamada. Tiene un ritmo natural de 24-48 horas. Respeta ese ritmo y tendrás más cierres.</p>
+
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <div class="step-body">
+          <h4>La llamada — 2 a 3 minutos</h4>
+          <p>El objetivo NO es cerrar en la llamada. El objetivo es <strong>conseguir permiso para mandar la demo</strong>. Haz la pregunta de apertura, identifica si hay problema, y cierra con "¿os mando el ejemplo por WhatsApp?"</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <div class="step-body">
+          <h4>El WhatsApp con la demo — inmediato</h4>
+          <p>En cuanto cuelgues, envía el WhatsApp con el link a la demo de su sector. <strong>No esperes horas.</strong> El mensaje ya está pre-escrito en el panel, solo toca el botón WA de esa tarjeta.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div class="step-body">
+          <h4>El seguimiento — a las 24h</h4>
+          <p>Al día siguiente llamas o escribes: <strong>"¿Pudiste ver el ejemplo que te mandé?"</strong>. Si dice que sí y le gustó, es el momento de hablar de precio y fechas. Si no lo vio, dale 10 segundos para mirarlo mientras le tienes en el teléfono.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">4</div>
+        <div class="step-body">
+          <h4>El cierre — concreto y sin presión</h4>
+          <p>Cuando muestre interés: <strong>"Son 497€, lo publicamos en 48 horas desde que nos das los datos. ¿Cuándo podéis empezar?"</strong>. No preguntes si quieren, pregunta cuándo. Eso da por hecho la decisión.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-icon">⚡</div>
+      <div class="callout-body">
+        <h4>Regla de las 48h</h4>
+        <p>Si no has tenido respuesta en 48h del envío de la demo, haz un último intento. Si tampoco hay respuesta, márcalo como "re-llamar" en el panel y pasa al siguiente. <strong>No insistas más de 3 veces.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 03 SECTORES -->
+  <div class="section" id="sectores">
+    <div class="section-num">03 — Scripts por sector</div>
+    <h2>Cada sector tiene<br>su propio dolor</h2>
+    <p>No uses el mismo script para un dentista que para un restaurante. El problema que resuelves es el mismo (visibilidad en Google) pero el dolor que siente cada uno es diferente. Adapta el lenguaje.</p>
+
+    <div class="sector-grid">
+
+      <div class="sector-card dental">
+        <h3>🦷 Clínica Dental</h3>
+        <div class="precio">450 — 500€</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Ticket más alto · Prioridad 1</div>
+        <div class="apertura"><strong>Apertura:</strong> "¿Cuántos pacientes nuevos os llegan al mes directamente desde Google?"</div>
+        <ul>
+          <li><strong>Argumento clave:</strong> 1 paciente de ortodoncia = 1.500€. La web se paga sola en el primer mes.</li>
+          <li><strong>Dolor real:</strong> No aparecen cuando buscan "dentista en [barrio]" y los pacientes van a la clínica de al lado.</li>
+          <li><strong>Cierre:</strong> "Con un solo paciente nuevo al mes ya lo habéis amortizado."</li>
+        </ul>
+      </div>
+
+      <div class="sector-card resto">
+        <h3>🍽 Restaurante</h3>
+        <div class="precio">350€</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Volumen alto · Fácil de convencer</div>
+        <div class="apertura"><strong>Apertura:</strong> "¿La gente os encuentra en Google cuando busca dónde comer en [barrio]?"</div>
+        <ul>
+          <li><strong>Argumento clave:</strong> 2-3 reservas de mesa de grupo cubren el coste.</li>
+          <li><strong>Dolor real:</strong> Los viernes y sábados hay gente buscando restaurante en la zona y ellos no aparecen.</li>
+          <li><strong>Cierre:</strong> "Una reserva de cumpleaños ya os lo paga."</li>
+        </ul>
+      </div>
+
+      <div class="sector-card vet">
+        <h3>🐾 Veterinaria</h3>
+        <div class="precio">400€</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Clientes recurrentes · Fidelización alta</div>
+        <div class="apertura"><strong>Apertura:</strong> "Cuando alguien busca veterinario en [barrio], ¿aparecéis vosotros o solo la competencia?"</div>
+        <ul>
+          <li><strong>Argumento clave:</strong> Un cliente nuevo con mascota repite cada 3 meses de media.</li>
+          <li><strong>Dolor real:</strong> Los nuevos vecinos del barrio buscan en Google y van al que aparece primero.</li>
+          <li><strong>Cierre:</strong> "Un cliente nuevo vale 200€/año de media. En 2 clientes lo tenéis pagado."</li>
+        </ul>
+      </div>
+
+      <div class="sector-card gym">
+        <h3>💪 Gimnasio</h3>
+        <div class="precio">400€</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Cuota mensual · ROI continuo</div>
+        <div class="apertura"><strong>Apertura:</strong> "¿Cuántos socios nuevos conseguís al mes por internet?"</div>
+        <ul>
+          <li><strong>Argumento clave:</strong> Un socio nuevo a 30€/mes = 360€/año. Con 2 altas nuevas recuperan la inversión.</li>
+          <li><strong>Dolor real:</strong> La gente que se muda al barrio busca "gimnasio cerca" y va al que aparece en Google.</li>
+          <li><strong>Cierre:</strong> "En enero, cuando todo el mundo se apunta al gym, ¿quiénes van a aparecer en Google, vosotros o la competencia?"</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h3 style="font-size:17px;font-weight:800;margin:36px 0 16px">Script completo — ejemplo Dental</h3>
+
+    <div class="script-box">
+      <div class="script-header">📞 Llamada dental — paso a paso</div>
+      <div class="script-body">
+        <span class="script-tag">APERTURA</span><br>
+        "Buenos días, llamo de Zaylo. Una pregunta rápida — <strong>¿cuántos pacientes nuevos os llegan al mes directamente desde Google?</strong>"<br><br>
+        <em>[Deja que conteste. No interrumpas.]</em><br><br>
+        <span class="script-tag">SI DICE POCOS O NO SABE</span><br>
+        "Claro. Lo pregunto porque hay clínicas de la zona que sí aparecen en Google con su propia web y les llegan pacientes directamente sin hacer publicidad. Pacientes que probablemente os están buscando a vosotros. <strong>¿Os mando en 30 segundos el ejemplo de cómo quedaría la vuestra?</strong>"<br><br>
+        <em>[Si dice sí → cuelga y manda el WA inmediatamente]</em><br><br>
+        <span class="script-tag">SI PREGUNTA EL PRECIO</span><br>
+        "Son 497€, pago único, sin mensualidades. Pero primero mirad el ejemplo que os mando — si no os convence, no hay compromiso ninguno."<br><br>
+        <span class="script-tag">CIERRE TRAS LA DEMO</span><br>
+        "¿Qué os ha parecido? […] Podemos tenerla publicada en Google en 48 horas desde que nos deis los datos. <strong>¿Cuándo os va bien empezar?</strong>"
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 04 OBJECIONES -->
+  <div class="section" id="objeciones">
+    <div class="section-num">04 — Objeciones</div>
+    <h2>Las objeciones son<br>preguntas disfrazadas</h2>
+    <p>Cuando alguien pone una objeción no significa que no quiera. Significa que tiene una duda. Tu trabajo es resolverla sin ponerte a la defensiva. Estas son las más comunes y cómo responderlas.</p>
+
+    <div class="obj-list">
+
+      <div class="obj-item">
+        <div class="obj-q">No tenemos suficiente volumen de clientes para necesitar una web</div>
+        <div class="obj-a">Exactamente por eso la necesitáis. Los negocios que ya tienen mucho volumen lo tienen <strong>porque llegaron antes</strong>. Ahora mismo hay gente en el barrio que busca en Google lo que vosotros ofrecéis y va a la competencia simplemente porque vosotros no aparecéis.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">Ya tenemos nuestros clientes de toda la vida</div>
+        <div class="obj-a">Perfecto, esos no los perdéis. Pero pensad en los que se mudan al barrio, los que buscan por primera vez, los que vienen de fuera. Esos clientes nuevos <strong>no saben que existís</strong> si no aparecéis en Google.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">Ahora mismo no es el momento, estamos muy liados</div>
+        <div class="obj-a">Lo entiendo perfectamente. ¿Cuándo sería mejor? Solo necesito 10 minutos para enseñaros el ejemplo. <strong>Si no os convence, sin compromiso ninguno.</strong> ¿La semana que viene os va mejor?</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">Ya tenemos Instagram y Facebook</div>
+        <div class="obj-a">Las redes están genial para fidelizar a los que ya os conocen. Pero cuando alguien busca "dentista en Villaverde" o "restaurante cerca" en Google, <strong>Instagram no aparece</strong>. Son herramientas distintas y se complementan.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">Es demasiado caro</div>
+        <div class="obj-a">Son 497€ una sola vez — no hay mensualidades. <strong>¿Cuánto os cuesta conseguir un cliente nuevo ahora mismo?</strong> Si os viene un solo cliente nuevo al mes por la web, se amortiza en el primer mes y el resto es beneficio puro.</div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">Ya tenemos una web</div>
+        <div class="obj-a">Me alegra escucharlo. ¿Aparece cuando alguien busca [su actividad] en [su barrio] en Google? ¿Tiene botón de reserva o cita? Muchas webs antiguas no están optimizadas para aparecer en Google local. <strong>¿Queréis que lo comprobemos?</strong></div>
+      </div>
+
+      <div class="obj-item">
+        <div class="obj-q">Necesito pensarlo / consultarlo con mi socio</div>
+        <div class="obj-a">Por supuesto. ¿Cuándo lo habláis? Os llamo el [día concreto] para ver qué habéis decidido. Mientras tanto, ya tenéis el ejemplo en WhatsApp para enseñárselo a vuestro socio.</div>
+      </div>
+
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">🚫</div>
+      <div class="callout-body">
+        <h4>Lo que NUNCA debes decir ante una objeción</h4>
+        <p>"Pero es que..." / "Ya, pero..." / "No, lo que pasa es que..." — Estos arranques suenan a pelea. <strong>Primero valida, luego redirige.</strong> "Entiendo perfectamente. Lo que pasa es que..."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 05 HORARIOS -->
+  <div class="section" id="horarios">
+    <div class="section-num">05 — Horarios</div>
+    <h2>Cuándo llamar<br>marca la diferencia</h2>
+    <p>Llamar en el momento equivocado es la forma más fácil de que te digan que no. Cada sector tiene sus horas muertas — respétalas.</p>
+
+    <table class="horario-table">
+      <thead>
+        <tr>
+          <th>Sector</th>
+          <th>Mejor horario</th>
+          <th>Evitar</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge-sector dental">Dental</span></td>
+          <td class="green">Mar–Vie 10–12h</td>
+          <td class="red">Lun mañana, 14–16h</td>
+          <td>Los lunes suelen tener agenda llena de urgencias</td>
+        </tr>
+        <tr>
+          <td><span class="badge-sector resto">Restaurante</span></td>
+          <td class="green">10–12h · 16–18h</td>
+          <td class="red">13–15h · 20–22h</td>
+          <td>Nunca durante el servicio de comidas o cenas</td>
+        </tr>
+        <tr>
+          <td><span class="badge-sector vet">Veterinaria</span></td>
+          <td class="green">10–13h · 16–19h</td>
+          <td class="red">Primeras horas de mañana</td>
+          <td>Suelen tener consultas a primera hora</td>
+        </tr>
+        <tr>
+          <td><span class="badge-sector gym">Gimnasio</span></td>
+          <td class="green">11–13h · 15–17h</td>
+          <td class="red">7–9h · 18–20h</td>
+          <td>Picos de clientes en mañana y tarde-noche</td>
+        </tr>
+        <tr>
+          <td>Peluquería</td>
+          <td class="green">Mar–Sáb 10–12h</td>
+          <td class="red">Lunes (cerradas)</td>
+          <td class="yellow">La mayoría cierran el lunes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout blue">
+      <div class="callout-icon">📞</div>
+      <div class="callout-body">
+        <h4>Si contesta un empleado, no el dueño</h4>
+        <p>Di: <em>"Hola, ¿está el/la encargado/a? Es para comentarle una cosa sobre visibilidad en Google."</em> Si no está, pregunta: <strong>"¿Cuándo suele estar? Le llamo a esa hora."</strong> Y llama exactamente a esa hora.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 06 ERRORES -->
+  <div class="section" id="errores">
+    <div class="section-num">06 — Errores</div>
+    <h2>Los 7 errores que<br>te cuestan ventas</h2>
+
+    <div class="error-list">
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>Decir "os hago una web" en la primera frase</h4>
+          <p>Mata la conversación antes de empezar. <span class="fix">✓ Di: "clientes nuevos desde Google".</span></p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>Dar el precio antes de que vean la demo</h4>
+          <p>Si dices 497€ sin que hayan visto nada, solo oyen "caro". <span class="fix">✓ Primero la demo, el precio cuando ya están enganchados.</span></p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>Intentar cerrar en la primera llamada</h4>
+          <p>Genera presión y rechazo. <span class="fix">✓ El objetivo de la primera llamada es solo conseguir enviarles la demo.</span></p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>No marcar el estado en el panel</h4>
+          <p>Si no lo apuntas, lo olvidarás. Otro comercial puede llamar al mismo negocio. <span class="fix">✓ Marca el estado justo al colgar.</span></p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>No hacer seguimiento</h4>
+          <p>El 80% de los cierres ocurren en el segundo o tercer contacto, no en el primero. <span class="fix">✓ Si dices que llamas el jueves, llama el jueves.</span></p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>Ponerse a la defensiva con las objeciones</h4>
+          <p>Discutir con el cliente no cierra ventas. <span class="fix">✓ Valida primero ("Lo entiendo") y luego redirige.</span></p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-x">✗</div>
+        <div class="error-body">
+          <h4>Llamar en horario de servicio</h4>
+          <p>Un restaurante en hora de comida no va a atenderte. <span class="fix">✓ Consulta la tabla de horarios por sector.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 07 HERRAMIENTAS -->
+  <div class="section" id="herramientas">
+    <div class="section-num">07 — Herramientas</div>
+    <h2>Cómo usar<br>las herramientas Zaylo</h2>
+
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">📋</div>
+        <h4>El panel de comerciales</h4>
+        <p>Entra en <strong>comerciales.html</strong> antes de cada sesión de llamadas. Es tu lista de trabajo — marca el estado de cada negocio al momento de colgar.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🗺</div>
+        <h4>El botón Maps</h4>
+        <p>Si el teléfono no funciona, pulsa Maps — te lleva al perfil de Google del negocio donde encontrarás el número real actualizado.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">💬</div>
+        <h4>El botón WhatsApp</h4>
+        <p>Tiene el mensaje pre-escrito con el link a la demo de su sector. Solo pulsa enviar. Hazlo <strong>en los 2 minutos siguientes a la llamada</strong>.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">👁</div>
+        <h4>Las demos</h4>
+        <p>Hay una demo por sector. Abre siempre la del sector correcto — un dentista tiene que ver una web dental, no una de peluquería.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📝</div>
+        <h4>Las notas</h4>
+        <p>Escribe siempre una nota: "Habló el dueño, vuelve el jueves", "Interesada, quiere verlo con su socia el lunes". Esas notas las ven todos.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🏆</div>
+        <h4>El ranking</h4>
+        <p>Se actualiza en tiempo real. El primero del mes se lleva 150€ extra. Úsalo como motivación — si estás segundo, un cierre más te pone primero.</p>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-icon">💬</div>
+      <div class="callout-body">
+        <h4>¿Necesitas una demo para un sector que no tienes?</h4>
+        <p>Escríbele a Gonzalo por WhatsApp — te la manda en minutos. El botón "💬 Gonzalo" está en la esquina del panel.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 08 COMISIONES -->
+  <div class="section" id="comisiones">
+    <div class="section-num">08 — Comisiones</div>
+    <h2>Lo que ganas<br>por cada cierre</h2>
+
+    <div class="com-reminder">
+      <h4>💰 Tu tabla de comisiones</h4>
+      <table class="com-table">
+        <tr><td>1.ª venta del mes</td><td class="amt">75€</td><td class="extra">base</td></tr>
+        <tr><td>2.ª venta del mes</td><td class="amt">100€</td><td class="extra">+25€ extra</td></tr>
+        <tr><td>3.ª venta del mes</td><td class="amt">120€</td><td class="extra">+45€ extra</td></tr>
+        <tr><td>4.ª venta y siguientes</td><td class="amt">135€</td><td class="extra">+60€ extra</td></tr>
+        <tr><td style="color:#f59e0b;font-weight:700">🏆 Primero del ranking</td><td class="amt">+150€</td><td class="extra">bonus mensual</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">Se restablece el 1 de cada mes · El ranking se actualiza en tiempo real</div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:800;margin:24px 0 12px">Ejemplos reales</h3>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">📊</div>
+        <h4>1 cierre dental (500€)</h4>
+        <p>Tu comisión: <strong style="color:#10b981">75€</strong></p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📊</div>
+        <h4>2 cierres en el mes</h4>
+        <p>75 + 100 = <strong style="color:#f59e0b">175€ para ti</strong></p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📊</div>
+        <h4>3 cierres + ranking #1</h4>
+        <p>75+100+120+150 = <strong style="color:#a855f7">445€ para ti</strong></p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">💡</div>
+        <h4>Precio que puedes ofrecer</h4>
+        <p>Restaurante/Pelo: <strong>350€</strong> · Vet/Gym: <strong>400€</strong> · Dental: <strong>450-500€</strong></p>
+      </div>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <h4>Nunca bajes de 350€</h4>
+        <p>Si el cliente pide descuento, di que <strong>el precio incluye dominio propio y 3 meses de cambios gratis</strong>. Si insiste mucho, consúltalo con Gonzalo antes de comprometerte.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:40px 0 0;border-top:1px solid var(--border);margin-top:20px">
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px">¿Tienes dudas? Escríbele a Gonzalo</div>
+    <a href="https://wa.me/34634142337?text=Hola%20Gonzalo%2C%20tengo%20una%20duda%20sobre%20la%20gu%C3%ADa%20de%20comercial" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;font-size:14px;font-weight:700;padding:12px 24px;border-radius:12px;text-decoration:none">💬 Escribir a Gonzalo</a>
+    <div style="margin-top:20px"><a href="comerciales.html" style="font-size:13px;color:var(--accent);text-decoration:none">← Volver al panel de comerciales</a></div>
+  </div>
+
+</div>
+</body>
+</html>
