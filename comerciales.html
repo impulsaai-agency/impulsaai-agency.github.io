@@ -401,9 +401,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- Firebase SDKs (v8 compat) -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<!-- Firebase SDKs (v8 compat) — carga dinámica con fallback a localStorage si falla -->
+<script>
+(function loadFirebase() {
+  function loadScript(src, cb) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.onload = cb;
+    s.onerror = function() { window._fbLoadFailed = true; };
+    document.head.appendChild(s);
+  }
+  loadScript('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js', function() {
+    loadScript('https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js', function() {
+      window._fbLoaded = true;
+    });
+  });
+})();
+</script>
 
 <script>
 // ══════════════════════════════════════════════
@@ -493,9 +507,9 @@ const LS_KEY = 'impulsa-crm-v1', LS_AUTH = 'impulsa-crm-auth';
 // FIREBASE INIT
 // ══════════════════════════════════════════════
 function initFirebase() {
-  if (!FIREBASE_CONFIG.apiKey) return false;
+  if (typeof firebase === 'undefined' || !FIREBASE_CONFIG.apiKey) return false;
   try {
-    firebase.initializeApp(FIREBASE_CONFIG);
+    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
     db = firebase.database();
     isFirebase = true;
     return true;
@@ -523,8 +537,15 @@ function login() {
   document.getElementById('user-display').textContent = (isAdmin ? '🔐 ' : '') + name;
   document.getElementById('wa-gonzalo').href = `https://wa.me/34634142337?text=Hola%20Gonzalo%2C%20soy%20${encodeURIComponent(name)}%20`;
   if (isAdmin) document.getElementById('admin-section').style.display = 'block';
-  initFirebase();
-  loadData();
+  // Esperar hasta 3s a que los scripts de Firebase carguen dinámicamente
+  const waitFb = (attempts) => {
+    if (window._fbLoaded || window._fbLoadFailed || attempts <= 0) {
+      initFirebase(); loadData();
+    } else {
+      setTimeout(() => waitFb(attempts - 1), 300);
+    }
+  };
+  waitFb(10);
 }
 
 function logout() {
@@ -545,8 +566,14 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('user-display').textContent = (isAdmin?'🔐 ':'') + currentUser;
       document.getElementById('wa-gonzalo').href = `https://wa.me/34634142337?text=Hola%20Gonzalo%2C%20soy%20${encodeURIComponent(currentUser)}%20`;
       if (isAdmin) document.getElementById('admin-section').style.display = 'block';
-      initFirebase();
-      loadData();
+      const waitFb2 = (attempts) => {
+        if (window._fbLoaded || window._fbLoadFailed || attempts <= 0) {
+          initFirebase(); loadData();
+        } else {
+          setTimeout(() => waitFb2(attempts - 1), 300);
+        }
+      };
+      waitFb2(10);
     } catch(e) { localStorage.removeItem(LS_AUTH); }
   }
 });
@@ -556,16 +583,33 @@ window.addEventListener('DOMContentLoaded', () => {
 // ══════════════════════════════════════════════
 function loadData() {
   if (isFirebase) {
+    const fbTimeout = setTimeout(() => {
+      // Firebase tardó demasiado → fallback a localStorage
+      isFirebase = false; db = null;
+      _loadFromStorage();
+    }, 6000);
+
     db.ref('businesses').on('value', snap => {
+      clearTimeout(fbTimeout);
       businesses = snap.val() || {};
       if (Object.keys(businesses).length === 0) { loadInitial(); return; }
       render();
+    }, err => {
+      // Firebase denegó o falló → fallback a localStorage silencioso
+      clearTimeout(fbTimeout);
+      console.warn('Firebase read error, usando localStorage:', err);
+      isFirebase = false; db = null;
+      _loadFromStorage();
     });
   } else {
-    businesses = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-    if (Object.keys(businesses).length === 0) loadInitial();
-    else render();
+    _loadFromStorage();
   }
+}
+
+function _loadFromStorage() {
+  businesses = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+  if (Object.keys(businesses).length === 0) loadInitial();
+  else render();
 }
 
 function save() {
