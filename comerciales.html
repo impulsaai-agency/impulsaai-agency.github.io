@@ -181,10 +181,71 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .empty{text-align:center;padding:48px 20px;color:var(--muted);font-size:13px}
 
 @media(max-width:600px){
-  .main{padding:10px}
+  /* HEADER */
+  .hdr{padding:8px 12px}
+  .hdr-top{margin-bottom:6px}
+  .hdr-logo{font-size:12px}
+  .hdr-user{gap:6px}
+  .user-pill{font-size:11px;padding:2px 8px}
+
+  /* STATS: scroll horizontal, no wrap */
+  .stats{flex-wrap:nowrap;overflow-x:auto;gap:5px;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .stats::-webkit-scrollbar{display:none}
+  .stat{white-space:nowrap;flex-shrink:0;font-size:10px;padding:3px 8px}
+
+  /* FILTERS: scroll horizontal */
+  .filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .fb{white-space:nowrap;flex-shrink:0;font-size:11px}
+
+  /* COMMISSIONS */
+  .com-summary{padding:10px 12px}
+  .com-body{padding:0 12px 14px}
   .com-grid{grid-template-columns:1fr}
-  .card{padding:10px 12px}
-  .card-name{font-size:13px}
+
+  /* RANKING */
+  .ranking-summary{padding:10px 12px}
+  .ranking-body{padding:0 12px 14px}
+  .rank-row{padding:10px 12px;gap:8px}
+  .rank-pos{font-size:18px;width:26px}
+  .rank-name{font-size:13px}
+  .rank-stats{gap:5px}
+  .rank-cer{font-size:12px}
+
+  /* MAIN */
+  .main{padding:8px}
+
+  /* GATE */
+  .gate-box{padding:28px 20px}
+
+  /* CARDS */
+  .card{padding:10px 12px;gap:7px}
+  .card-top{flex-direction:column;gap:4px}
+  .card-right{text-align:left}
+  .card-phone{font-size:15px}
+  .card-name{font-size:14px;white-space:normal}
+
+  /* BUTTONS: scroll horizontal */
+  .card-actions{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .card-actions::-webkit-scrollbar{display:none}
+  .btn{flex-shrink:0;font-size:11px;padding:6px 10px}
+
+  /* CHIPS: scroll horizontal */
+  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;font-size:10px;padding:4px 9px}
+
+  /* NOTES */
+  .note-row{flex-direction:column;gap:6px}
+  .note-input{height:56px;font-size:12px}
+  .note-save{padding:7px;width:100%;font-size:12px}
+
+  /* PRICE ROW */
+  .price-row{flex-wrap:wrap;gap:6px}
+
+  /* ADMIN */
+  .admin-form{flex-direction:column}
+  .admin-input,.admin-select{max-width:100%!important}
 }
 </style>
 </head>
