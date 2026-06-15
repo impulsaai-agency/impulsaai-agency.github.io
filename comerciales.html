@@ -301,9 +301,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           </div>
         </div>
       </div>
-      <div class="com-note" style="margin-top:10px;padding:10px 14px">
-        🎯 <strong>Meta del mes:</strong> 900€ en ventas. Con 2 dentales a 450€ ya está. Cuanto antes cerremos, antes empezamos el siguiente ciclo y todos ganamos más.
-      </div>
       <div class="com-note" style="margin-top:8px;padding:10px 14px;background:#25d36610;border:1px solid #25d36620">
         💬 <strong>¿Necesitas una preview o modelo para un sector concreto?</strong> Escríbele a Gonzalo — te manda el ejemplo en minutos. <a id="wa-modelo" href="https://wa.me/34634142337?text=Hola%20Gonzalo%2C%20necesito%20un%20modelo%20para%20ense%C3%B1arle%20a%20un%20cliente" target="_blank" style="color:#25d366;font-weight:700;text-decoration:none">→ Escribirle ahora</a>
       </div>
@@ -506,19 +503,13 @@ function loadData() {
   if (isFirebase) {
     db.ref('businesses').on('value', snap => {
       businesses = snap.val() || {};
-      if (Object.keys(businesses).length === 0 && isAdmin) {
-        if (confirm('No hay negocios en la base de datos. ¿Cargar los 41 negocios iniciales?')) loadInitial();
-        return;
-      }
+      if (Object.keys(businesses).length === 0) { loadInitial(); return; }
       render();
     });
   } else {
     businesses = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-    if (Object.keys(businesses).length === 0 && isAdmin) {
-      loadInitial();
-    } else {
-      render();
-    }
+    if (Object.keys(businesses).length === 0) loadInitial();
+    else render();
   }
 }
 
