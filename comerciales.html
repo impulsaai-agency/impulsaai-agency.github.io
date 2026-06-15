@@ -14,18 +14,6 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-/* SETUP BANNER */
-#setup-banner{background:#1a1508;border-bottom:1px solid #f9731640;padding:12px 16px;display:none}
-.setup-inner{max-width:900px;margin:0 auto;display:flex;gap:12px;align-items:flex-start}
-.setup-inner .icon{font-size:20px;flex-shrink:0;margin-top:1px}
-.setup-title{font-size:13px;font-weight:700;color:#f97316;margin-bottom:4px}
-.setup-body{font-size:12px;color:#ccc;line-height:1.6}
-.setup-body code{background:#00000040;padding:1px 5px;border-radius:4px;font-family:monospace;color:#fcd34d;font-size:11px}
-.setup-steps{margin-top:8px;display:flex;flex-direction:column;gap:4px}
-.setup-step{display:flex;gap:8px;font-size:12px;color:#ccc}
-.setup-step strong{color:#f97316;flex-shrink:0}
-.mode-badge{display:inline-flex;align-items:center;gap:5px;background:#f9731618;color:#f97316;border:1px solid #f9731630;border-radius:20px;padding:2px 9px;font-size:10px;font-weight:700;margin-top:6px}
-.mode-badge.live{background:#10b98118;color:#10b981;border-color:#10b98130}
 
 /* GATE */
 #gate{position:fixed;inset:0;background:#0c0c0f;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}
@@ -183,23 +171,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </head>
 <body>
 
-<!-- SETUP BANNER -->
-<div id="setup-banner">
-  <div class="setup-inner">
-    <div class="icon">⚠️</div>
-    <div class="setup-body">
-      <div class="setup-title">Modo local — los datos no se comparten entre dispositivos</div>
-      Para sincronización en tiempo real entre comerciales, configura Firebase (gratis):
-      <div class="setup-steps">
-        <div class="setup-step"><strong>1.</strong> Ve a <code>console.firebase.google.com</code> → crea proyecto "Zaylo"</div>
-        <div class="setup-step"><strong>2.</strong> Realtime Database → Crear base de datos → Modo de prueba</div>
-        <div class="setup-step"><strong>3.</strong> Configuración del proyecto → Añadir app web → copia el objeto <code>firebaseConfig</code></div>
-        <div class="setup-step"><strong>4.</strong> Pégalo en <code>comerciales.html</code> donde pone <code>PEGA TU CONFIG AQUÍ</code></div>
-      </div>
-      <span class="mode-badge" id="mode-badge">📵 Modo local — solo tú ves los datos</span>
-    </div>
-  </div>
-</div>
 
 <!-- GATE -->
 <div id="gate">
@@ -222,7 +193,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="hdr-top">
       <div class="hdr-logo">Z<span>aylo</span> <span style="color:var(--muted);font-weight:400;font-size:11px">· Comerciales</span></div>
       <div class="hdr-user">
-        <span id="mode-indicator" style="font-size:10px;color:var(--muted)"></span>
         <a href="https://wa.me/34634142337?text=Hola%20Gonzalo%2C%20soy%20" id="wa-gonzalo" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:#25d36618;color:#25d366;border:1px solid #25d36630;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;text-decoration:none">💬 Gonzalo</a>
         <span class="user-pill" id="user-display"></span>
         <button class="btn-logout" onclick="logout()">Salir</button>
@@ -430,22 +400,14 @@ const LS_KEY = 'impulsa-crm-v1', LS_AUTH = 'impulsa-crm-auth';
 // FIREBASE INIT
 // ══════════════════════════════════════════════
 function initFirebase() {
-  if (!FIREBASE_CONFIG.apiKey) {
-    document.getElementById('setup-banner').style.display = 'block';
-    document.getElementById('mode-indicator').textContent = '📵 Modo local';
-    return false;
-  }
+  if (!FIREBASE_CONFIG.apiKey) return false;
   try {
     firebase.initializeApp(FIREBASE_CONFIG);
     db = firebase.database();
     isFirebase = true;
-    const badge = document.getElementById('mode-badge');
-    if (badge) { badge.textContent = '🟢 Modo compartido en tiempo real'; badge.className = 'mode-badge live'; }
-    document.getElementById('mode-indicator').textContent = '🟢 En vivo';
     return true;
   } catch(e) {
     console.error('Firebase init error:', e);
-    document.getElementById('setup-banner').style.display = 'block';
     return false;
   }
 }
