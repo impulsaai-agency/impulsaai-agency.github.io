@@ -761,14 +761,33 @@ body.has-banner{padding-top:36px}
     </div>
 
     <div style="display:flex; justify-content:center; align-items:center;">
-      <!-- Marco exterior del móvil -->
-      <div style="position:relative; width:300px; flex-shrink:0;">
-        <!-- Notch -->
-        <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:80px;height:6px;background:#0d1117;border-radius:4px;z-index:10;"></div>
+      <div style="position:relative; flex-shrink:0;">
+        <!-- Botones laterales izquierda -->
+        <div style="position:absolute;left:-4px;top:100px;width:4px;height:32px;background:#4a5568;border-radius:2px 0 0 2px;"></div>
+        <div style="position:absolute;left:-4px;top:148px;width:4px;height:56px;background:#4a5568;border-radius:2px 0 0 2px;"></div>
+        <div style="position:absolute;left:-4px;top:216px;width:4px;height:56px;background:#4a5568;border-radius:2px 0 0 2px;"></div>
+        <!-- Botón lateral derecha -->
+        <div style="position:absolute;right:-4px;top:160px;width:4px;height:80px;background:#4a5568;border-radius:0 2px 2px 0;"></div>
         <!-- Cuerpo del móvil -->
-        <div style="background:#0d1117;border-radius:44px;padding:28px 10px 16px;box-shadow:0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.08);">
+        <div style="
+          width:280px;
+          background:linear-gradient(145deg,#2d3748,#1a202c);
+          border-radius:44px;
+          padding:16px 10px 12px;
+          box-shadow:
+            0 50px 100px rgba(0,0,0,0.8),
+            0 0 0 1px rgba(255,255,255,0.15),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+        ">
+          <!-- Notch + cámara -->
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div style="width:90px;height:22px;background:#0d1117;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:6px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#1a202c;border:1px solid #2d3748;"></div>
+              <div style="width:40px;height:4px;background:#1a202c;border-radius:2px;"></div>
+            </div>
+          </div>
           <!-- Pantalla -->
-          <div style="border-radius:28px;overflow:hidden;height:560px;position:relative;">
+          <div style="border-radius:24px;overflow:hidden;height:540px;background:#111b21;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.5);">
             <iframe
               src="https://impulsaai-agency.github.io/demo-chatbot-especialidades.html"
               style="width:100%;height:100%;border:none;display:block;"
@@ -776,7 +795,7 @@ body.has-banner{padding-top:36px}
             </iframe>
           </div>
           <!-- Home bar -->
-          <div style="width:80px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;margin:10px auto 0;"></div>
+          <div style="width:80px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:10px auto 0;"></div>
         </div>
       </div>
     </div>
