@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presupuesto — Especialidades Odontológicas · Zaylo</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:  #060610;
+  --bg2: #0a0a1e;
+  --bg3: #0f0f28;
+  --a1:  #6366f1;
+  --a2:  #a855f7;
+  --a3:  #06b6d4;
+  --grad: linear-gradient(135deg, #6366f1, #a855f7);
+  --text:  #f1f5f9;
+  --text2: #94a3b8;
+  --text3: #475569;
+  --border: rgba(255,255,255,0.07);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: #111; }
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 40px 24px;
+}
+.container { max-width: 680px; margin: 0 auto; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px; font-weight: 700;
+  background: linear-gradient(135deg, #818cf8, #c084fc, #22d3ee);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.doc-info { text-align: right; }
+.doc-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--a1); margin-bottom: 4px; }
+.doc-date { font-size: 13px; color: var(--text2); }
+
+.parties { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+@media (max-width: 480px) { .parties { grid-template-columns: 1fr; } }
+.party-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--a1); margin-bottom: 10px; }
+.party-name { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.party-detail { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+.doc-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.doc-subtitle { font-size: 14px; color: var(--text2); margin-bottom: 36px; line-height: 1.6; }
+
+.item {
+  background: var(--bg2);
+  border: 1px solid rgba(99,102,241,0.4);
+  background: rgba(99,102,241,0.05);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 12px;
+}
+.item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.item-name { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; }
+.item-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px; font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  white-space: nowrap; margin-left: 16px;
+}
+.item-includes { list-style: none; }
+.item-includes li {
+  font-size: 13px;
+  color: var(--text2);
+  padding: 4px 0;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.item-includes li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--a3);
+  font-size: 11px;
+  top: 5px;
+}
+
+.item-optional {
+  background: var(--bg2);
+  border: 1px dashed rgba(255,255,255,0.1);
+  opacity: 0.75;
+}
+
+.total-box {
+  background: rgba(99,102,241,0.06);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+.total-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+.total-label { font-size: 14px; color: var(--text2); }
+.total-value { font-size: 14px; font-weight: 600; }
+.total-divider { border: none; border-top: 1px solid rgba(99,102,241,0.15); margin: 10px 0; }
+.total-final .total-label { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
+.total-final .total-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px; font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.payment {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+.payment-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--a1); margin-bottom: 16px; }
+.payment-step { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+.step-num {
+  width: 28px; height: 28px; min-width: 28px;
+  background: var(--grad);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #fff;
+}
+.step-text { font-size: 14px; color: var(--text2); line-height: 1.5; padding-top: 4px; }
+.step-text strong { color: var(--text); }
+
+.conditions {
+  font-size: 12px;
+  color: var(--text3);
+  line-height: 1.8;
+  margin-bottom: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.conditions p { margin-bottom: 4px; }
+
+.footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.footer p { font-size: 13px; color: var(--text2); margin-bottom: 4px; }
+.footer strong {
+  background: var(--grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.print-btn {
+  display: block;
+  width: 100%;
+  background: var(--grad);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.print-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="print-btn no-print" onclick="window.print()">Descargar / Imprimir PDF</button>
+
+  <div class="header">
+    <div class="logo">Zaylo</div>
+    <div class="doc-info">
+      <div class="doc-num">Presupuesto #032</div>
+      <div class="doc-date">24 de junio de 2026</div>
+      <div class="doc-date" style="margin-top:4px;color:#475569;">Válido 15 días</div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div>
+      <div class="party-label">Proveedor</div>
+      <div class="party-name">Zaylo</div>
+      <div class="party-detail">
+        Gonzalo García<br>
+        zaylo.site@gmail.com<br>
+        634 142 337<br>
+        zaylo.site
+      </div>
+    </div>
+    <div>
+      <div class="party-label">Cliente</div>
+      <div class="party-name">Especialidades Odontológicas</div>
+      <div class="party-detail">
+        Carabanchel, Madrid<br>
+        914 666 865
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-title">Página web profesional</div>
+  <p class="doc-subtitle">Diseño web personalizado para Especialidades Odontológicas. Entrega en 5 días laborables.</p>
+
+  <!-- WEB -->
+  <div class="item" style="margin-bottom:12px;">
+    <div class="item-header">
+      <div class="item-name">Web Profesional</div>
+      <div class="item-price">399€</div>
+    </div>
+    <ul class="item-includes">
+      <li>Diseño web personalizado con vuestra imagen y colores</li>
+      <li>Adaptada a móvil, tablet y ordenador</li>
+      <li>Sección de tratamientos y especialidades</li>
+      <li>Formulario de contacto — cada mensaje llega directamente a vuestro email</li>
+      <li>Botón de solicitud de cita</li>
+      <li>Integración con Google Maps</li>
+      <li>SEO local optimizado para búsquedas en Madrid</li>
+      <li>Publicación en vuestro dominio en 5 días laborables</li>
+      <li>1 mes de soporte técnico incluido</li>
+    </ul>
+  </div>
+
+  <!-- MANTENIMIENTO -->
+  <div class="item item-optional" style="margin-bottom:32px;">
+    <div class="item-header">
+      <div>
+        <div class="item-name" style="font-size:15px;">Mantenimiento mensual</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:2px;">Opcional · sin permanencia</div>
+      </div>
+      <div class="item-price" style="font-size:20px;">34,99€/mes</div>
+    </div>
+    <ul class="item-includes">
+      <li>Actualizaciones de precios, horarios y tratamientos</li>
+      <li>Cambios de contenido en menos de 24h</li>
+      <li>Soporte técnico prioritario</li>
+      <li>Cancelación cuando queráis, sin penalización</li>
+    </ul>
+  </div>
+
+  <!-- TOTAL -->
+  <div class="total-box">
+    <div class="total-row">
+      <div class="total-label">Web profesional completa</div>
+      <div class="total-value">399€</div>
+    </div>
+    <div class="total-row">
+      <div class="total-label">Mantenimiento mensual (opcional)</div>
+      <div class="total-value">+34,99€/mes</div>
+    </div>
+    <hr class="total-divider">
+    <div class="total-row total-final">
+      <div class="total-label">Total</div>
+      <div class="total-value">399€</div>
+    </div>
+  </div>
+
+  <!-- OFERTA -->
+  <div style="background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(168,85,247,0.12));border:1px solid rgba(99,102,241,0.35);border-radius:14px;padding:20px 24px;margin-bottom:32px;text-align:center;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#818cf8;margin-bottom:10px;">Oferta especial</div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#f1f5f9;margin-bottom:6px;">2 meses de mantenimiento gratis</div>
+    <div style="font-size:13px;color:#94a3b8;line-height:1.6;">Valor: <strong style="color:#f1f5f9;">69,98€</strong> · Válido confirmando antes del <strong style="color:#f1f5f9;">viernes 27 de junio.</strong><br>A partir del 3er mes podéis continuar por 34,99€/mes o cancelar sin compromiso.</div>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="payment">
+    <div class="payment-title">¿Cómo es el proceso?</div>
+    <div class="payment-step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Confirmáis y hacéis el primer pago (50% — 199,50€)</strong> — Empezamos ese mismo día. Nos mandáis logo, fotos y colores si tenéis. Si no, usamos material profesional.</div>
+    </div>
+    <div class="payment-step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Llamada rápida de 20 minutos</strong> — Os hacemos preguntas sobre vuestra clínica: tratamientos, horarios, colores, cómo queréis que quede. Solo una vez.</div>
+    </div>
+    <div class="payment-step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Entregamos la web en 5 días laborables</strong> — La veis antes de publicar. Si algo no os convence, lo cambiamos. Cuando dais el visto bueno, se publica.</div>
+    </div>
+    <div class="payment-step" style="margin-bottom:0">
+      <div class="step-num">4</div>
+      <div class="step-text"><strong>Segundo pago al entregar (50% — 199,50€)</strong> — Pagáis el resto solo cuando la web esté publicada y os guste.</div>
+    </div>
+  </div>
+
+  <!-- PAGO -->
+  <div class="payment">
+    <div class="payment-title">Forma de pago</div>
+    <div class="payment-step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>199,50€ al confirmar</strong> — transferencia bancaria. Empezamos ese mismo día.</div>
+    </div>
+    <div class="payment-step" style="margin-bottom:0">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>199,50€ al entregar</strong> — cuando la web esté lista y deis el visto bueno.</div>
+    </div>
+  </div>
+
+  <!-- QUE NECESITA EL CLIENTE -->
+  <div class="payment">
+    <div class="payment-title">¿Qué necesitáis hacer vosotros?</div>
+    <div class="payment-step">
+      <div class="step-num" style="background:rgba(6,182,212,0.2);color:#06b6d4;">✓</div>
+      <div class="step-text"><strong>Una llamada de 20 minutos</strong> para darnos la información de vuestra clínica. Solo una vez.</div>
+    </div>
+    <div class="payment-step">
+      <div class="step-num" style="background:rgba(6,182,212,0.2);color:#06b6d4;">✓</div>
+      <div class="step-text"><strong>Logo y fotos si tenéis</strong> — por WhatsApp cuando queráis. Si no tenéis, usamos material profesional sin coste adicional.</div>
+    </div>
+    <div class="payment-step" style="margin-bottom:0">
+      <div class="step-num" style="background:rgba(6,182,212,0.2);color:#06b6d4;">✓</div>
+      <div class="step-text"><strong>Dar el visto bueno a la web</strong> antes de publicarla. El resto lo hacemos nosotros.</div>
+    </div>
+  </div>
+
+  <!-- GARANTIAS -->
+  <div style="margin-bottom:32px;padding-top:28px;border-top:1px solid var(--border);">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#94a3b8;margin-bottom:16px;">Garantías</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#94a3b8;line-height:1.6;">
+        <span style="color:#06b6d4;font-weight:700;flex-shrink:0;">→</span>
+        <span><strong style="color:#f1f5f9;">Veis la web antes de pagar el segundo 50%.</strong> Si no quedáis satisfechos con el resultado, no pagáis.</span>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#94a3b8;line-height:1.6;">
+        <span style="color:#06b6d4;font-weight:700;flex-shrink:0;">→</span>
+        <span><strong style="color:#f1f5f9;">Si Zaylo no cumple los plazos,</strong> se devuelve el 100% del pago inicial.</span>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#94a3b8;line-height:1.6;">
+        <span style="color:#06b6d4;font-weight:700;flex-shrink:0;">→</span>
+        <span><strong style="color:#f1f5f9;">El mantenimiento no tiene permanencia.</strong> Se cancela cuando queráis, sin penalización.</span>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;font-size:13px;color:#94a3b8;line-height:1.6;">
+        <span style="color:#06b6d4;font-weight:700;flex-shrink:0;">→</span>
+        <span><strong style="color:#f1f5f9;">La web es vuestra.</strong> Si en algún momento dejáis de trabajar con Zaylo, os entregamos todos los archivos.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="conditions">
+    <p>· Presupuesto válido hasta el 9 de julio de 2026.</p>
+    <p>· La oferta de 2 meses de mantenimiento gratis es válida confirmando antes del viernes 27 de junio.</p>
+    <p>· El pago inicial cubre el inicio del trabajo y la reserva de disponibilidad.</p>
+    <p>· El mantenimiento mensual no tiene permanencia mínima y puede cancelarse en cualquier momento.</p>
+  </div>
+
+  <div class="footer">
+    <p>¿Alguna duda? Escríbenos por WhatsApp</p>
+    <p><strong>634 142 337</strong> · zaylo.site@gmail.com</p>
+    <p style="margin-top:16px;font-size:11px;color:#475569;">Zaylo · zaylo.site</p>
+  </div>
+
+</div>
+</body>
+</html>
