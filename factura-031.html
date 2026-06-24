@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factura #031 · Zaylo</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; }
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f4f4f6;
+  padding: 40px 24px;
+  color: #1a1a1a;
+}
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 56px 56px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #f0f0f0;
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.logo-sub {
+  font-size: 11px;
+  color: #999;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+.doc-info { text-align: right; }
+.doc-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.doc-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #6366f1;
+  margin-bottom: 8px;
+}
+.doc-date { font-size: 13px; color: #888; }
+
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+@media(max-width:500px){ .parties { grid-template-columns: 1fr; } }
+.party-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+.party-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.party-detail { font-size: 13px; color: #666; line-height: 1.8; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+thead tr {
+  border-bottom: 2px solid #f0f0f0;
+}
+thead th {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #aaa;
+  padding: 0 0 12px 0;
+  text-align: left;
+}
+thead th:last-child { text-align: right; }
+tbody tr {
+  border-bottom: 1px solid #f7f7f7;
+}
+tbody td {
+  padding: 18px 0;
+  font-size: 14px;
+  color: #333;
+  vertical-align: top;
+}
+tbody td:last-child {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.item-desc { font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+.item-sub { font-size: 12px; color: #999; line-height: 1.6; }
+
+.totals {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.total-row {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+.total-row .tl { font-size: 13px; color: #888; text-align: right; min-width: 140px; }
+.total-row .tv { font-size: 13px; font-weight: 600; text-align: right; min-width: 80px; }
+.total-final {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 2px solid #f0f0f0;
+}
+.total-final .tl {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.total-final .tv {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.note-box {
+  background: #fafafa;
+  border-left: 3px solid #6366f1;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin-bottom: 40px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+}
+.note-box strong { color: #1a1a1a; }
+
+.footer {
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-contact { font-size: 12px; color: #aaa; line-height: 1.8; }
+.footer-legal { font-size: 11px; color: #ccc; text-align: right; line-height: 1.8; }
+
+.print-btn {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 32px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transition: opacity 0.2s;
+}
+.print-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Descargar PDF / Imprimir</button>
+
+<div class="container">
+
+  <div class="header">
+    <div>
+      <div class="logo">Zaylo</div>
+      <div class="logo-sub">Diseño web · zaylo.site</div>
+    </div>
+    <div class="doc-info">
+      <div class="doc-label">Factura</div>
+      <div class="doc-num">#031</div>
+      <div class="doc-date">24 de junio de 2026</div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div>
+      <div class="party-label">Emisor</div>
+      <div class="party-name">Gonzalo García Rodríguez</div>
+      <div class="party-detail">
+        DNI: 03170554G<br>
+        zaylo.site@gmail.com<br>
+        634 142 337
+      </div>
+    </div>
+    <div>
+      <div class="party-label">Cliente</div>
+      <div class="party-name">Clínica Dental Especialidades Odontológicas S.L.</div>
+      <div class="party-detail">
+        CIF: B82356031<br>
+        Pso. Marcelino Camacho, 54 Local<br>
+        Madrid
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Descripción</th>
+        <th style="text-align:right;">Importe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="item-desc">Diseño y desarrollo de página web profesional</div>
+          <div class="item-sub">
+            Web personalizada para Especialidades Odontológicas · adaptada a móvil,<br>
+            tablet y ordenador · formulario de contacto · SEO local · Google Maps.<br>
+            <strong style="color:#6366f1;">Primer pago (50%) — pago inicial para inicio de proyecto.</strong>
+          </div>
+        </td>
+        <td>199,50 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <div class="total-row">
+      <div class="tl">Base imponible</div>
+      <div class="tv">199,50 €</div>
+    </div>
+    <div class="total-row">
+      <div class="tl">IVA (0% — no sujeto)</div>
+      <div class="tv">0,00 €</div>
+    </div>
+    <div class="total-row total-final">
+      <div class="tl">Total a pagar</div>
+      <div class="tv">199,50 €</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Forma de pago:</strong> Transferencia bancaria o Bizum al 634 142 337.<br>
+    <strong>Concepto:</strong> Factura 031 · Zaylo · Diseño web Especialidades Odontológicas.<br>
+    <strong>Pendiente:</strong> Segundo pago de 199,50 € a la entrega y aprobación de la web (Factura #032).
+  </div>
+
+  <div class="footer">
+    <div class="footer-contact">
+      Gonzalo García Rodríguez<br>
+      zaylo.site@gmail.com · 634 142 337<br>
+      zaylo.site
+    </div>
+    <div class="footer-legal">
+      Factura emitida conforme a la<br>
+      normativa fiscal vigente en España.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
