@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Dental Madrid</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; color: #333; }
+
+/* NAV */
+nav {
+  background: #1565c0;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo { color: white; font-size: 18px; font-weight: bold; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; }
+
+/* HERO */
+.hero {
+  background: #e3f2fd;
+  padding: 60px 20px;
+  text-align: center;
+  border-bottom: 3px solid #1565c0;
+}
+.hero h1 { font-size: 28px; color: #1565c0; margin-bottom: 12px; }
+.hero p { font-size: 15px; color: #555; max-width: 500px; margin: 0 auto 24px; line-height: 1.6; }
+.hero-btn {
+  background: #1565c0;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* SERVICES */
+.services { padding: 48px 20px; background: white; }
+.services h2 { text-align: center; font-size: 22px; color: #1565c0; margin-bottom: 32px; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.service-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+}
+.service-card h3 { font-size: 15px; color: #1565c0; margin-bottom: 8px; }
+.service-card p { font-size: 13px; color: #666; line-height: 1.5; }
+.service-icon { font-size: 28px; margin-bottom: 10px; }
+
+/* INFO BAR */
+.info-bar {
+  background: #1565c0;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.info-item { text-align: center; }
+.info-item strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.info-item span { font-size: 13px; opacity: 0.8; }
+
+/* ABOUT */
+.about {
+  padding: 48px 20px;
+  background: #f5f5f5;
+  display: flex;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: center;
+}
+.about-text h2 { font-size: 20px; color: #1565c0; margin-bottom: 12px; }
+.about-text p { font-size: 14px; color: #555; line-height: 1.7; }
+.about-img {
+  width: 260px;
+  min-width: 260px;
+  height: 180px;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 13px;
+}
+
+/* CONTACT */
+.contact {
+  padding: 48px 20px;
+  background: white;
+  text-align: center;
+}
+.contact h2 { font-size: 22px; color: #1565c0; margin-bottom: 24px; }
+.contact-form {
+  max-width: 460px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.contact-form textarea { height: 90px; resize: none; }
+.contact-form button {
+  background: #1565c0;
+  color: white;
+  padding: 12px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  background: #333;
+  color: #aaa;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+}
+footer a { color: #aaa; }
+
+@media(max-width:600px){
+  .services-grid { grid-template-columns: 1fr; }
+  .about { flex-direction: column; }
+  .about-img { width: 100%; min-width: unset; }
+  .info-bar { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Clínica Dental Madrid</div>
+  <ul class="nav-links">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Servicios</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h1>Bienvenidos a Clínica Dental Madrid</h1>
+  <p>Ofrecemos servicios dentales de calidad para toda la familia. Pide tu cita hoy mismo y cuida tu salud bucodental.</p>
+  <a href="#contacto" class="hero-btn">Pedir cita</a>
+</div>
+
+<div class="info-bar">
+  <div class="info-item">
+    <strong>914 000 000</strong>
+    <span>Teléfono</span>
+  </div>
+  <div class="info-item">
+    <strong>Lun–Vie 9:00–20:00</strong>
+    <span>Horario</span>
+  </div>
+  <div class="info-item">
+    <strong>Madrid</strong>
+    <span>Ubicación</span>
+  </div>
+</div>
+
+<section class="services">
+  <h2>Nuestros servicios</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🦷</div>
+      <h3>Ortodoncia</h3>
+      <p>Brackets metálicos e invisibles para alinear tu sonrisa.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Implantes</h3>
+      <p>Recupera las piezas dentales perdidas con implantes duraderos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Blanqueamiento</h3>
+      <p>Blanqueamiento dental profesional para una sonrisa más blanca.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🩺</div>
+      <h3>Revisión</h3>
+      <p>Revisión completa y limpieza dental a precio asequible.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👶</div>
+      <h3>Odontopediatría</h3>
+      <p>Atención dental especializada para niños y adolescentes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💊</div>
+      <h3>Endodoncia</h3>
+      <p>Tratamiento de conductos para salvar dientes dañados.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding:48px 20px;background:#f5f5f5;">
+  <div class="about" style="padding:0;">
+    <div class="about-img">[ Foto clínica ]</div>
+    <div class="about-text">
+      <h2>Sobre nosotros</h2>
+      <p>Somos una clínica dental con años de experiencia ofreciendo tratamientos de calidad en Madrid. Nuestro equipo de profesionales está comprometido con tu salud bucodental y tu bienestar.</p>
+      <p style="margin-top:12px;">Trabajamos con las últimas tecnologías y materiales para garantizar los mejores resultados. Tu confianza es nuestra mayor satisfacción.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <h2>Contacta con nosotros</h2>
+  <form class="contact-form">
+    <input type="text" placeholder="Nombre">
+    <input type="email" placeholder="Email">
+    <input type="tel" placeholder="Teléfono">
+    <textarea placeholder="Mensaje"></textarea>
+    <button type="submit">Enviar mensaje</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Clínica Dental Madrid · Todos los derechos reservados · <a href="#">Aviso legal</a></p>
+</footer>
+
+</body>
+</html>
