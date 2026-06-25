@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 90" width="560" height="180">
+  <rect width="280" height="90" fill="white"/>
+
+  <g transform="translate(4,4)">
+
+    <!-- SOMBRA 3D (mismo path desplazado +3,+3) -->
+    <path transform="translate(3,3)"
+      d="M9,0 Q0,0 0,9 L0,48 Q0,56 11,56 L11,64 Q11,75 22,75 Q33,75 33,64 L33,56 L67,56 L67,64 Q67,75 78,75 Q89,75 89,64 L89,56 Q100,56 100,48 L100,9 Q100,0 91,0 Z"
+      fill="#1a8c36"/>
+
+    <!-- CUERPO PRINCIPAL — corona ancha (100×48) + 2 raíces -->
+    <path d="M9,0 Q0,0 0,9 L0,48 Q0,56 11,56 L11,64 Q11,75 22,75 Q33,75 33,64 L33,56 L67,56 L67,64 Q67,75 78,75 Q89,75 89,64 L89,56 Q100,56 100,48 L100,9 Q100,0 91,0 Z"
+      fill="#28ae46"/>
+
+    <!-- BRILLO SUPERIOR (volumen) -->
+    <path d="M9,0 Q0,0 0,9 L0,27 Q22,11 50,9 Q76,8 91,19 L91,9 Q91,0 82,0 Z"
+      fill="white" opacity="0.22"/>
+
+    <!-- OJO IZQUIERDO -->
+    <circle cx="27" cy="23" r="12.5" fill="white"/>
+    <circle cx="29" cy="25" r="7" fill="#111"/>
+    <circle cx="31.5" cy="21" r="2.8" fill="white"/>
+
+    <!-- OJO DERECHO -->
+    <circle cx="73" cy="23" r="12.5" fill="white"/>
+    <circle cx="75" cy="25" r="7" fill="#111"/>
+    <circle cx="77.5" cy="21" r="2.8" fill="white"/>
+
+    <!-- SONRISA -->
+    <path d="M17,40 Q50,59 83,40" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- DIENTES — 2 rectángulos blancos centrados -->
+    <rect x="34" y="40" width="13" height="13" rx="2.5" fill="white"/>
+    <rect x="53" y="40" width="13" height="13" rx="2.5" fill="white"/>
+
+  </g>
+
+  <!-- TEXTO -->
+  <text x="118" y="30" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#28ae46" letter-spacing="0.5">Especialidades</text>
+  <text x="118" y="50" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#28ae46" letter-spacing="0.5">Odontológicas</text>
+  <text x="118" y="66" font-family="Georgia, serif" font-size="11" font-weight="400" fill="#555" letter-spacing="0.3">Grupo Dental, S.L.</text>
+</svg>
