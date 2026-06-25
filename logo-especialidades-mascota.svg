@@ -1,53 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 282 112" width="564" height="224">
-  <rect width="282" height="112" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 118" width="560" height="236">
+  <rect width="280" height="118" fill="white"/>
 
-  <g transform="translate(5,6)">
+  <g transform="translate(5,5)">
 
-    <!-- CUERPO CON BORDE NEGRO GRUESO (igual al letrero) -->
+    <!-- CUERPO: corona 86×60 (ratio 1.43:1), raíces anchas 33px c/u, gap 14px -->
     <path
-      d="M12,5 Q4,0 0,9 L0,66
-         Q0,73 9,73 L9,85
-         Q9,97 22,97 Q35,97 35,85 L35,73
-         L49,73 L49,85
-         Q49,97 62,97 Q75,97 75,85 L75,73
-         Q84,73 84,66 L84,9
-         Q80,0 72,5
-         Q62,0 52,7 Q47,1 42,1 Q37,1 32,7 Q22,0 12,5 Z"
-      fill="#44c9c4"
+      d="M8,8 Q0,2 0,12 L0,60
+         Q0,70 5,72 L5,92
+         Q5,118 22,118 Q38,118 38,92 L38,72
+         L50,72 L50,92
+         Q50,118 66,118 Q82,118 82,92 L82,72
+         Q86,70 86,60 L86,12
+         Q86,2 78,8
+         Q67,0 57,10 Q43,17 29,10 Q19,0 8,8 Z"
+      fill="#44cac5"
       stroke="#1a1a1a"
-      stroke-width="6"
+      stroke-width="7"
       stroke-linejoin="round"
       style="paint-order: stroke fill"/>
 
-    <!-- BRILLO SUPERIOR (volumen) -->
-    <path d="M12,5 Q22,0 32,7 Q37,1 42,1 Q47,1 52,7 Q62,0 72,5 Q80,0 84,9 L84,28 Q65,14 42,13 Q19,14 0,28 L0,9 Q4,0 12,5 Z"
-      fill="white" opacity="0.16"/>
+    <!-- BRILLO SUPERIOR -->
+    <path d="M8,8 Q19,0 29,10 Q43,17 57,10 Q67,0 78,8 Q86,2 86,12 L86,30 Q64,14 43,13 Q22,14 0,30 L0,12 Q0,2 8,8 Z"
+      fill="white" opacity="0.18"/>
 
-    <!-- OJO IZQUIERDO -->
-    <circle cx="25" cy="27" r="13" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
-    <circle cx="27" cy="29" r="7.5" fill="#1a1a1a"/>
-    <circle cx="30" cy="24.5" r="3" fill="white"/>
+    <!-- OJO IZQUIERDO (ligeramente más grande) -->
+    <circle cx="21" cy="22" r="14" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+    <circle cx="23" cy="24" r="8" fill="#1a1a1a"/>
+    <circle cx="26.5" cy="20" r="3.2" fill="white"/>
 
     <!-- OJO DERECHO -->
-    <circle cx="59" cy="27" r="13" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
-    <circle cx="61" cy="29" r="7.5" fill="#1a1a1a"/>
-    <circle cx="64" cy="24.5" r="3" fill="white"/>
+    <circle cx="65" cy="22" r="13" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+    <circle cx="67" cy="24" r="7.5" fill="#1a1a1a"/>
+    <circle cx="70.5" cy="20" r="3" fill="white"/>
 
     <!-- LÍNEAS DE MEJILLA -->
-    <path d="M9,53 Q4,46 10,42" stroke="#2a9a96" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M75,53 Q80,46 74,42" stroke="#2a9a96" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M6,53 Q1,46 7,42" stroke="#1e8c88" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M80,53 Q85,46 79,42" stroke="#1e8c88" stroke-width="2.5" fill="none" stroke-linecap="round"/>
 
-    <!-- BOCA ABIERTA (sonrisa negra) -->
-    <path d="M15,48 Q42,65 69,48 L69,42 Q55,36 42,36 Q29,36 15,42 Z" fill="#1a1a1a"/>
+    <!-- SONRISA ABIERTA GRANDE (80% del ancho) -->
+    <path d="M7,50 Q43,66 79,50 L79,44 Q63,38 43,38 Q23,38 7,44 Z" fill="#1a1a1a"/>
 
-    <!-- DIENTES BLANCOS (2 cuadrados) -->
-    <rect x="26" y="36" width="14" height="14" rx="2.5" fill="white"/>
-    <rect x="44" y="36" width="14" height="14" rx="2.5" fill="white"/>
+    <!-- 2 DIENTES BLANCOS -->
+    <rect x="22" y="38" width="17" height="14" rx="3" fill="white"/>
+    <rect x="47" y="38" width="17" height="14" rx="3" fill="white"/>
 
   </g>
 
   <!-- TEXTO -->
-  <text x="110" y="37" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#44c9c4" letter-spacing="0.4">Especialidades</text>
-  <text x="110" y="57" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#44c9c4" letter-spacing="0.4">Odontológicas</text>
-  <text x="110" y="73" font-family="Georgia, serif" font-size="12" font-weight="400" fill="#555" letter-spacing="0.3">Grupo Dental, S.L.</text>
+  <text x="112" y="40" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#44cac5" letter-spacing="0.4">Especialidades</text>
+  <text x="112" y="60" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#44cac5" letter-spacing="0.4">Odontológicas</text>
+  <text x="112" y="76" font-family="Georgia, serif" font-size="12" font-weight="400" fill="#555" letter-spacing="0.3">Grupo Dental, S.L.</text>
 </svg>
